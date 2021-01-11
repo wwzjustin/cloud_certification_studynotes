@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="data-spm" content="a2c6h" />
+    <title>Cardinality在数据模型中的意思-阿里云开发者社区</title>
+
+    <meta name="keywords" content="程序员,数据库" />
+    <meta name="description" />
+    <meta property="og:title" content="Cardinality在数据模型中的意思-阿里云开发者社区" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" />
+    <meta property="og:image" content="https://img.alicdn.com/tfs/TB1LCE1aQ5E3KVjSZFCXXbuzXXa-200-200.png" />
+    <meta property="og:url" content="https://developer.aliyun.com/article/419343" />
+
+    <link rel="canonical" href="https://developer.aliyun.com/article/419343" />
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_422887_nuq15p2zz5154s4i.css" />
+
+    <link rel="stylesheet" href="//g.alicdn.com/aliyun/developer-aliyun-com-fe/1.6.9/css/??article.css,detailCommon.css,medalDialog.css,mathjax.css,yuqueDocViewer.css" />
+
+    <style type="text/css">
+        html, body {
+            background-color: #f7f7f7;
+        }
+    </style>
+    <script nonce="9475dbeef29a4727a6183ff04c1fb3d2">
+        var GLOBAL_CONFIG = {
+            "wechat_disable": false,
+            "articleId": '419343',
+            "uccCsrfToken": null,
+            "weibohost": 'http://service.weibo.com/share/share.php?title=Cardinality%E5%9C%A8%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E6%84%8F%E6%80%9D&url=https%3A%2F%2Fdeveloper.aliyun.com%2Farticle%2F419343',
+            "groupCode": 'database',
+            "uccDomain": 'https://ucc.aliyun.com',
+            "csrf_key": 'p_csrf',
+            "csrf_val": 'a22b3b23-4ece-4681-8637-6266a7499cf0',
+            "groupInfo": {'allStarNum':null,'articleList':null,'contentNum':null,'currentUserIsJoin':null,'dingTalkQRCode':'https://ucc.alicdn.com/pic/developer-ecology/4faa49c2a13d422ea2244e482099bf30.png','gmtCreate':'2019-05-27 11:10:13','gmtModified':'2020-05-22 16:39:03','groupBrief':'\u5206\u4EAB\u6570\u636E\u5E93\u524D\u6CBF\uFF0C\u89E3\u6784\u5B9E\u6218\u5E72\u8D27\uFF0C\u63A8\u52A8\u6570\u636E\u5E93\u6280\u672F\u53D8\u9769','groupCode':'database','groupDesc':'\u6211\u4EEC\u627F\u8F7D\u4E86\u963F\u91CC\u4E91\u3001\u963F\u91CC\u5DF4\u5DF4\u96C6\u56E2\u6240\u6709\u5728\u7EBF\u6570\u636E\u4EE5\u53CA\u6570\u636E\u670D\u52A1\uFF0C\u63D0\u4F9B\u4ECE\u5728\u7EBF\u4E8B\u7269\u5904\u7406\u5230\u5728\u7EBF\u5206\u6790\u5904\u7406\u7684\u5168\u6808\u6570\u636E\u5E93\u4EA7\u54C1\u548C\u670D\u52A1\uFF0C\u652F\u6301\u516C\u5171\u4E91\u3001\u4E13\u6709\u4E91\u5404\u79CD\u73AF\u5883\u4E0B\u7684\u7075\u6D3B\u90E8\u7F72\uFF0C\u6EE1\u8DB3\u4ECE\u4E2A\u4EBA\u5F00\u53D1\u8005\u3001\u4E2D\u5C0F\u4F01\u4E1A\u5230\u5168\u7403\u5927\u89C4\u6A21\u4F01\u4E1A\u4E1A\u52A1\u3002\n\n\u5728\u6570\u636E\u5E93\u5B58\u50A8\u5F15\u64CE\u3001\u4E91\u539F\u751F\u6280\u672F\u3001\u5206\u6790\u5F15\u64CE\u3001\u5206\u5E03\u5F0F\u5904\u7406\u3001FPGA/GPU\u786C\u4EF6\u52A0\u901F\u3001\u667A\u80FD\u6570\u636E\u5E93\u3001\u667A\u80FD\u5316\u7BA1\u63A7\u5E73\u53F0\u3001\u5B89\u5168\u6570\u636E\u5E93\u7B49\u65B9\u9762\uFF0C\u963F\u91CC\u4E91\u6570\u636E\u5E93\u90FD\u5904\u4E8E\u5168\u7403\u9886\u5148\u4F4D\u7F6E\uFF0C\u5168\u9762\u7684\u4E91\u4EA7\u54C1\u548C\u670D\u52A1\u7EC4\u5408\uFF0C\u4E3A\u963F\u91CC\u4E91\u5BA2\u6237\u4EE5\u53CA\u963F\u91CC\u5DF4\u5DF4\u96C6\u56E2\u7684\u591A\u5143\u5316\u4E1A\u52A1\u63D0\u4F9B\u4E86\u4E30\u5BCC\u7684\u6570\u636E\u5E93\u4EA7\u54C1\u89E3\u51B3\u65B9\u6848\u548C\u884C\u4E1A\u7ECF\u9A8C\u3002','groupLogo':'https://ucc.alicdn.com/pic/developer-ecology/30b90a99cfe34d3f8a6405660d3abf36.png','groupName':'\u6570\u636E\u5E93','groupType':'technology_domain','join':false,'link':null,'moduleType':null,'ownerId':'162659','ownerName':'\u5362\u4F83','questionNum':null,'relatedObjectIds':null,'relatedTagCode':'de-3-100064,de-3-100065,de-3-100066,de-3-100067,de-3-100068,de-3-100069,de-3-100071,de-3-100258,de-3-100274,de-3-100275,de-3-100277,de-3-100210,de-3-100189,de-3-100207,de-3-100211,de-3-100212,de-3-100213,de-3-100214,de-3-100215,de-3-100216,de-3-100217,de-3-100238,de-special-3-database','relatedTags':[{'children':null,'tagBizCategory':null,'tagCode':'de-3-100064','tagLevel':3,'tagName':'SQL'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100065','tagLevel':3,'tagName':'OLTP'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100066','tagLevel':3,'tagName':'OLAP'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100067','tagLevel':3,'tagName':'\u5173\u7CFB\u578B\u6570\u636E\u5E93'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100068','tagLevel':3,'tagName':'NoSQL'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100069','tagLevel':3,'tagName':'\u65F6\u5E8F\u6570\u636E\u5E93'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100071','tagLevel':3,'tagName':'\u6570\u636E\u5E93\u7BA1\u7406'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100258','tagLevel':3,'tagName':'\u6570\u636E\u5E93'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100274','tagLevel':3,'tagName':'\u5206\u5E03\u5F0F\u6570\u636E\u5E93'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100275','tagLevel':3,'tagName':'\u6570\u636E\u5E93\u8FDE\u63A5'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100277','tagLevel':3,'tagName':'\u591A\u6A21\u6570\u636E\u5E93'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100210','tagLevel':3,'tagName':'MySQL'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100189','tagLevel':3,'tagName':'AliSQL'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100207','tagLevel':3,'tagName':'OceanBase'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100211','tagLevel':3,'tagName':'Oracle'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100212','tagLevel':3,'tagName':'PostgreSQL'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100213','tagLevel':3,'tagName':'PolarDB'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100214','tagLevel':3,'tagName':'Redis'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100215','tagLevel':3,'tagName':'MongoDB'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100216','tagLevel':3,'tagName':'Hbase'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100217','tagLevel':3,'tagName':'Memcache'},{'children':null,'tagBizCategory':null,'tagCode':'de-3-100238','tagLevel':3,'tagName':'RDS'},{'children':null,'tagBizCategory':null,'tagCode':'de-special-3-database','tagLevel':3,'tagName':'\u6570\u636E\u5E93\u9886\u57DF\u4E13\u9879'}],'status':0,'subscribeCount':null,'yunQiTeamId':null},
+            "articleRealGroupCode": 'notPublishSpecialGroup',
+            "needLarkJs": false,
+            "larkContent": null
+
+        };
+    </script>
+    <script nonce="9475dbeef29a4727a6183ff04c1fb3d2" src="//www.aliyun.com/assets/publish/ace-base-assets?nonce=9475dbeef29a4727a6183ff04c1fb3d2"></script>
+    <script type="text/javascript" nonce="9475dbeef29a4727a6183ff04c1fb3d2" src="//www.aliyun.com/homon-lego/developer?nonce=9475dbeef29a4727a6183ff04c1fb3d2"></script>
+</head>
+<body data-spm="12873639"><script type="text/javascript"
+id="beacon-aplus"
+src="//g.alicdn.com/alilog/mlog/aplus_v2.js"
+exparams="category=&userid=&aplus&yunid=&yunpk=&channel=&cps="
+nonce="9475dbeef29a4727a6183ff04c1fb3d2"
+cspx="9475dbeef29a4727a6183ff04c1fb3d2"
+async>
+</script>
+
+
+<h1 class="dev-seo-tag">Cardinality在数据模型中的意思-阿里云开发者社区</h1>
+
+<!--<div th:if="${!isWeChat}" th:utext="${developerCommonHeader}"></div>-->
+<div class="article-detail-nav">
+    <a href="/" class="nav-item">开发者社区</a>>
+    <a class="nav-item" data-spm-click="gostr=/developer.article.detail_group;locaid=d1002" href="/group/database">数据库</a>>
+    <a class="nav-item">正文</a>
+</div>
+<div class="article-wrapper ">
+    <div class="left-content">
+        <div class="content-wrapper">
+            <h1 class="article-title">Cardinality在数据模型中的意思</h1>
+            <p class="article-info">
+                <a class="article-info-author question-avatar-wrapper wechat-disable" href="/profile/fy5hholq4xfqs">余二五</a>
+
+                
+
+                <span class="article-info-time">2017-11-08</span>
+                <span class="article-info-read">1566浏览量</span>
+                
+            </p>
+            
+            
+            <div class="article-desc">
+                <b>简介：</b>
+                <span></span>
+            </div>
+
+            <div class="article-inner markdown-body">
+<div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">最近在翻译一本数据库的教材，碰到Cardinality这个词，这个词在许多国内的数据库教材中不常见。查了一下英文资料觉得很有必要翻一下，<a href="http://www.datamodel.org/DataModelCardinality.html" target="_blank" style="margin:0px;padding:0px;color:rgb(66,133,244);">原文地址</a>
+</div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">内容如下：</div>
+<h2 style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);"><font style="margin:0px;padding:0px;">Cardinality defines the numeric relationships between occurrences of the entities on either end of the relationship line.</font></h2>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">基数是写在关系线两端 ，表明实体从一边通过关系可以得到另一边实体的数量。</div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">（翻译的太烂。。）</div>
+<h2 style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);"><font style="margin:0px;padding:0px;"> 下面是一些实例:</font></h2>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">
+<img height="47" src="http://www.datamodel.org/images/Cardinality1.gif" width="318" style="margin:0px;padding:0px;border:none;" alt="Cardinality1.gif"><br style="margin:0px;padding:0px;"><u><b style="margin:0px;padding:0px;">LINK</b></u> 这是0：0可选的关系，这样表达的意思就是：一个person<strong style="margin:0px;padding:0px;">可以</strong>占用一个停车位（parking space），但是没必要一个person有一个停车位，也没必要一个停车位必须有一个人。虽然这个概念很简单，但是在数据库中实现却并不直接。你可能得令一个实体作为主表，使用触发器或者程序来限制在另一张表里关联的记录数目。</div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">
+<img height="47" src="http://www.datamodel.org/images/Cardinality2.gif" width="313" style="margin:0px;padding:0px;border:none;" alt="Cardinality2.gif"><br style="margin:0px;padding:0px;"><u><b style="margin:0px;padding:0px;">SubType</b></u> 这是1：0的关系；只有一方有选择性。意思就是说一个人可能是一个程序员，那么一个程序员<strong style="margin:0px;padding:0px;">一定</strong>是一个人。关系中强制方必须作为主表。跟前面一样，用触发器和程序来控制数据库。</div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">
+<img height="47" src="http://www.datamodel.org/images/Cardinality3.gif" width="313" style="margin:0px;padding:0px;border:none;" alt="Cardinality3.gif"><br style="margin:0px;padding:0px;"><u><b style="margin:0px;padding:0px;">Physical Segment</b></u> 这是1：1的强制型关系。一个人必须有且仅有一个DNA序列，一个DNA序列也必须对应且仅对应一个人。 <img height="47" src="http://www.datamodel.org/images/Cardinality4.gif" width="307" style="margin:0px;padding:0px;border:none;" alt="Cardinality4.gif"><br style="margin:0px;padding:0px;"><u><b style="margin:0px;padding:0px;">Possession</b></u> 这是0：M（0对多）的可选型关系，意思就是一个人可能有0个电话，1个，或多个电话；某个电话可能没有主人，但是最多只能属于一个人。数据库里的实现方式：在phone表里设置一个可以为空的外键列，用这个列来关联person表。</div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">
+<img height="47" src="http://www.datamodel.org/images/Cardinality5.gif" width="307" style="margin:0px;padding:0px;border:none;" alt="Cardinality5.gif"><br style="margin:0px;padding:0px;"><u><b style="margin:0px;padding:0px;">Child</b></u> 这是1：M的强制型关系，这是在数据库里最常见的一种关系类型，一个人可能是或者不是一个会员，但是有可能对应好几个club的会员（假如member实体表述的是多个club里的所有会员记录），毫无疑问，一个会员必须是一个人。数据库里，会员表必须有一个强制不为空的外键。实现二实体间的关联。</div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);"><img height="47" src="http://www.datamodel.org/images/Cardinality6.gif" width="307" style="margin:0px;padding:0px;border:none;" alt="Cardinality6.gif"></div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">这个例子不太好，假设所有人的名字不重复。<br style="margin:0px;padding:0px;"><u><b style="margin:0px;padding:0px;">Characteristic</b></u> 这是0：M的关联，在M的一端是强制性的。这意思是说，一个人必须有至少一个名字，可以有多个名字，一个名字可能属于某一个人（或没主人）。在数据库里，可以再name表里设置一个可以为空的外键指向person表，使用触发器或者程序来强制一个person必须至少有一个名字。</div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">
+<img height="47" src="http://www.datamodel.org/images/Cardinality7.gif" width="310" style="margin:0px;padding:0px;border:none;" alt="Cardinality7.gif"><br style="margin:0px;padding:0px;"><u><b style="margin:0px;padding:0px;">Paradox</b></u> 这是1：M实体两边都是强制型的关系。</div>
+<div style="font-family:'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;margin:0px;padding:0px;font-size:16px;color:rgb(51,51,51);background-color:rgb(255,255,255);">
+<img height="47" src="http://www.datamodel.org/images/Cardinality8.gif" width="307" style="margin:0px;padding:0px;border:none;" alt="Cardinality8.gif"><br style="margin:0px;padding:0px;"><u><b style="margin:0px;padding:0px;">Association</b></u> 这是M：M（多对多）的可选型关系。概念上是这样的：一个人可以选择为0个，1个或多个老板工作，一个老板可以有0个，1个或多个员工。一般对于M：M这种多对多关系在数据库里面拆分成两个0：M的关系。中间实体表名可以叫做employee，因为它是用来将person实体联系到老板实体的。</div>
+</div>
+<div><br></div>
+<div><br></div>
+<div><br></div>
+<div><br></div>
+<div>本文转自 fsjoy1983 51CTO博客，原文链接：http://blog.51cto.com/fsjoy/211946，如需转载请自行联系原作者</div>
+</div>
+            
+            <div>
+                <div class="article-tags">
+                    <span class="tag-item"><span>程序员</span></span>
+                    <span class="tag-item"><span>数据库</span></span>
+                </div>
+            </div>
+
+            
+
+            <div class="article-copyright">
+                <p class="article-copyright-info">
+                    <b>版权声明：</b><span>本文内容由阿里云实名注册用户自发贡献，版权归原作者所有，阿里云开发者社区不拥有其著作权，亦不承担相应法律责任。具体规则请查看《<a style="color:#ff6a00" href="https://developer.aliyun.com/article/768092">阿里云开发者社区用户服务协议</a>》和《<a style="color:#ff6a00" href="https://developer.aliyun.com/article/768093">阿里云开发者社区知识产权保护指引</a>》。如果您发现本社区中有涉嫌抄袭的内容，填写<a style="color:#ff6a00" href="https://yida.alibaba-inc.com/o/right">侵权投诉表单</a>进行举报，一经查实，本社区将立刻删除涉嫌侵权内容。</span></p>
+            </div>
+
+            <div class="article-share">
+                <span>分享：</span>
+                <span href="javascript:;" class="ico-wechat ico-weixin">
+                        <div class="qrcode-float">
+                            <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAIAAAC1nk4lAAABt0lEQVR42u2ZSw7CMAwFe/9Lw7bCfmMnsSsQzgKhUtKJef5yvX5wXQM90AM90AM90AOdgr685V6/X7x/3b5XO9xvPoV2r1hWgHbJ1M5l0B+IrgnvNIrP7mB3boQOfxZ1kr2dy6Ct7V0bK5R2aPUwi26dGBygUdMqUJy/dkWP5GHUDR8KWZLBKbRr44yd3ICjpF9pabsd+1Ao8eT9p5oO47E6VSan1lta5WQ2mMpEIIl66DAXquDtegVn/mJHhGgNcBlb1EOrykGtsMRTQqpPLhCnMy7ohs5VG+8kl3wOA0r3zPXRQ3kPR98w8mynxgVo1yQc0aw/QLHakhFVNRwaNey4Vq2+mRG5K1Gfhi1mJbR6JESDUCTtmlZwfJIwvbtZqbj2gJpuKVSrL/aWpty/uNUfxJwuTYdShspJiXhbG8uaDlsYtj13uL0Tpkytl6lmQ9+odMSlcceVXk9MTWGOwYMRVb7WZ8RwgphprmD60a5proEyzQs3B71TUwjDys8ynXk7NAwSYHLHzfJDllaVtyo+D33xVNNhoEgWAg9NTeGnCGcdIPE//ndroAd6oAd6oAd6oL90vQHLDNX6NGRemAAAAABJRU5ErkJgggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==" />
+                        </div>
+                    </span>
+                <a class="ico-weibo" target="_blank" href="http://service.weibo.com/share/share.php?title=Cardinality%E5%9C%A8%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E6%84%8F%E6%80%9D&amp;url=https%3A%2F%2Fdeveloper.aliyun.com%2Farticle%2F419343"></a>
+            </div>
+
+        </div>
+        <div class="article-tail">
+            <!--<a class="article-tail-prev" th:href="${articleInfo.prev != null ? currentDomain+'/article/'+articleInfo.prev.aid:''}"><span th:text="${articleInfo.prev != null ? '上一篇:'+articleInfo.prev.title :''}"></span></a>-->
+            <!--<a class="article-tail-next" th:href="${articleInfo.next != null ?currentDomain+'/article/'+ articleInfo.next.aid:''}"><span th:text="${articleInfo.next != null ? '下一篇:'+articleInfo.next.title :''}"></span></a>-->
+        </div>
+
+        <div class="article-comment">
+            <div id="comment"></div>
+        </div>
+    </div>
+    <div style="position: relative" id="right-box">
+    <div>
+        <div class="top-border"></div>
+        <div class="right-item-box group-box">
+            <div class="group-box-top">
+                <a class="group-top-left" target="_blank" href="/group/database">
+                    <img class="group-top-img" src="https://ucc.alicdn.com/pic/developer-ecology/30b90a99cfe34d3f8a6405660d3abf36.png" title="数据库" />
+                </a>
+                <div class="group-top-center">
+                    <a class="group-title" target="_blank" href="/group/database">数据库</a>
+                    <div class="header-ding">
+                        <div class="header-ding-float">
+                            <img class="header-ding-qrcode" src="https://ucc.alicdn.com/pic/developer-ecology/4faa49c2a13d422ea2244e482099bf30.png" />
+                            <span class="header-ding-txt">使用钉钉扫一扫加入圈子</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group-top-right">
+                    <span data-spm-click="gostr=/developer.article.group_follow;locaid=dfollow" data-group-code="database" data-join="true" class="group-join-btn">+ 订阅</span>
+                </div>
+            </div>
+            <div class="group-box-bot"><p>分享数据库前沿，解构实战干货，推动数据库技术变革</p>
+            </div>
+        </div>
+
+        
+
+        <div class="right-item-box article-box">
+            
+            <div class="box-title">其他文章</div>
+
+            <div class="next-loading">
+                <div class="next-loading-component">
+                    <div class="box-body">
+                        <ul class="article-list toggle-up">
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780204" data-group="database">
+                                <a target="_blank" href="/article/780204" class="replace-link">终于搞懂了，悲观锁、乐观锁、分布式都在什么场景下使用？有什么技巧？不容易呀！</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780200" data-group="database">
+                                <a target="_blank" href="/article/780200" class="replace-link">阿里云物联网平台之Iot Studio中的web应用域名绑定</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780196" data-group="database">
+                                <a target="_blank" href="/article/780196" class="replace-link">7 点建议助您写出优雅的 Java 代码！</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780195" data-group="database">
+                                <a target="_blank" href="/article/780195" class="replace-link">阿里云物联网平台之利用云平台流转如何实现同一款产品下任意俩个设备的通信？</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780192" data-group="database">
+                                <a target="_blank" href="/article/780192" class="replace-link">破解Mysql数据库的管理员密码（不时之需）</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780187" data-group="database">
+                                <a target="_blank" href="/article/780187" class="replace-link">阿里云OSS上手指导（上）</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780179" data-group="database">
+                                <a target="_blank" href="/article/780179" class="replace-link">PolarDB-X 简介</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780177" data-group="database">
+                                <a target="_blank" href="/article/780177" class="replace-link">写了10年的代码，我最怕写Mybatis这些配置，现在有详解了</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780173" data-group="database">
+                                <a target="_blank" href="/article/780173" class="replace-link">日志服务（SLS）数据模拟器初体验</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780165" data-group="database">
+                                <a target="_blank" href="/article/780165" class="replace-link">《原神》上线前，米哈游与阿里云的八年</a>
+                            </li>
+                            <li class="article-item" data-spm-click="gostr=/developer.article.group_other_article;locaid=dArticle780162" data-group="database">
+                                <a target="_blank" href="/article/780162" class="replace-link">Widnows HTTP 端口被占用</a>
+                            </li>
+                        </ul>
+
+                        <div class="article-tail"><span class="article-tail-text">展开</span>
+                            <img class="article-tail-img" src="https://img.alicdn.com/tfs/TB1m7Ihaf1H3KVjSZFHXXbKppXa-200-200.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+
+
+        
+
+
+        <div id="right-other"></div>
+    </div>
+    
+    
+</div>
+</div>
+
+<script type="text/javascript" nonce="9475dbeef29a4727a6183ff04c1fb3d2" src="//www.aliyun.com/rgn/aliyun_assets?renderer=js&amp;nonce=9475dbeef29a4727a6183ff04c1fb3d2"></script>
+<script src="/js/react.js" nonce="9475dbeef29a4727a6183ff04c1fb3d2"></script>
+<script src="/js/react-dom.js" nonce="9475dbeef29a4727a6183ff04c1fb3d2"></script>
+<script type="text/javascript" nonce="9475dbeef29a4727a6183ff04c1fb3d2" src="//g.alicdn.com/aliyun/developer-aliyun-com-fe/1.6.9/scripts/??medalDialog.js,article.js,mathjax.js,weChatDisable.js,yuqueDocViewer.js"></script>
+<script type="text/javascript" nonce="9475dbeef29a4727a6183ff04c1fb3d2" src="//g.alicdn.com/aliyun/??ucc-component-fe/0.1.0/uccComment.js,developer-aliyun-com-fe/1.6.9/scripts/detailCommon.js"></script>
+
+
+<script nonce="9475dbeef29a4727a6183ff04c1fb3d2">
+
+    let uc = new UccComment({
+        container: "#comment",
+        bizCategory: 'yq-comment-type-article',
+        objectId: GLOBAL_CONFIG.articleId,
+        subBizCategory: "yq-comment-reply-type-article",
+        actionBizCategory: "yq-vote-comment",
+        actionCode: "yq-vote-comment-like",
+        subActionBizCategory: "yq-vote-sub-comment",
+        subActionCode: "yq-vote-sub-comment-like",
+        sourceAppCode: "developer-ecology",
+        sourceBizCategory: "developer-ecology-group",
+        subLimit: 5
+    });
+    uc.render();
+</script>
+
+<script nonce="9475dbeef29a4727a6183ff04c1fb3d2" src="//www.aliyun.com/assets/publish/ace-footer?nonce=9475dbeef29a4727a6183ff04c1fb3d2"></script>
+<script src="//w.cnzz.com/c.php?id=1277657887" language="JavaScript" nonce="9475dbeef29a4727a6183ff04c1fb3d2"></script>
+
+<script nonce="9475dbeef29a4727a6183ff04c1fb3d2" src="https://ucc.aliyun.com/ucc/view/log?appCode=developer-ecology&amp;bizCategory=ucc-blog&amp;objectId=419343&amp;nonce=9475dbeef29a4727a6183ff04c1fb3d2"></script>
+
+
+
+<script type="text/javascript" src="../../js/baidu_push.js" nonce="9475dbeef29a4727a6183ff04c1fb3d2"></script>
+
+
+
+
+</body>
+
+
+</html>

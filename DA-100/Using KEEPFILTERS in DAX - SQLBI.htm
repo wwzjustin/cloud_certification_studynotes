@@ -1,0 +1,1226 @@
+<!doctype html>
+<!--[if lt IE 10]><html lang="en" class="ie lt10 unsupported"><![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        
+        <meta name="msapplication-config" content="https://cdn.sqlbi.com/wp-content/themes/sqlbi/browserconfig.xml">
+        <meta name="msapplication-TileColor" content="#ec5d5d">
+        <meta name="msapplication-TileImage" content="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/tile-128.png">
+
+        <link rel="stylesheet" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/css/main.min.css?ver=1607675394">
+        
+        <link rel="alternate" type="application/rss+xml" href="https://feeds.feedburner.com/sqlbi_blog">
+
+        <script>
+            var config = {
+                sid: 1,
+                ga: 'UA-7095697-2',
+                post_id: 59555,
+                page: 'post',
+                u: 0,
+                lu: 0,
+                nu: 0            };
+
+            var disqus_shortname = 'sqlbi';
+            var disqus_config = function () {
+                this.page.url = 'https://www.sqlbi.com/articles/using-keepfilters-in-dax/';
+                this.page.identifier = 'using-keepfilters-in-dax';
+                this.callbacks.onReady.push(function () {
+                    commentsHelper.init();
+                });
+                this.callbacks.onNewComment.push(function () {
+                    commentsHelper.expandComments();
+                });
+            };
+            
+            window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', config.ga, { 
+				'allow_display_features': false,
+				'anonymize_ip': true,
+                'user_id': config.u,
+                'cookie_flags': 'secure'
+			});
+		</script>
+
+        <script src="https://cdn.sqlbi.com/wp-content/themes/sqlbi/js/script.min.js?ver=1606386576"></script>
+   
+                    <script>
+                var homeurl = 'https://www.sqlbi.com/';
+                var themeurl = 'https://cdn.sqlbi.com/wp-content/themes/sqlbi/';
+                var ajaxurl = 'https://www.sqlbi.com/wp-admin/admin-ajax.php';
+            </script>
+        <link rel='dns-prefetch' href='//s.w.org' />
+<link rel="icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-16.png" sizes="16x16">
+<link rel="icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-32.png" sizes="32x32">
+<link rel="icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-96.png" sizes="96x96">
+<link rel="icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-128.png" sizes="128x128">
+<link rel="icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-228.png" sizes="228x228">
+<link rel="shortcut icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-196.png" sizes="196x196">
+<link rel="apple-touch-icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-120.png" sizes="120x120">
+<link rel="apple-touch-icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-152.png" sizes="152x152">
+<link rel="apple-touch-icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-167.png" sizes="167x167">
+<link rel="apple-touch-icon" href="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/icon-180.png" sizes="180x180">
+<link rel='stylesheet' id='wp-block-library-css'  href='https://cdn.sqlbi.com/wp-includes/css/dist/block-library/style.min.css?ver=5.6' type='text/css' media='all' />
+<link rel='stylesheet' id='wc-block-vendors-style-css'  href='https://cdn.sqlbi.com/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/vendors-style.css?ver=3.8.1' type='text/css' media='all' />
+<link rel='stylesheet' id='wc-block-style-css'  href='https://cdn.sqlbi.com/wp-content/plugins/woocommerce/packages/woocommerce-blocks/build/style.css?ver=3.8.1' type='text/css' media='all' />
+<link rel='stylesheet' id='daxh-css'  href='https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/css/style.css?ver=1.0.0' type='text/css' media='all' />
+<style id='woocommerce-inline-inline-css' type='text/css'>
+.woocommerce form .form-row .required { visibility: visible; }
+</style>
+<link rel='stylesheet' id='sqlbi-helpers-css'  href='https://cdn.sqlbi.com/wp-content/plugins/sqlbi-helpers/includes/../assets/css/style.css?ver=1.7.4' type='text/css' media='all' />
+<script type="text/javascript">(function(a,d){if(a._nsl===d){a._nsl=[];var c=function(){if(a.jQuery===d)setTimeout(c,33);else{for(var b=0;b<a._nsl.length;b++)a._nsl[b].call(a,a.jQuery);a._nsl={push:function(b){b.call(a,a.jQuery)}}}};c()}})(window);</script><script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/sqlbi-helpers/assets/js/jquery.min.js?ver=3.5.1' id='jquery-js'></script>
+<script type='text/javascript' id='daxh_script-js-extra'>
+/* <![CDATA[ */
+var daxh = {"assets_url":"https:\/\/www.sqlbi.com\/wp-content\/plugins\/dax-highlight\/assets\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/js/script.min.js?ver=1.0.0' id='daxh_script-js'></script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/sqlbi-helpers/assets/js/jquery-ui.min.js?ver=1.12.1' id='jquery-ui-js'></script>
+<script type='text/javascript' id='wpProQuiz_front_javascript-js-extra'>
+/* <![CDATA[ */
+var WpProQuizGlobal = {"ajaxurl":"https:\/\/www.sqlbi.com\/wp-admin\/admin-ajax.php","loadData":"Loading","questionNotSolved":"You must answer this question.","questionsNotSolved":"You must answer all questions before you can completed the quiz.","fieldsNotFilled":"All fields have to be filled."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/wp-pro-quiz/js/wpProQuiz_front.min.js?ver=0.36' id='wpProQuiz_front_javascript-js'></script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/wp-pro-quiz/js/wpProQuiz_toplist.min.js?ver=0.36' id='wpProQuiz_front_javascript_toplist-js'></script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/sqlbi-helpers/assets/js/jquery-validate.min.js?ver=1.19.2' id='jquery-validate-js'></script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/sqlbi-videotraining/assets/js/jquery.contextMenu.min.js?ver=2.9.2' id='jquery-context-menu-js'></script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/sqlbi-videotraining/assets/js/script.min.js?ver=1.4.0' id='sqlbi-vt-js'></script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/sqlbi-woo-currencies/assets/js/script.min.js?ver=1.1.0' id='sqlbi-woo-cur-js'></script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/sqlbi-woo-qbo/assets/js/script.min.js?ver=1.3.6' id='sqlbi-woo-qbo-js'></script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/sqlbi-helpers/includes/../assets/js/cookiehelper.min.js?ver=1.7.4' id='sqlbi-cookie-helper-js'></script>
+<script type='text/javascript' id='sqlbi-cookie-helper-js-after'>
+            jQuery(document).ready(function($){ 
+                cookieHelper.prefCookieName = '_sqlbi_consent';
+                cookieHelper.privacyUrl = '/privacy/#cookies';
+                cookieHelper.necessaryCookies = ["PHPSESSID","wordpress_*","wp-settings-*","woocommerce_*","wp_woocommerce_*","__stripe*","_sqlbi_nl_human","_sqlbi_*_goto","_sqlbi_bypass_unsupported"];
+                cookieHelper.targetEU = true;
+                cookieHelper.init(true); 
+            });
+</script>
+<link rel="canonical" href="https://www.sqlbi.com/articles/using-keepfilters-in-dax/" />
+<link rel='shortlink' href='https://sql.bi/59555' />
+                            <title>  Using KEEPFILTERS in DAX - SQLBI</title>
+            
+            <meta name="description" content="This article explains how to use KEEPFILTERS to intersect instead of overriding an existing filter context in DAX, simplifying the code and improving perfor">
+            
+            <meta property="fb:app_id" content="1405799666344159" />
+            <meta property="og:url" content="https://www.sqlbi.com/articles/using-keepfilters-in-dax/" />
+            <meta property="og:title" content="  Using KEEPFILTERS in DAX - SQLBI" />
+            <meta property="og:description" content="This article explains how to use KEEPFILTERS to intersect instead of overriding an existing filter context in DAX, simplifying the code and improving perfor" />
+            <meta property="og:type" content="article" />
+            <meta property="og:image" content="https://cdn.sqlbi.com/wp-content/uploads/UsingKEEPFILTERS-01.jpg" />
+        	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<style type="text/css">div.nsl-container[data-align="left"] {
+    text-align: left;
+}
+
+div.nsl-container[data-align="center"] {
+    text-align: center;
+}
+
+div.nsl-container[data-align="right"] {
+    text-align: right;
+}
+
+
+div.nsl-container .nsl-container-buttons a {
+    text-decoration: none !important;
+    box-shadow: none !important;
+    border: 0;
+}
+
+div.nsl-container .nsl-container-buttons {
+    display: flex;
+    padding: 5px 0;
+}
+
+div.nsl-container-block .nsl-container-buttons {
+    flex-flow: column;
+    align-items: center;
+}
+
+div.nsl-container-block .nsl-container-buttons a {
+    flex: 1 1 auto;
+    display: block;
+    margin: 5px 0;
+    max-width: 280px;
+    width: 100%;
+}
+
+div.nsl-container-inline {
+    margin: -5px;
+    text-align: left;
+}
+
+div.nsl-container-inline .nsl-container-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+div.nsl-container-inline .nsl-container-buttons a {
+    margin: 5px;
+    display: inline-block;
+}
+
+div.nsl-container-grid .nsl-container-buttons {
+    flex-flow: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+div.nsl-container-grid .nsl-container-buttons a {
+    flex: 1 1 auto;
+    display: block;
+    margin: 5px;
+    max-width: 280px;
+    width: 100%;
+}
+
+@media only screen and (min-width: 650px) {
+    div.nsl-container-grid .nsl-container-buttons a {
+        width: auto;
+    }
+}
+
+div.nsl-container .nsl-button {
+    cursor: pointer;
+    vertical-align: top;
+    border-radius: 4px;
+}
+
+div.nsl-container .nsl-button-default {
+    color: #fff;
+    display: flex;
+}
+
+div.nsl-container .nsl-button-icon {
+    display: inline-block;
+}
+
+div.nsl-container .nsl-button-svg-container {
+    flex: 0 0 auto;
+    padding: 8px;
+    display: flex;
+}
+
+div.nsl-container svg {
+    height: 24px;
+    width: 24px;
+    vertical-align: top;
+}
+
+div.nsl-container .nsl-button-default div.nsl-button-label-container {
+    margin: 0 24px 0 12px;
+    padding: 10px 0;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: .25px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: clip;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-transform: none;
+    display: inline-block;
+}
+
+div.nsl-container .nsl-button-google[data-skin="dark"] .nsl-button-svg-container {
+    margin: 1px;
+    padding: 7px;
+    border-radius: 3px;
+    background: #fff;
+}
+
+div.nsl-container .nsl-button-google[data-skin="light"] {
+    border-radius: 1px;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .25);
+    color: RGBA(0, 0, 0, 0.54);
+}
+
+div.nsl-container .nsl-button-apple .nsl-button-svg-container {
+    padding: 0 6px;
+}
+
+div.nsl-container .nsl-button-apple .nsl-button-svg-container svg {
+    height: 40px;
+    width: auto;
+}
+
+div.nsl-container .nsl-button-apple[data-skin="light"] {
+    color: #000;
+    box-shadow: inset 0 0 0 1px #000;
+}
+
+div.nsl-container .nsl-button-facebook[data-skin="white"] {
+    color: #000;
+    box-shadow: inset 0 0 0 1px #000;
+}
+
+div.nsl-container .nsl-button-facebook[data-skin="light"] {
+    color: #1877F2;
+    box-shadow: inset 0 0 0 1px #1877F2;
+}
+
+div.nsl-container .nsl-button-apple div.nsl-button-label-container {
+    font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.nsl-clear {
+    clear: both;
+}
+
+/*Button align start*/
+div.nsl-container-block[data-align="left"] .nsl-container-buttons {
+    align-items: flex-start;
+}
+
+div.nsl-container-block[data-align="center"] .nsl-container-buttons {
+    align-items: center;
+}
+
+div.nsl-container-block[data-align="right"] .nsl-container-buttons {
+    align-items: flex-end;
+}
+
+div.nsl-container-inline[data-align="left"] .nsl-container-buttons {
+    justify-content: flex-start;
+}
+
+div.nsl-container-inline[data-align="center"] .nsl-container-buttons {
+    justify-content: center;
+}
+
+div.nsl-container-inline[data-align="right"] .nsl-container-buttons {
+    justify-content: flex-end;
+}
+
+
+div.nsl-container-grid[data-align="left"] .nsl-container-buttons {
+    justify-content: flex-start;
+}
+
+div.nsl-container-grid[data-align="center"] .nsl-container-buttons {
+    justify-content: center;
+}
+
+div.nsl-container-grid[data-align="right"] .nsl-container-buttons {
+    justify-content: flex-end;
+}
+
+div.nsl-container-grid[data-align="space-around"] .nsl-container-buttons {
+    justify-content: space-around;
+}
+
+div.nsl-container-grid[data-align="space-between"] .nsl-container-buttons {
+    justify-content: space-between;
+}
+
+/* Button align end*/</style>    </head>
+    <body class="post-template-default single single-post postid-59555 single-format-standard theme-sqlbi woocommerce-no-js post-using-keepfilters-in-dax">
+       
+                
+                    <!--[if lt IE 10]>
+            <div class="unsupported-notice">Sorry, the browser you are using is not currently supported. <a href="https://browsehappy.com/" class="more ext" rel="nofollow">Upgrade your browser</a></div>
+            <![endif]-->
+        
+                    
+            <header class="main">
+                <nav class="menu">
+        
+                    <ul class="logo-menu">
+                        <li class="menu-item-logo">
+                            <a href="https://www.sqlbi.com/"><h1><img src="https://cdn.sqlbi.com/wp-content/themes/sqlbi/images/logo.svg" alt="SQLBI" width="108" height="35"></h1></a>
+                        </li>
+                    </ul>
+
+                    <ul id="menu-main" class="nav-menu"><li id="menu-item-16641" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-16641"><a href="https://www.sqlbi.com/">Home</a></li>
+<li id="menu-item-11041" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11041"><a href="https://www.sqlbi.com/training/">Training</a></li>
+<li id="menu-item-10951" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10951"><a href="https://www.sqlbi.com/consulting/">Consulting</a></li>
+<li id="menu-item-1361" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1361"><a href="https://www.sqlbi.com/articles/">Articles &#038; Blog</a></li>
+<li id="menu-item-24331" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24331"><a href="/tv/">Videos</a></li>
+<li id="menu-item-131" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="/books/">Books</a></li>
+<li id="menu-item-151" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-151"><a href="/tools/">Tools</a></li>
+<li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="https://www.sqlbi.com/about/">About</a></li>
+</ul>
+             
+                    <ul class="actions-menu">
+                         <li class="mobile menu-item menu-item-mobile">
+                            <a href="#" class="mobile-menu-toggle" rel="nofollow">Menu</a>
+                        </li>
+
+                        <li class="menu-item menu-item-search ">
+                            <a href="#" class="search-toggle" rel="nofollow">Search</a>
+                        </li>
+                         <li class="menu-item menu-item-cart ">
+                            <a href="https://www.sqlbi.com/checkout/" rel="nofollow">0</a>
+                        </li>
+                        <li class="menu-item menu-item-login">
+                            <a href="https://www.sqlbi.com/account/">LOGIN</a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+                <div class="mobile mobile-menu">
+                    <ul id="menu-main-1" class="nav-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-16641"><a href="https://www.sqlbi.com/">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-11041"><a href="https://www.sqlbi.com/training/">Training</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10951"><a href="https://www.sqlbi.com/consulting/">Consulting</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-1361"><a href="https://www.sqlbi.com/articles/">Articles &#038; Blog</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24331"><a href="/tv/">Videos</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="/books/">Books</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-151"><a href="/tools/">Tools</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-101"><a href="https://www.sqlbi.com/about/">About</a></li>
+</ul>                    <form action="https://www.sqlbi.com">
+                        <div class="compressed-input">
+                            <input type="text" name="s" placeholder="Search for articles, videos and tools" value="" required>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="search-menu" style="display:none">
+                    
+                    <form action="https://www.sqlbi.com">
+                        <div class="compressed-input">
+                            <input type="text" name="s" placeholder="Search for articles, posts, videos and tools" value="" required>
+                            <button class="button">Search</button>
+                        </div>
+                    </form>
+                                            <div class="resources">
+                            <div class="caption">Popular topics</div>
+                            <ul class='wp-tag-cloud' role='list'>
+	<li><a href="https://www.sqlbi.com/topics/ssas/" class="tag-cloud-link tag-link-191 tag-link-position-1" style="font-size: 10pt;">SSAS</a></li>
+	<li><a href="https://www.sqlbi.com/topics/dax/" class="tag-cloud-link tag-link-91 tag-link-position-2" style="font-size: 10pt;">DAX</a></li>
+	<li><a href="https://www.sqlbi.com/topics/tabular/" class="tag-cloud-link tag-link-221 tag-link-position-3" style="font-size: 10pt;">Tabular</a></li>
+	<li><a href="https://www.sqlbi.com/topics/powerpivot/" class="tag-cloud-link tag-link-161 tag-link-position-4" style="font-size: 10pt;">Power Pivot</a></li>
+	<li><a href="https://www.sqlbi.com/topics/mdx/" class="tag-cloud-link tag-link-141 tag-link-position-5" style="font-size: 10pt;">MDX</a></li>
+	<li><a href="https://www.sqlbi.com/topics/power-bi/" class="tag-cloud-link tag-link-401 tag-link-position-6" style="font-size: 10pt;">Power BI</a></li>
+	<li><a href="https://www.sqlbi.com/topics/bism/" class="tag-cloud-link tag-link-71 tag-link-position-7" style="font-size: 10pt;">BISM</a></li>
+	<li><a href="https://www.sqlbi.com/topics/excel/" class="tag-cloud-link tag-link-121 tag-link-position-8" style="font-size: 10pt;">Excel</a></li>
+</ul>
+  
+        
+                            <div class="caption nl"><a href="https://www.sqlbi.com/newsletter/" class="icon icon-email">Have this sent by email</a></div>
+                        
+                        </div>
+                                    </div>
+         
+
+                
+                                
+                                    <div class="ulu" data-slot="header"></div>
+                            </header>
+        
+        <div class="content-wrapper">
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org/",
+    "@type": "Article",
+	"name": "Using KEEPFILTERS in DAX",
+	"author": [		{
+			"@type": "Person",
+			"name": "Marco Russo",
+			"email": "marco.russo@sqlbi.com",
+			"url": "https://www.sqlbi.com/author/marco-russo/",
+			"memberOf": {
+				"@type": "Organization",
+				"name": "SQLBI",
+				"email": "info@sqlbi.com",
+				"url": "https://www.sqlbi.com"
+			}
+		}
+	],
+	"datePublished": "2017-09-18",
+	"dateModified": "2020-08-17",
+	"headline": "This article explains how to use KEEPFILTERS to intersect instead of overriding an existing filter context in DAX, simplifying the code and improving performance.\r"}
+</script>
+
+<article>
+	<header class="poster">
+		<div class="wrapper">
+			<div class="connect">
+				<a href="#disqus_thread" data-disqus-identifier="using-keepfilters-in-dax" title="Comments" class="comments-count icon icon-comments sliding-a">0</a>
+
+				            <div class="sharing">
+                
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.sqlbi.com%2Farticles%2Fusing-keepfilters-in-dax%2F&title=Using%20KEEPFILTERS%20in%20DAX%20-%20SQLBI&summary=This%20article%20explains%20how%20to%20use%20KEEPFILTERS%20to%20intersect%20instead%20of%20overriding%20an%20existing%20filter%20context%20in%20DAX%2C%20simplifying%20the%20code%20and%20improving%20perfor&source=SQLBI" class="share icon icon-linkedin2 tevent" data-name="share" data-label="LinkedIn" target="_blank" title="Share on LinkedIn">LinkedIn</a>
+                
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsql.bi%2F59555&text=Using%20KEEPFILTERS%20in%20DAX%20-%20SQLBI&hashtags=SQLBI" class="share icon icon-twitter tevent" data-name="share" data-label="Twitter" target="_blank" title="Share on Twitter">Twitter</a>
+                
+                <a href="https://www.facebook.com/dialog/share?app_id=1405799666344159&href=https%3A%2F%2Fwww.sqlbi.com%2Farticles%2Fusing-keepfilters-in-dax%2F&display=popup&hashtag=#SQLBI" class="share icon icon-facebook2 tevent" data-name="share" data-label="Facebook" target="_blank" title="Share on Facebook">Facebook</a>
+
+                 
+                <a href="mailto:?subject=Using KEEPFILTERS in DAX - SQLBI&body=https%3A%2F%2Fwww.sqlbi.com%2Farticles%2Fusing-keepfilters-in-dax%2F" class="share icon icon-email2 tevent" data-name="share" data-label="Email" target="_blank" title="Share via Email">Email</a>
+
+
+            </div>
+        			</div>
+			<div class="breadcrumb">
+				
+				<a href="https://www.sqlbi.com/articles/" class="more prev">All articles</a> 
+
+				<a href="https://sql.bi/59555" rel="nofollow" class="icon icon-link low-key shortlink">https://sql.bi/59555</a>			</div>
+			<div class="hpart">
+								<div>
+					<div class="page-icon icon icon-post"></div>
+					
+					<a href="https://www.sqlbi.com/articles/using-keepfilters-in-dax/" rel="bookmark"><h1>Using KEEPFILTERS in DAX</h1></a>
+				</div>
+			</div>
+			<em>This article explains how to use KEEPFILTERS to intersect instead of overriding an existing filter context in DAX, simplifying the code and improving performance.</em>
+
+		</div>
+	</header>
+	
+	<div class="entry-content">
+		
+		<main>
+			<div class="post-content">
+				
+				<p>There is an additional disclaimer to this article – if you think that it is too complex, just skip to the next paragraph, but if you think you already know <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a>, please read this. If you read our book <a href="https://www.sqlbi.com/books/the-definitive-guide-to-dax/">The Definitive Guide to DAX</a>, you might consider <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> as only necessary when you have arbitrarily shaped filters that you do not want to lose by applying additional filters on individual columns. However, <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a>’ relevance is quite a bit wider. In a way, this article is a way of making up for not having included a better description of <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> in our book.</p>
+<h2>Single column filters</h2>
+<p>The syntax you use in <a href="https://dax.guide/calculate/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_calculate">CALCULATE</a> to apply a filter is always a table. When you use a predicate, it is internally transformed into a corresponding <a href="https://dax.guide/filter/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_filter">FILTER</a> statement. For example, consider this expression:</p>
+<pre class="brush: dax; title: ; notranslate" title="">
+AlwaysRed := 
+CALCULATE (
+    [Sales Amount],
+    Products[Color] = &quot;Red&quot;
+)
+</pre>
+<p>Internally, the filter expression is transformed into a <a href="https://dax.guide/filter/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_filter">FILTER</a>, as described here:</p>
+<pre class="brush: dax; title: ; notranslate" title="">
+AlwaysRed_Filter := 
+CALCULATE (
+    [Sales Amount],
+    FILTER ( 
+        ALL ( Products[Color] ), 
+        Products[Color] = &quot;Red&quot;
+    )
+)
+</pre>
+<p>The semantic of the filter removes any existing filter applied to the same column, replacing it with the new filter defined in the predicate condition.</p>
+<p>If you do not want to lose the existing filter, a widespread technique &#8211; used extensively in our previous books &#8211; is to replace <a href="https://dax.guide/all/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_all">ALL</a> with <a href="https://dax.guide/values/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_values">VALUES</a>, as in the following example:</p>
+<pre class="brush: dax; title: ; notranslate" title="">
+OnlyRed_Values := 
+CALCULATE (
+    [Sales Amount],
+    FILTER ( 
+        VALUES ( Products[Color] ), 
+        Products[Color] = &quot;Red&quot; 
+    )
+)
+</pre>
+<p>The difference between the two functions is clearly visible in the following example. In the AlwaysRed measure, the filter over the Color column replaces the color in the row, whereas in the OnlyRed_Values measure the filter over the Color column intersects the filter of the color in the row.<br />
+<a href="https://cdn.sqlbi.com/wp-content/uploads/UsingKEEPFILTERS-01.jpg"><img loading="lazy" class="alignnone size-full wp-image-59556" src="https://cdn.sqlbi.com/wp-content/uploads/UsingKEEPFILTERS-01.jpg" alt="" width="800" height="409" /></a></p>
+<p>The same result for the OnlyRed_Values measure is possible using the <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> syntax, as  in the OnlyRed measure:</p>
+<pre class="brush: dax; title: ; notranslate" title="">
+OnlyRed := 
+CALCULATE (
+    [Sales Amount],
+    KEEPFILTERS ( Products[Color] = &quot;Red&quot; )
+)
+</pre>
+<p>Internally, this corresponds to the following <a href="https://dax.guide/filter/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_filter">FILTER</a>:</p>
+<pre class="brush: dax; title: ; notranslate" title="">
+OnlyRed_KeepfiltersAll :=
+CALCULATE (
+    [Sales Amount],
+    KEEPFILTERS ( 
+        FILTER ( 
+            ALL ( Products[Color] ),
+            Products[Color] = &quot;Red&quot; 
+        )
+    )
+)
+</pre>
+<p>We have seen three different syntaxes for OnlyRed producing the same result. Which is better? At first sight, you might think that the <a href="https://dax.guide/values/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_values">VALUES</a> version is faster than the <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> one, because the number of elements iterated is potentially smaller. However, what the engine does is not necessarily what the semantic of the query might lead us to think, as long as the result is the same. In fact, the <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> version is slightly better. The absolute difference is minimal, but why write <em><a href="https://dax.guide/filter/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_filter">FILTER</a> ( <a href="https://dax.guide/values/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_values">VALUES</a> ( t[col] ), t[col] = &#8220;Red&#8221; )</em> when you can write <em><a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> ( t[col] = &#8220;Red&#8221; )</em> ?</p>
+<p>For those readers excited about details:  the query plane in the <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> version is shorter, and saves a small storage engine query. In absolute terms, we are talking about something that is not even measurable. You will not see a performance improvement using <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a>, but this is just to say that you cannot find a reason not to use it.</p>
+<h2>Multiple column filters</h2>
+<p>For a simple filter on a single column, <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> is certainly a good choice. What if you have multi-column filters? Even in this case, the <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> option is usually better.</p>
+<p>For example, this below computes a measure for Products whose Cost is lower than 5 or ListPrice is lower than 10:</p>
+<pre class="brush: dax; title: ; notranslate" title="">
+AlwaysLow :=
+CALCULATE (
+    [Sales Amount],
+    FILTER (
+        ALL ( Products[Cost], Products[ListPrice] ),
+        Products[Cost] &lt; 5
+            || Products[ListPrice] &lt; 10
+    )
+)
+</pre>
+<p>The result of the measure always considers all the Cost and ListPrice values satisfying the required conditions, regardless of the existing selection over the two columns.<br />
+<a href="https://cdn.sqlbi.com/wp-content/uploads/UsingKEEPFILTERS-02.jpg"><img loading="lazy" class="alignnone size-full wp-image-59557" src="https://cdn.sqlbi.com/wp-content/uploads/UsingKEEPFILTERS-02.jpg" alt="" width="580" height="507" /></a></p>
+<p>Because there is no syntax for <a href="https://dax.guide/values/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_values">VALUES</a> with more than one column, the <a href="https://dax.guide/summarize/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_summarize">SUMMARIZE</a> function can be used to retrieve the existing combinations in the filter context corresponding to the desired conditions.</p>
+<pre class="brush: dax; title: ; notranslate" title="">
+OnlyLow_Summarize :=
+CALCULATE (
+    [Sales Amount],
+    FILTER (
+        SUMMARIZE ( Products, Products[Cost], Products[ListPrice] ),
+        Products[Cost] &lt; 5
+            || Products[ListPrice] &lt; 10
+    )
+)
+</pre>
+<p>However, the same result is achievable also by wrapping the original <a href="https://dax.guide/filter/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_filter">FILTER</a> condition based on <a href="https://dax.guide/all/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_all">ALL</a> in a <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> function call, as in the OnlyLow measure.</p>
+<pre class="brush: dax; title: ; notranslate" title="">
+OnlyLow :=
+CALCULATE (
+    [Sales Amount],
+    KEEPFILTERS (
+        FILTER (
+            ALL ( Products[Cost], Products[ListPrice] ),
+            Products[Cost] &lt; 5
+                || Products[ListPrice] &lt; 10
+        )
+    )
+)
+</pre>
+<p>In this case the difference between the two options could be bigger, depending on the cardinality of the combinations considered. In terms of coding, the <a href="https://dax.guide/summarize/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_summarize">SUMMARIZE</a> version usually results in a shorter code. However, the <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> version is usually the faster one, but further tests could be necessary in case the filter condition has complex expressions or CallbackDataID calls in the storage engine queries.</p>
+<h2>Conclusions</h2>
+<p>For both single column and multiple columns filter predicates, using <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> is a better choice than writing an explicit <a href="https://dax.guide/filter/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_filter">FILTER</a> function using <a href="https://dax.guide/values/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_values">VALUES</a> or <a href="https://dax.guide/summarize/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_summarize">SUMMARIZE</a> to get the correct initial granularity &#8211; based on the existing filter context. <a href="https://dax.guide/keepfilters/" class="dax-fn dax-guide-tooltip" data-tooltip-content="#tooltip_dax_fn_keepfilters">KEEPFILTERS</a> provides better performance and simplifies the code for single column filters.</p>
+<div class="tooltip-templates">
+<section id="tooltip_dax_fn_keepfilters">
+<header><strong class="title">KEEPFILTERS</strong><a href="https://dax.guide/keepfilters/"><img loading="lazy" src="https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/images/daxguide.svg" class="dax-guide" width="66" height="10"></a></header>
+<div class="attr attr-calculateModifier">CALCULATE modifier</div>
+<p>Changes the CALCULATE and CALCULATETABLE function filtering semantics.</p>
+<p><code>KEEPFILTERS ( &lt;Expression&gt; )</code></section>
+<section id="tooltip_dax_fn_calculate">
+<header><strong class="title">CALCULATE</strong><a href="https://dax.guide/calculate/"><img loading="lazy" src="https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/images/daxguide.svg" class="dax-guide" width="66" height="10"></a></header>
+<div class="attr attr-contextTransition">Context transition</div>
+<p>Evaluates an expression in a context modified by filters.</p>
+<p><code>CALCULATE ( &lt;Expression&gt; [, &lt;Filter&gt; [, &lt;Filter&gt; [, … ] ] ] )</code></section>
+<section id="tooltip_dax_fn_filter">
+<header><strong class="title">FILTER</strong><a href="https://dax.guide/filter/"><img loading="lazy" src="https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/images/daxguide.svg" class="dax-guide" width="66" height="10"></a></header>
+<p>Returns a table that has been filtered.</p>
+<p><code>FILTER ( &lt;Table&gt;, &lt;FilterExpression&gt; )</code></section>
+<section id="tooltip_dax_fn_all">
+<header><strong class="title">ALL</strong><a href="https://dax.guide/all/"><img loading="lazy" src="https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/images/daxguide.svg" class="dax-guide" width="66" height="10"></a></header>
+<div class="attr attr-calculateModifier">CALCULATE modifier</div>
+<p>Returns all the rows in a table, or all the values in a column, ignoring any filters that might have been applied.</p>
+<p><code>ALL (  [&lt;TableNameOrColumnName&gt;] [, &lt;ColumnName&gt; [, &lt;ColumnName&gt; [, … ] ] ] )</code></section>
+<section id="tooltip_dax_fn_values">
+<header><strong class="title">VALUES</strong><a href="https://dax.guide/values/"><img loading="lazy" src="https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/images/daxguide.svg" class="dax-guide" width="66" height="10"></a></header>
+<p>When a column name is given, returns a single column table of unique values. When a table name is given, returns a table with the same columns and all the rows of the table (including duplicates) with the additional blank row if present.</p>
+<p><code>VALUES ( &lt;TableNameOrColumnName&gt; )</code></section>
+<section id="tooltip_dax_fn_summarize">
+<header><strong class="title">SUMMARIZE</strong><a href="https://dax.guide/summarize/"><img loading="lazy" src="https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/images/daxguide.svg" class="dax-guide" width="66" height="10"></a></header>
+<p>Creates a summary of the input table grouped by the specified columns.</p>
+<p><code>SUMMARIZE ( &lt;Table&gt; [, &lt;GroupBy_ColumnName&gt; [, [&lt;Name&gt;] [, [&lt;Expression&gt;] [, &lt;GroupBy_ColumnName&gt; [, [&lt;Name&gt;] [, [&lt;Expression&gt;] [, … ] ] ] ] ] ] ] )</code></section>
+</div>
+
+							</div>
+		</main>
+	
+		<aside>
+			
+			                <div class="guide">
+                    <div class="icon icon-guru"></div>
+                    <strong>Learning DAX from scratch?</strong>
+                    <p>Read our DAX learning guide!</p>
+                    <a href="https://www.sqlbi.com/guides/dax/" class="button">Start here</a>
+                </div>
+            
+							<div class="sticky">
+					<div class="ulu" data-slot="side"></div>
+				</div>
+					</aside>
+
+	</div>
+	
+		<div class="download detached">
+		<div class="wrapper">
+			<div class="files">
+				<h2>Download</h2>				
+				Insert your email address and press <em>Download</em> for access to the files used in this article.
+							</div>
+			
+			
+				<form class="subscription">
+					<div class="compressed-input">
+						<input type="email" name="nlemail" class="nl-email" placeholder="Your email address" required>
+						<a href="https://www.sqlbi.com/wp-content/uploads/Using-KEEPFILTERS-in-DAX.zip" class="nl-download allow-all-cookies button"  rel="nofollow" >Download</a>
+					</div>
+					<div class="acceptance">
+													<p><input type="checkbox" name="nlnl[]" class="nlnl" value="41" checked="checked"> 
+							Keep me informed about BI news and upcoming articles with a bi-weekly newsletter (uncheck if you prefer to proceed without signing up for the newsletter)</p>
+							<p><input type="checkbox" name="nlnl[]" class="nlnl" value="158" checked="checked"> 
+							Send me SQLBI promotions (only 1 or 2 emails per year)</p>
+												<p>By downloading the file(s) you are agreeing to our <a class="privacy-policy-link" href="https://www.sqlbi.com/privacy/">Privacy Policy</a> and accepting our use of cookies.</p>
+					</div>
+					<div class="failed"></div>
+				</form>
+			
+			
+		</div>
+	</div>
+		
+	<footer class="detached">
+		<div class="wrapper">
+			<div class="post-about">
+				<div class="post-connect">
+					<div class="big-sharing">
+						            <div class="sharing">
+                
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.sqlbi.com%2Farticles%2Fusing-keepfilters-in-dax%2F&title=Using%20KEEPFILTERS%20in%20DAX%20-%20SQLBI&summary=This%20article%20explains%20how%20to%20use%20KEEPFILTERS%20to%20intersect%20instead%20of%20overriding%20an%20existing%20filter%20context%20in%20DAX%2C%20simplifying%20the%20code%20and%20improving%20perfor&source=SQLBI" class="share icon icon-linkedin2 tevent" data-name="share" data-label="LinkedIn" target="_blank" title="Share on LinkedIn">LinkedIn</a>
+                
+                <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fsql.bi%2F59555&text=Using%20KEEPFILTERS%20in%20DAX%20-%20SQLBI&hashtags=SQLBI" class="share icon icon-twitter tevent" data-name="share" data-label="Twitter" target="_blank" title="Share on Twitter">Twitter</a>
+                
+                <a href="https://www.facebook.com/dialog/share?app_id=1405799666344159&href=https%3A%2F%2Fwww.sqlbi.com%2Farticles%2Fusing-keepfilters-in-dax%2F&display=popup&hashtag=#SQLBI" class="share icon icon-facebook2 tevent" data-name="share" data-label="Facebook" target="_blank" title="Share on Facebook">Facebook</a>
+
+                 
+                <a href="mailto:?subject=Using KEEPFILTERS in DAX - SQLBI&body=https%3A%2F%2Fwww.sqlbi.com%2Farticles%2Fusing-keepfilters-in-dax%2F" class="share icon icon-email2 tevent" data-name="share" data-label="Email" target="_blank" title="Share via Email">Email</a>
+
+
+            </div>
+        					</div>
+											<time>Updated on <b>Aug 17, 2020</b></time>
+		
+										<time>Published on <b>Sep 18, 2017</b></time>
+					<a href="https://feeds.feedburner.com/sqlbi_blog" class="icon icon-rss">Subscribe to RSS</a>
+				</div>
+				<div class="post-author">
+					<div class="post-author-header">
+						<img width="400" height="400" src="https://cdn.sqlbi.com/wp-content/uploads/marco-thumbnail.jpg" class="author-picture wp-post-image" alt="" loading="lazy" />						<div>
+							<div class="caption">Written by</div>
+							<a href="https://www.sqlbi.com/author/marco-russo/" class="author-name">Marco Russo</a>
+							
+						</div>
+											</div>
+					<div class="post-author-desc">
+						Marco is a business intelligence consultant and mentor. He first started working on Analysis Services in 1998, back when Analysis Services was known as OLAP Services. <a href="https://www.sqlbi.com/author/marco-russo/" class="more">View full profile</a>					</div>
+				</div>
+			</div>
+
+			
+
+			<div class="recommended">
+    <div class="section-caption">Recommended</div>
+    
+            <div class="tags">
+                            <a href="https://www.sqlbi.com/topics/dax/" rel="tag" class="tag-cloud-link">DAX</a> &nbsp;
+                            <a href="https://www.sqlbi.com/topics/power-bi/" rel="tag" class="tag-cloud-link">Power BI</a> &nbsp;
+                            <a href="https://www.sqlbi.com/topics/powerpivot/" rel="tag" class="tag-cloud-link">Power Pivot</a> &nbsp;
+                            <a href="https://www.sqlbi.com/topics/tabular/" rel="tag" class="tag-cloud-link">Tabular</a> &nbsp;
+                    </div>
+    
+    <div class="items">
+
+                                <div class="item item-videotraining">
+                            <article>
+                                <header>
+                                        <a href="https://www.sqlbi.com/p/mastering-dax-video-course/"><div class="product-logo videocourse-logo product2"><div><img src="https://cdn.sqlbi.com/wp-content/uploads/mastering-dax2-video-course.svg" class="attachment-full size-full wp-post-image" alt="" loading="lazy" /></div></div></a>
+
+                                    <div class="caption icon icon-videotraining">Video Course</div>
+                                    
+                                    <h1><a href="https://www.sqlbi.com/p/mastering-dax-video-course/" rel="bookmark">Mastering DAX 2nd Edition Video Course</a></h1>
+                                </header>
+                            
+                                                                    <a href="https://www.sqlbi.com/p/mastering-dax-video-course/" class="button">Try for free</a>
+                                                            </article>
+                        </div>
+                                            <div class="item item-post">
+                            <article>
+                                <header>
+                                    <div class="caption icon icon-post">article &ndash; Calculation Groups</div>
+                                    
+                                    <h1><a href="https://www.sqlbi.com/articles/using-calculation-groups-to-switch-between-dates/" rel="bookmark">Using calculation groups to switch between dates</a></h1>
+                                </header>
+                                <p>This article shows how to use calculation groups to change the active relationship in a model in order to let users choose among multiple dates. &nbsp;<a href="https://www.sqlbi.com/articles/using-calculation-groups-to-switch-between-dates/" class="more">Read more</a></p>                            </article>
+                        </div>
+                                            <div class="item item-post">
+                            <article>
+                                <header>
+                                    <div class="caption icon icon-post">article &ndash; <time class="pubdate">Nov 4, 2020</time></div>
+                                    
+                                    <h1><a href="https://www.sqlbi.com/articles/rankx-on-multiple-columns-with-dax-and-power-bi/" rel="bookmark">RANKX on multiple columns with DAX and Power BI</a></h1>
+                                </header>
+                                <p>This article shows techniques to obtain a ranking based on more than one column. The ranking can be both static and dynamic. &nbsp;<a href="https://www.sqlbi.com/articles/rankx-on-multiple-columns-with-dax-and-power-bi/" class="more">Read more</a></p>                            </article>
+                        </div>
+                                            <div class="item item-video">
+                            <article>
+                                <header>
+                                        <a href="https://www.sqlbi.com/tv/creating-calculation-groups-in-power-bi-desktop-using-tabular-editor/?autoplay=1"><div class="video-cover"><div></div><img src="https://i3.ytimg.com/vi/a4zYT-N-zsU/maxresdefault.jpg"></div></a>
+                                    <div class="caption icon icon-video">Video &ndash; <time class="pubdate">Jul 15, 2020</time></div>
+                                    
+                                    <h1><a href="https://www.sqlbi.com/tv/creating-calculation-groups-in-power-bi-desktop-using-tabular-editor/" rel="bookmark">Creating calculation groups in Power BI Desktop using Tabular Editor</a></h1>
+                                </header>
+                                
+                                
+                                                                    <a href="https://www.sqlbi.com/tv/creating-calculation-groups-in-power-bi-desktop-using-tabular-editor/" class="more">Watch now</a>
+                                                            </article>
+                        </div>
+                        </div>
+</div>
+
+
+
+			
+	
+	<div class="comments">
+		
+					<div class="ulu" data-slot="footer"></div>
+		
+		<a href="#disqus_thread" data-disqus-identifier="using-keepfilters-in-dax" class="disqus-count"></a>
+
+		<div class="disqus-alert icon icon-info">Enclose code in comments with &lt;PRE&gt;&lt;/PRE&gt; to preserve indentation</div>
+		
+		<div id="disqus_thread"></div>
+
+		<div class="disqus-more"><a href="#" class="expand-comments">Expand comments</a></div>
+
+		<div class="cookie-fallback">Accept cookies to show comments. <a href="https://www.sqlbi.com/privacy/#cookies" rel="nofollow">Cookies Policy</a><br><a href="#" class="allow-all-cookies button">Allow all cookies</a></div>
+				
+	</div>
+
+
+		
+		</div>		
+	</footer>
+
+</article>
+
+
+
+		</div>
+		
+					<footer class="main detached">
+				<div class="wrapper">
+											<section id="newsletter" class="newsletter">
+							<h2>Newsletter</h2>
+							<form class="subscription">
+								<div class="compressed-input">
+									<input type="hidden" name="nlnl[]" class="nlnl" value="41">
+									<input type="email" name="nlemail" class="nl-email" placeholder="Your email address" required>
+									<button class="nl-subscribe button">Subscribe</button>
+								</div>
+								<div class="note"> &nbsp;By subscribing you are agreeing to our <a href="https://www.sqlbi.com/privacy/">Privacy Policy.</a></div>
+								<div class="failed"></div>
+							</form>
+
+							<div class="why-subscribe">
+								<div class="subscribers">
+									115.1K									<div class="icon icon-email">subscribers</div>
+								</div>
+								<div class="facts">
+									Get BI news and original content in your inbox every 2 weeks!
+
+									<br><a href="https://www.sqlbi.com/newsletter/" class="more">Newsletter archive</a>
+								</div>
+							</div>
+						</section>
+					
+					<section class="what-is-next">
+						<h2>What is next</h2>
+
+						<ul>
+							<li><a href="https://www.sqlbi.com/p/data-modeling-for-power-bi-new-york-february-2021/">Data Modeling for Power BI</a> &ndash; Feb 3<address>, New York City</address> <a href="https://www.sqlbi.com/ics/?id=438678" class="icon icon-calendar tevent" data-name="AddToCalendar" data-label="Data Modeling for Power BI &#8211; New York City &#8211; February 2021" title="Add to calendar">&nbsp;</a></li><li><a href="https://www.sqlbi.com/p/mastering-dax-workshop-charlotte-february-2021/">Mastering DAX</a> &ndash; Feb 9<address>, Charlotte</address> <a href="https://www.sqlbi.com/ics/?id=418132" class="icon icon-calendar tevent" data-name="AddToCalendar" data-label="Mastering DAX Workshop &#8211; Charlotte &#8211; February 2021" title="Add to calendar">&nbsp;</a></li><li><a href="https://www.sqlbi.com/p/mastering-dax-workshop-chicago-february-2021/">Mastering DAX</a> &ndash; Feb 15<address>, Chicago</address> <a href="https://www.sqlbi.com/ics/?id=438688" class="icon icon-calendar tevent" data-name="AddToCalendar" data-label="Mastering DAX Workshop &#8211; Chicago &#8211; February 2021" title="Add to calendar">&nbsp;</a></li><li><a href="https://www.sqlbi.com/p/data-modeling-for-power-bi-sydney-february-2021/">Data Modeling for Power BI</a> &ndash; Feb 17<address>, Sydney</address> <a href="https://www.sqlbi.com/ics/?id=647838" class="icon icon-calendar tevent" data-name="AddToCalendar" data-label="Data Modeling for Power BI &#8211; Sydney &#8211; February 2021" title="Add to calendar">&nbsp;</a></li><li><a href="https://www.sqlbi.com/p/mastering-dax-workshop-melbourne-february-2021/">Mastering DAX</a> &ndash; Feb 22<address>, Melbourne</address> <a href="https://www.sqlbi.com/ics/?id=647820" class="icon icon-calendar tevent" data-name="AddToCalendar" data-label="Mastering DAX Workshop &#8211; Melbourne &#8211; February 2021" title="Add to calendar">&nbsp;</a></li><li><a href="https://www.sqlbi.com/p/mastering-dax-workshop-sydney-march-2021/">Mastering DAX</a> &ndash; Mar 1<address>, Sydney</address> <a href="https://www.sqlbi.com/ics/?id=647806" class="icon icon-calendar tevent" data-name="AddToCalendar" data-label="Mastering DAX Workshop &#8211; Sydney &#8211; March 2021" title="Add to calendar">&nbsp;</a></li>						</ul>
+											</section>
+
+					<section class="connect">
+						<div class="social">
+							<a href="https://www.youtube.com/c/sqlbi" class="icon icon-youtube" title="YouTube channel">YouTube</a>
+							<a href="https://twitter.com/marcorus" class="icon icon-twitter clickable-tooltip" data-tooltip-content="#twitters">Twitter</a>
+							<a href="https://www.linkedin.com/company/sqlbi/" class="icon icon-linkedin" title="LinkedIn profile">LinkedIn</a>
+							<a href="https://www.facebook.com/sqlbi/" class="icon icon-facebook" title="Facebook page">Facebook</a>
+							<a href="https://github.com/sql-bi" class="icon icon-github" title="Github repository">Github</a>
+							<a href="https://feeds.feedburner.com/sqlbi_blog" class="icon icon-rss" title="RSS feed on FeedBurner">RSS Feed</a>
+
+							<div class="tooltip-templates">
+								<span id="twitters">
+									<a href="https://twitter.com/marcorus" class="icon icon-twitter">Marco Russo</a>
+									<a href="https://twitter.com/ferrarialberto" class="icon icon-twitter">Alberto Ferrari</a>
+									<a href="https://twitter.com/danieleperilli" class="icon icon-twitter">Daniele Perilli</a>
+								</span>
+							</div>
+						</div>
+
+						<div class="copy">
+							2004-2020 &copy; SQLBI. All rights are reserved.<br>
+							SQLBI is a trademark of SQLBI Corp.<br>
+							<a href="http://loader.us.com/" class="invert">Loader</a> is a European legal entity.
+						</div>
+
+						<div class="contact">
+							<a href="https://www.sqlbi.com/privacy/" rel="nofollow" class="more">Privacy Policy &amp; Cookies</a>
+							<a href="https://www.sqlbi.com/terms-and-conditions/" rel="nofollow" class="more">Terms &amp; Conditions</a>
+							<a href="https://www.sqlbi.com/about/#contact" class="more">Contact Us</a>
+						</div>
+					</section>
+				</div>
+
+				<div class="network">
+					<ul class="sites">
+
+						<li>
+							<a href="https://www.sqlbi.com/"><img src="https://cdn.sqlbi.com/wp-content/themes/network/sqlbi-invert.svg" alt="SQLBI" title="SQLBI" class="selected"></a>
+						</li>
+
+						<li>
+							<a href="https://dax.guide/"><img src="https://cdn.sqlbi.com/wp-content/themes/network/daxguide-invert.svg" alt="DAX Guide" title="DAX Guide"></a>
+						</li>
+
+						<li><a href="https://www.daxpatterns.com/"><img src="https://cdn.sqlbi.com/wp-content/themes/network/daxpatterns-invert.svg" alt="DAX Patterns" title="DAX Patterns"></a></li>
+
+						<li><a href="https://www.daxformatter.com/"><img src="https://cdn.sqlbi.com/wp-content/themes/network/daxformatter-invert.svg" alt="DAX Formatter" title="DAX Formatter"></a></li>
+
+						<li><a href="https://okviz.com/"><img src="https://cdn.sqlbi.com/wp-content/themes/network/okviz-invert.svg" alt="OKViz" title="OKViz"></a></li>
+
+						<li><a href="https://synoptic.design/"><img src="https://cdn.sqlbi.com/wp-content/themes/network/synoptic-invert.svg" alt="Synoptic Designer" title="Synoptic Designer"></a></li>
+
+					</ul>
+				</div>
+			</footer>
+		
+		<script src="https://cdn.sqlbi.com/wp-content/themes/sqlbi/js/animator.min.js?ver=1.0.0"></script>
+		<script src="https://cdn.sqlbi.com/wp-content/themes/sqlbi/js/fitty.min.js?ver=1.0.0"></script>
+
+		<script>
+			if (typeof(cookieHelper) !== 'undefined') {
+				cookieHelper.addDependency(function() {
+					uluHelper.init();
+					timeHelper.init();
+					localeHelper.init();
+					checkoutHelper.updateMenuCartStatus();
+
+																		$.getScript('https://www.googletagmanager.com/gtag/js?id=' + config.ga);
+											
+						if (typeof window.DISQUS === 'undefined') {
+							setTimeout(function(){
+								$.getScript('//'+disqus_shortname+'.disqus.com/count.js');
+								if ($('#disqus_thread').length > 0)
+									$.getScript('//'+disqus_shortname+'.disqus.com/embed.js');
+							}, 10);
+						}
+										
+											var appInsights=window.appInsights||function(a){ function b(a){c[a]=function(){var b=arguments;c.queue.push(function(){c[a].apply(c,b)})}}var c={config:a},d=document,e=window;setTimeout(function(){var b=d.createElement("script");b.src=a.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js",d.getElementsByTagName("script")[0].parentNode.appendChild(b)});try{c.cookie=d.cookie}catch(a){}c.queue=[];for(var f=["Event","Exception","Metric","PageView","Trace","Dependency"];f.length;)b("track"+f.pop());if(b("setAuthenticatedUserContext"),b("clearAuthenticatedUserContext"),b("startTrackEvent"),b("stopTrackEvent"),b("startTrackPage"),b("stopTrackPage"),b("flush"),!a.disableExceptionTracking){f="onerror",b("_"+f);var g=e[f];e[f]=function(a,b,d,e,h){var i=g&&g(a,b,d,e,h);return!0!==i&&c["_"+f](a,b,d,e,h),i}}return c }({        instrumentationKey:"b29f4c58-fe32-457c-8a70-6a86c0527d4f"});      
+						window.appInsights=appInsights,appInsights.queue&&0===appInsights.queue.length&&appInsights.trackPageView();
+									});
+			}
+		</script>
+
+			<script type="text/javascript">
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})()
+	</script>
+	<script type="text/javascript">(function(a,d){if(a._nsl===d){a._nsl=[];var c=function(){if(a.jQuery===d)setTimeout(c,33);else{for(var b=0;b<a._nsl.length;b++)a._nsl[b].call(a,a.jQuery);a._nsl={push:function(b){b.call(a,a.jQuery)}}}};c()}})(window);</script><script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/scripts/shCore.js?ver=3.0.9b' id='syntaxhighlighter-core-js'></script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/js/shbrushdax.js?ver=4241' id='syntaxhighlighter-brush-dax-js'></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://cdn.sqlbi.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.head.appendChild( corecss );
+		var themecssurl = "https://cdn.sqlbi.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.head.appendChild( themecss );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+
+	// Infinite scroll support
+	if ( typeof( jQuery ) !== 'undefined' ) {
+		jQuery( function( $ ) {
+			$( document.body ).on( 'post-load', function() {
+				SyntaxHighlighter.highlight();
+			} );
+		} );
+	}
+</script>
+<script type='text/javascript' src='https://cdn.sqlbi.com/wp-content/plugins/dax-highlight/assets/js/tooltipster.bundle.min.js?ver=4.2.8' id='tooltipster-js'></script>
+<script type="text/javascript">(function (undefined) {var _targetWindow ="prefer-popup";
+window.NSLPopup = function (url, title, w, h) {
+    var userAgent = navigator.userAgent,
+        mobile = function () {
+            return /\b(iPhone|iP[ao]d)/.test(userAgent) ||
+                /\b(iP[ao]d)/.test(userAgent) ||
+                /Android/i.test(userAgent) ||
+                /Mobile/i.test(userAgent);
+        },
+        screenX = window.screenX !== undefined ? window.screenX : window.screenLeft,
+        screenY = window.screenY !== undefined ? window.screenY : window.screenTop,
+        outerWidth = window.outerWidth !== undefined ? window.outerWidth : document.documentElement.clientWidth,
+        outerHeight = window.outerHeight !== undefined ? window.outerHeight : document.documentElement.clientHeight - 22,
+        targetWidth = mobile() ? null : w,
+        targetHeight = mobile() ? null : h,
+        V = screenX < 0 ? window.screen.width + screenX : screenX,
+        left = parseInt(V + (outerWidth - targetWidth) / 2, 10),
+        right = parseInt(screenY + (outerHeight - targetHeight) / 2.5, 10),
+        features = [];
+    if (targetWidth !== null) {
+        features.push('width=' + targetWidth);
+    }
+    if (targetHeight !== null) {
+        features.push('height=' + targetHeight);
+    }
+    features.push('left=' + left);
+    features.push('top=' + right);
+    features.push('scrollbars=1');
+
+    var newWindow = window.open(url, title, features.join(','));
+
+    if (window.focus) {
+        newWindow.focus();
+    }
+
+    return newWindow;
+};
+
+var isWebView = null;
+
+function checkWebView() {
+    if (isWebView === null) {
+        function _detectOS(ua) {
+            if (/Android/.test(ua)) {
+                return "Android";
+            } else if (/iPhone|iPad|iPod/.test(ua)) {
+                return "iOS";
+            } else if (/Windows/.test(ua)) {
+                return "Windows";
+            } else if (/Mac OS X/.test(ua)) {
+                return "Mac";
+            } else if (/CrOS/.test(ua)) {
+                return "Chrome OS";
+            } else if (/Firefox/.test(ua)) {
+                return "Firefox OS";
+            }
+            return "";
+        }
+
+        function _detectBrowser(ua) {
+            var android = /Android/.test(ua);
+
+            if (/CriOS/.test(ua)) {
+                return "Chrome for iOS";
+            } else if (/Edge/.test(ua)) {
+                return "Edge";
+            } else if (android && /Silk\//.test(ua)) {
+                return "Silk";
+            } else if (/Chrome/.test(ua)) {
+                return "Chrome";
+            } else if (/Firefox/.test(ua)) {
+                return "Firefox";
+            } else if (android) {
+                return "AOSP";
+            } else if (/MSIE|Trident/.test(ua)) {
+                return "IE";
+            } else if (/Safari\//.test(ua)) {
+                return "Safari";
+            } else if (/AppleWebKit/.test(ua)) {
+                return "WebKit";
+            }
+            return "";
+        }
+
+        function _detectBrowserVersion(ua, browser) {
+            if (browser === "Chrome for iOS") {
+                return _getVersion(ua, "CriOS/");
+            } else if (browser === "Edge") {
+                return _getVersion(ua, "Edge/");
+            } else if (browser === "Chrome") {
+                return _getVersion(ua, "Chrome/");
+            } else if (browser === "Firefox") {
+                return _getVersion(ua, "Firefox/");
+            } else if (browser === "Silk") {
+                return _getVersion(ua, "Silk/");
+            } else if (browser === "AOSP") {
+                return _getVersion(ua, "Version/");
+            } else if (browser === "IE") {
+                return /IEMobile/.test(ua) ? _getVersion(ua, "IEMobile/") :
+                    /MSIE/.test(ua) ? _getVersion(ua, "MSIE ")
+                        :
+                        _getVersion(ua, "rv:");
+            } else if (browser === "Safari") {
+                return _getVersion(ua, "Version/");
+            } else if (browser === "WebKit") {
+                return _getVersion(ua, "WebKit/");
+            }
+            return "0.0.0";
+        }
+
+        function _getVersion(ua, token) {
+            try {
+                return _normalizeSemverString(ua.split(token)[1].trim().split(/[^\w\.]/)[0]);
+            } catch (o_O) {
+            }
+            return "0.0.0";
+        }
+
+        function _normalizeSemverString(version) {
+            var ary = version.split(/[\._]/);
+            return (parseInt(ary[0], 10) || 0) + "." +
+                (parseInt(ary[1], 10) || 0) + "." +
+                (parseInt(ary[2], 10) || 0);
+        }
+
+        function _isWebView(ua, os, browser, version, options) {
+            switch (os + browser) {
+                case "iOSSafari":
+                    return false;
+                case "iOSWebKit":
+                    return _isWebView_iOS(options);
+                case "AndroidAOSP":
+                    return false;
+                case "AndroidChrome":
+                    return parseFloat(version) >= 42 ? /; wv/.test(ua) : /\d{2}\.0\.0/.test(version) ? true : _isWebView_Android(options);
+            }
+            return false;
+        }
+
+        function _isWebView_iOS(options) {
+            var document = (window["document"] || {});
+
+            if ("WEB_VIEW" in options) {
+                return options["WEB_VIEW"];
+            }
+            return !("fullscreenEnabled" in document || "webkitFullscreenEnabled" in document || false);
+        }
+
+        function _isWebView_Android(options) {
+            if ("WEB_VIEW" in options) {
+                return options["WEB_VIEW"];
+            }
+            return !("requestFileSystem" in window || "webkitRequestFileSystem" in window || false);
+        }
+
+        var options = {};
+        var nav = window.navigator || {};
+        var ua = nav.userAgent || "";
+        var os = _detectOS(ua);
+        var browser = _detectBrowser(ua);
+        var browserVersion = _detectBrowserVersion(ua, browser);
+
+        isWebView = _isWebView(ua, os, browser, browserVersion, options);
+    }
+
+    return isWebView;
+}
+
+function isAllowedWebViewForUserAgent() {
+    var nav = window.navigator || {};
+    var ua = nav.userAgent || "";
+    if (/Instagram/.test(ua)) {
+        /*Instagram WebView*/
+        return true;
+    } else if (/FBAV/.test(ua) || /FBAN/.test(ua)) {
+        /*Facebook WebView*/
+        return true;
+    }
+
+    return false;
+}
+
+window._nsl.push(function ($) {
+
+    window.nslRedirect = function (url) {
+        $('<div style="position:fixed;z-index:1000000;left:0;top:0;width:100%;height:100%;"></div>').appendTo('body');
+        window.location = url;
+    };
+
+    var targetWindow = _targetWindow || 'prefer-popup',
+        lastPopup = false;
+
+    $(document.body).on('click', 'a[data-plugin="nsl"][data-action="connect"],a[data-plugin="nsl"][data-action="link"]', function (e) {
+        if (lastPopup && !lastPopup.closed) {
+            e.preventDefault();
+            lastPopup.focus();
+        } else {
+
+            var $target = $(this),
+                href = $target.attr('href'),
+                success = false;
+            if (href.indexOf('?') !== -1) {
+                href += '&';
+            } else {
+                href += '?';
+            }
+            var redirectTo = $target.data('redirect');
+            if (redirectTo === 'current') {
+                href += 'redirect=' + encodeURIComponent(window.location.href) + '&';
+            } else if (redirectTo && redirectTo !== '') {
+                href += 'redirect=' + encodeURIComponent(redirectTo) + '&';
+            }
+
+            if (targetWindow !== 'prefer-same-window' && checkWebView()) {
+                targetWindow = 'prefer-same-window';
+            }
+
+            if (targetWindow === 'prefer-popup') {
+
+                lastPopup = NSLPopup(href + 'display=popup', 'nsl-social-connect', $target.data('popupwidth'), $target.data('popupheight'));
+                if (lastPopup) {
+                    success = true;
+                    e.preventDefault();
+                }
+            } else if (targetWindow === 'prefer-new-tab') {
+                var newTab = window.open(href + 'display=popup', '_blank');
+                if (newTab) {
+                    if (window.focus) {
+                        newTab.focus();
+                    }
+                    success = true;
+                    e.preventDefault();
+                }
+            }
+
+            if (!success) {
+                window.location = href;
+                e.preventDefault();
+            }
+        }
+    });
+
+    var googleLoginButton = $('a[data-plugin="nsl"][data-provider="google"]');
+    if (googleLoginButton.length && checkWebView() && !isAllowedWebViewForUserAgent()) {
+        googleLoginButton.remove();
+    }
+});})();</script>
+		<script>
+			if (typeof jQuery !== 'undefined') {
+				$(document).ready(function () { 
+					onPageLoad(); 
+				});
+			}
+		</script>
+
+	</body>
+</html>
+<!-- Dynamic page generated in 2.239 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2020-12-20 19:53:22 -->
+
+<!-- Compression = gzip -->

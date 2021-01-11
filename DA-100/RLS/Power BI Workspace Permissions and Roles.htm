@@ -1,0 +1,851 @@
+
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+
+<link rel="SHORTCUT ICON" href="/favicon.ico" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>Power BI Workspace Permissions and Roles</title>
+<meta name="description" content="In this article learn about workspace permissions and roles when working with Power BI with a walkthrough of how to set this up." />
+<link rel="canonical" href="https://www.mssqltips.com/sqlservertip/6487/power-bi-workspace-permissions-and-roles/" />
+<link rel="stylesheet" href="/css/foundation-minimized.css">
+<link rel="stylesheet" href="/css/app.css">
+<script>/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.mssqltips.com/sqlservertip/6487/power-bi-workspace-permissions-and-roles/"
+  },
+  "headline": "Power BI Workspace Permissions and Roles",
+  "image": [
+  
+    "https://www.mssqltips.com/images_newsletter/6487_NewsletterImage.png"
+  
+   ],  
+  "datePublished": "2020-07-15T00:00:00+05:00",
+  "dateModified": "2020-07-15T00:00:00+05:00",
+  "author": {
+    "@type": "Person",
+    "name": "Scott Murray"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "MSSQLTips",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.mssqltips.com/images/mslogo_113x60.png"
+    }
+  },
+  "description": "In this article learn about workspace permissions and roles when working with Power BI with a walkthrough of how to set this up."
+}
+</script>
+<meta property="og:url" content="https://www.mssqltips.com/sqlservertip/6487/power-bi-workspace-permissions-and-roles/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Power BI Workspace Permissions and Roles" />
+<meta property="og:description" content="In this article learn about workspace permissions and roles when working with Power BI with a walkthrough of how to set this up." />
+<meta property="og:image" content="https://www.mssqltips.com/images_newsletter/6487_NewsletterImage.png" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@mssqltips">
+<meta name="twitter:creator" content="@mssqltips">
+<meta name="twitter:title" content="Power BI Workspace Permissions and Roles">
+<meta name="twitter:description" content="In this article learn about workspace permissions and roles when working with Power BI with a walkthrough of how to set this up.">
+<meta name="twitter:image" content="https://www.mssqltips.com/images_newsletter/6487_NewsletterImage.png">
+<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+<script>
+ 
+window.googletag = window.googletag || {cmd: []};
+
+googletag.cmd.push(function() {
+
+   var mapping = googletag.sizeMapping().
+   addSize([100, 100], []).
+   addSize([320, 400], []).
+   addSize([320, 700], []).
+   addSize([750, 200],  [[728, 90],[300,250],[160,300],[300,600],[170,90]]).
+   addSize([1050, 200], [[728, 90],[300,250],[160,300],[300,600],[170,90]]).build();
+
+   var mapping728 = googletag.sizeMapping()
+     .addSize([750, 200], [728, 90])
+     .addSize([0, 0], [])
+     .build();
+   var mapping300 = googletag.sizeMapping()
+     .addSize([640, 400], [300, 250])
+     .addSize([0, 0], [])
+     .build();
+   var mapping600 = googletag.sizeMapping()
+     .addSize([640, 600], [[160,600],[300,600]])
+     .addSize([0, 0], [])
+     .build();
+   var mapping170 = googletag.sizeMapping()
+     .addSize([640, 400], [170,90])
+     .addSize([0, 0], [])
+     .build();   
+   
+   
+ 
+   googletag.defineSlot('/53998264/160x600-Primary', [[160,600],[300,600]], 'div-gpt-ad-1388505177750-0').defineSizeMapping(mapping600).addService(googletag.pubads());  
+   googletag.defineSlot('/53998264/160x600-Secondary', [[160,600],[300,600]], 'div-gpt-ad-1388505177750-1').defineSizeMapping(mapping600).addService(googletag.pubads());  
+   googletag.defineSlot('/53998264/300x250-Primary', [300, 250], 'div-gpt-ad-1388505177750-2').defineSizeMapping(mapping300).addService(googletag.pubads());  
+   googletag.defineSlot('/53998264/300x250-Secondary', [300, 250], 'div-gpt-ad-1388505177750-3').defineSizeMapping(mapping300).addService(googletag.pubads());  
+   googletag.defineSlot('/53998264/728x90-Primary', [728, 90], 'ad-slot-leader').defineSizeMapping(mapping728).addService(googletag.pubads()); 
+   googletag.defineSlot('/53998264/170x90-pos1', [170, 90], 'div-gpt-ad-1481919244109-0').defineSizeMapping(mapping170).addService(googletag.pubads());
+   googletag.defineSlot('/53998264/170x90-pos2', [170, 90], 'div-gpt-ad-1481919244109-1').defineSizeMapping(mapping170).addService(googletag.pubads());
+   googletag.defineSlot('/53998264/170x90-pos3', [170, 90], 'div-gpt-ad-1481919244109-2').defineSizeMapping(mapping170).addService(googletag.pubads());
+   googletag.defineSlot('/53998264/170x90-pos4', [170, 90], 'div-gpt-ad-1481919244109-3').defineSizeMapping(mapping170).addService(googletag.pubads());
+
+
+
+   googletag.pubads().enableLazyLoad();
+   // googletag.pubads().disableInitialLoad();
+   googletag.pubads().collapseEmptyDivs();
+   googletag.enableServices();
+});
+
+</script>
+</head>
+<body onload="PR.prettyPrint()" style="background-color:white;">
+<a name="top"></a>
+<div class="sticky-no">
+<nav class="top-bar" data-topbar role="navigation" ">
+<ul class="title-area">
+<li class="name">
+<a href="https://www.mssqltips.com/"><img alt="mssqltips logo" src="/images/mslogo_bw_89x45-2.png"></a>
+</li>
+
+<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+</ul>
+<section class="top-bar-section">
+
+<ul class="right">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'join', 'click']);" href="/get-free-sql-server-tips/?ref=JoinHeaderMenu"><span style="color:red;">Join</span></a></li>
+<li class="has-dropdown hide-for-medium"><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'beginner', 'click']);" href="/sql-server-tutorials/">Beginner</a>
+<ul class="dropdown">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'beginner', 'click']);" href="/sqlservertip/1948/what-is-sql-server/">What is SQL Server?</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'beginner', 'click']);" href="/sqlservertutorial/9214/sql-server-101-tutorial-outline-and-overview/">SQL Server 101</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'beginner', 'click']);" href="/sqlservertip/6422/sql-server-concepts/">SQL Server Concepts</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'beginner', 'click']);" href="/sqlservertip/6429/sql-server-download-quick-links/">SQL Server Download Links</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'beginner', 'click']);" href="/sqlservertutorial/3700/my-first-sql-server-business-intelligence-project-tutorial/">My First BI Project </a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'beginner', 'click']);" href="/sqlservertip/2677/sql-server-career-planning/">SQL Server Career Plan</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'beginner', 'click']);" href="/sql-server-webcasts/">Webinars</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'beginner', 'click']);" href="/sql-server-categories/">All Categories</a></li>
+</ul>
+</li>
+<li class="has-dropdown hide-for-medium"><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tutorial', 'click']);" href="/sql-server-tutorials/">Tutorials</a>
+<ul class="dropdown">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tutorial', 'click']);" href="/sqlservertutorial/9214/sql-server-101-tutorial-outline-and-overview/">SQL Server 101</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tutorial', 'click']);" href="/sqlservertutorial/160/sql-server-stored-procedure-tutorial/">Stored Procedures</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tutorial', 'click']);" href="/sqlservertutorial/276/sql-server-performance-tuning-and-monitoring-tutorial/">Performance Tuning</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tutorial', 'click']);" href="/sqlservertutorial/9131/sql-server-index-tutorial-overview/">Indexing</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tutorial', 'click']);" href="/sqlservertutorial/9053/sql-server-integration-services-ssis-2016-tutorial/">Integration Services</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tutorial', 'click']);" href="/sqlservertutorial/9079/sql-server-reporting-services-ssrs-2017-installation-and-configuration-setup/">Reporting Services</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tutorial', 'click']);" href="/sql-server-tutorials/">All Tutorials</a></li>
+</ul>
+</li>
+<li class="has-dropdown"><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-dba-resources/">DBA</a>
+<ul class="dropdown">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-tip-category/60/database-administration/">Database Administration</a></li>
+<li class="has-dropdown"><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="#">Perfomance</a>
+<ul class="dropdown">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sqlservertutorial/276/sql-server-performance-tuning-and-monitoring-tutorial/">Performance Tuning</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-tip-category/54/monitoring/">Monitoring</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sqlservertutorial/9194/sql-server-extended-events-tutorial/">Extended Events</a></li>
+</ul>
+</li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-tip-category/81/powershell/">PowerShell</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-tip-category/27/sql-server-agent/">SQL Server Agent</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sqlservertutorial/9268/sql-server-management-studio-overview-ssms/">Management Studio</a></li>
+<li class="has-dropdown"><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="#">High Availability</a>
+<ul class="dropdown">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-tip-category/161/backup/">Backup</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-tip-category/202/restore/">Restore</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-tip-category/143/availability-groups/">Availability Groups</a></li>
+</ul>
+</li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-webcasts/">Webinars</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'dba', 'click']);" href="/sql-server-categories/">All Categories</a></li>
+</ul>
+</li>
+<li class="has-dropdown">
+<a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sql-server-developer-resources/">T-SQL</a>
+<ul class="dropdown">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertutorial/160/sql-server-stored-procedure-tutorial/">Stored Procedure Tutorial</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/1667/sql-server-join-example/">SQL Server Join Example</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/1958/sql-server-cross-apply-and-outer-apply/">CROSS APPLY + OUTER APPLY</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/1599/cursor-in-sql-server/">Cursor in SQL Server</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/2914/rolling-up-multiple-rows-into-a-single-row-and-column-for-sql-server-data/">Rolling up multiple rows</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/1160/execute-dynamic-sql-commands-in-sql-server/">Execute Dynamic SQL</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/1145/date-and-time-conversions-using-sql-server/">Date and Time Conversions</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/2655/format-sql-server-dates-with-format-function/">Format SQL Server Dates</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/4054/creating-a-date-dimension-or-calendar-table-in-sql-server/">Calendar Table</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/2509/add-and-subtract-dates-using-dateadd-in-sql-server/">Add and Subtract Dates</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sqlservertip/5993/sql-server-date-and-time-functions-with-examples/">Date and Time Functions</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sql-server-webcasts/">Webinars</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'tsql', 'click']);" href="/sql-server-categories/">All Categories</a></li>
+</ul>
+</li>
+<li class="has-dropdown hide-for-medium">
+<a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sql-server-business-intelligence-resources/">Analytics</a>
+<ul class="dropdown">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sql-server-tip-category/211/power-bi/">Power BI</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sqlservertutorial/9053/sql-server-integration-services-ssis-2016-tutorial/">Integration Services</a></li>
+ <li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sql-server-business-intelligence-resources/">Azure Data Factory</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sqlservertutorial/9079/sql-server-reporting-services-ssrs-2017-installation-and-configuration-setup/">Reporting Services</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sqlservertutorial/4200/sql-server-analysis-services-2016-ssas-tutorial/">Analysis Services</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sqlservertutorial/9073/sql-server-2017-and-python-basics/">Python</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sqlservertutorial/9040/getting-started-with-r-in-sql-server/">R</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sql-server-webcasts/">Webinars</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'bi', 'click']);" href="/sql-server-categories/">All Categories</a></li>
+</ul>
+</li>
+<li class="has-dropdown hide-for-medium">
+<a onclick="_gaq.push(['_trackEvent', 'hmenu', 'cloud', 'click']);" href="#">Cloud</a>
+<ul class="dropdown">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'cloud', 'click']);" href="/sql-server-tip-category/205/amazon-aws/">AWS</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'cloud', 'click']);" href="/sql-server-tip-category/87/azure/">Azure</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'cloud', 'click']);" href="/sql-server-categories/">All Categories</a></li>
+</ul>
+</li>
+<li class="has-dropdown hide-for-medium">
+<a onclick="_gaq.push(['_trackEvent', 'hmenu', 'showcase', 'click']);" href="#">Tools</a>
+<ul class="dropdown">
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'showcase', 'click']);" href="/sqlservertip/6297/melissa-data-quality-solutions-for-ssis/?ps=melissa">Data Quality Tools</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'showcase', 'click']);" href="/sqlservertip/6310/solarwinds-database-performance-analyzer-for-sql-server/?ps=solarwinds-dpa">Database Performance Analyzer</a></li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'showcase', 'click']);" href="/sqlservertip/6367/quest-foglight-for-databases/?ps=quest-foglight">Foglight for SQL Server</a></li>
+</ul>
+</li>
+<li><a onclick="_gaq.push(['_trackEvent', 'hmenu', 'search', 'click']);" href="/search/"><span style="color:red;">Search</span></a></li>
+</ul>
+</section>
+</nav>
+</div>
+<div class="row">
+<div class="entry-content large-9 columns" role="content"> <h1>Power BI Workspace Permissions and Roles</h1>
+<div id="sticky-anchor-outline"></div>
+<div align="center" class="hide-for-print hide-for-small">
+<div id="ad-slot-leader" style="width:728px; height:90px; min-width:728px; min-height:90px;">
+<script type='text/javascript'>
+			 googletag.cmd.push(function() {googletag.display('ad-slot-leader'); });
+		   </script>
+</div>
+</div>
+<br />
+<article>
+<p>By: <a href="/sqlserverauthor/81/scott-murray/" rel="author" title="author profile for Scott Murray">Scott Murray</a> &nbsp;&nbsp;|&nbsp;&nbsp; Updated: 2020-07-15 &nbsp;&nbsp;|&nbsp;&nbsp; <a href="#comments" title="read and post comments">Comments</a> &nbsp;&nbsp;|&nbsp;&nbsp; Related: <a href="/sql-server-developer-resources/">More</a> > <a href="/sql-server-tip-category/211/power-bi/">Power BI</a></p>
+<br />
+<h5>Problem</h5>
+<p>What are the Power BI workspace permissions and roles and how are they used?
+</p>
+<h5>Solution</h5>
+<p>Power BI includes a complex security infrastructure that encompasses data level
+detail such as that used for Row Level Security (see these tips on Row Level Security
+in Power BI: 1)
+<a href="/sqlservertip/6378/power-bi-table-based-row-level-security/" target="_blank">
+Power BI Table Based Row Level Security</a>
+and 2)
+<a href="/sqlservertip/6153/power-bi-row-level-security/" target="_blank">
+Power BI Row Level Security</a>. </p>
+<p>Row
+level security is maintained at the dataset level. Furthermore, APP permissions
+grant report consumers that ability to access a Power BI APP. In between these levels
+are the various workspace report level permissions which maintain various access
+paths to the workspace itself. However, these permissions are often not seen
+directly as many end users interact with a report via the APP; other users will
+connect directly to the report in the workspace.</p>
+<p>Let us get started with seeing some examples of how workspace permissions work.
+However, before we get into the examples, you need to be sure to
+<a href="https://powerbi.microsoft.com/en-us/get-started/">download the latest
+version of Power BI desktop</a>.
+Additionally, we will be using the WideWorldImportersDW database as a basis for
+our data sources; this database can be
+<a href="https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0">downloaded from GitHub</a>.
+If you need a refresher on bringing data into Power BI please see:
+<a href="/sqlservertip/4016/querying-sql-server-data-with-power-bi-desktop/" target="_blank">
+Querying SQL Server Data with Power BI Desktop</a>.</p>
+<p>One initial caveat that should be noted is that the items we discuss are related
+to the &quot;new&quot; workspace experience that was implemented in early 2020.
+Be sure you have upgraded to the latest version of the Power BI service (which should
+happen automatically). Also, as we develop our methods for granting access and setting
+up permissions be sure to remember we are establishing a way to collaborate with
+our report and dashboard consumers.</p>
+<h2>Create New Workspace on Power BI Service</h2>
+<p>We will start with creating a new workspace on the Power BI Service.</p>
+<div class="imageborder">
+<img alt="New Work Space" src="/tipimages2/6487_power-bi-workspace-permissions-roles.001.png" />
+</div>
+<p>Next, the workspace is named and then saved.</p>
+<div class="imageborder">
+<img alt="Save Workspace New" src="/tipimages2/6487_power-bi-workspace-permissions-roles.002.png" />
+</div>
+<p>You will notice that during the workspace creation, no permissions are shown
+nor are any options really available except a default image and description along
+with a few advanced options, one of which is to fill in a workspace contact list.
+The list is used as a notification method if issues arise with the workspace.
+</p>
+<div class="imageborder">
+<img alt="Advanced settings" src="/tipimages2/6487_power-bi-workspace-permissions-roles.003.png" />
+</div>
+<h2>Power BI Workspace Access</h2>
+<p>Now that the workspace is created, we can now review the permissions used in
+the workspace. You will need to select the desired workspace, then the ellipse,
+and finally Workspace Access.</p>
+<div class="imageborder">
+<img alt="Workspace Access" src="/tipimages2/6487_power-bi-workspace-permissions-roles.004.png" />
+</div>
+<p>Alternately, the Access pane can be opened by selecting the workspace and then
+clicking the Access button.</p>
+<div class="imageborder">
+<img alt="Workspace Access 2" src="/tipimages2/6487_power-bi-workspace-permissions-roles.005.png" />
+</div>
+<p>Initially, the content administrator / workspace creator is the only user that
+has a permission of Admin. However, others can be added.</p>
+<div class="imageborder">
+<img alt="Initial Permissions" src="/tipimages2/6487_power-bi-workspace-permissions-roles.006.png" />
+</div>
+<h2>Power BI Roles</h2>
+<p>As shown below, you can add users or groups (Active Directory or Distribution
+Lists) to the workspace, but simply starting to type the name of the user or group;
+Power BI will use Intellisense. In my example, I am adding the user named &quot;test&quot;;
+next, the role must be selected. Four roles are available:</p>
+<ul>
+<li><strong>Viewer</strong> - This role provides read only access to workspace items.
+Read access does provide report / dashboard consumers the ability to not only
+view, but also interact with visuals. Interaction does not mean changing a visual.
+Also note that users in this view do not require a Pro License to view reports
+if the workspace is in Premium mode. Without Premium content a Pro License is
+required. (see this tip for some details on license details (<a href="/sqlservertip/6440/power-bi-what-i-wish-i-knew-when-i-started/" target="_blank">Power
+BI: What I wish I knew when I started?</a>).</li>
+<li><strong>Contributor</strong> - This role can access and interact with reports and dashboards.
+Additionally, this role can create, edit, copy, and delete items in a workspace,
+publish reports, schedule refreshes, and modify gateways.</li>
+<li><strong>Member</strong> - This role can access and interact with reports and dashboards.
+Additionally, this role can create, edit, copy, and delete items in a workspace,
+publish reports, schedule refreshes, and modify gateways. Finally, members of
+this role can also feature dashboards on the service, share items, allow others
+to reshare items, publish or republish and APP. This role is also able to add
+other users to the viewer or contributor role.</li>
+<li><strong>Admin</strong> - This role can do all the functions above plus add and remove all
+users including other Admins.</li>
+</ul>
+<p>A few other notes about the viewer role (and by default all the other roles inherit
+these features) include: 1) a user still can export the report to PDF, Power
+Point or print the report page 2) even though row level security is set at the dataset
+level, it still applies to users in the viewer role (even though they are unable
+to see the dataset). In addition to the above permissions, you would also require
+Build permissions on the Dataset in order to create a report from a workspace dataset
+or copy a report. We will discuss the Build permission late in this tip.</p>
+<div class="imageborder">
+<img alt="power bi" src="/tipimages2/6487_power-bi-workspace-permissions-roles.007.png" />
+</div>
+<p>After entering the user email address or name, selecting the role, then clicking
+on Add, Power BI creates the user&rsquo;s access attached to the appropriate role.
+In the below example the Test user now has viewer access to the workspace.</p>
+<div class="imageborder">
+<img alt="Add role" src="/tipimages2/6487_power-bi-workspace-permissions-roles.008.png" />
+</div>
+<p>Clicking on ellipse next to the user allows for either the removal of a user
+or the ability to change the role for that user.</p>
+<div class="imageborder">
+<img alt="Change User" src="/tipimages2/6487_power-bi-workspace-permissions-roles.009.png" />
+</div>
+<h2>Power BI Permissions for Objects in the Workspace</h2>
+<p>Up to this point we focused on the permissions at the Workspace; now we will
+drop one level down and discuss permissions for the objects in the Workspace, including
+the new Build permission mentioned previously. Specifically, these permissions are
+set on the datasets. Specifically, two additional permissions exist at the
+dataset level 1) Reshare which allows for the user to share (or reshare) the dataset
+with other Power BI users and 2) Build which allows users to not only view the dataset,
+but also build their own reports based on that dataset. Build permissions are automatically
+granted to users within the Contributor, Member, or Admin roles set at the workspace
+level.</p>
+<p>Alternately, Build and Reshare permissions can be assigned to individual users.
+To set these permissions, navigate to the desired workspace and then to the dataset
+list. Next, click the ellipse next to the workspace and select Manage permissions.
+</p>
+<div class="imageborder">
+<img alt="Manage Permissions" src="/tipimages2/6487_power-bi-workspace-permissions-roles.010.png" />
+</div>
+<p>As shown on the Manage Permissions screen below, you will notice the users which
+were previously added to the workspace permissions show in the dataset list. Each
+user assigned roles are shown in the permissions column. </p>
+<div class="imageborder">
+<img alt="Dataset Manage Permissions" src="/tipimages2/6487_power-bi-workspace-permissions-roles.011.png" />
+</div>
+<p>To add additional permissions for the user, select the ellipse to the right of
+the permissions column. Either Reshare or Build can be added to the user&rsquo;s
+access permission.</p>
+<div class="imageborder">
+<img alt="Add Reshare / Build" src="/tipimages2/6487_power-bi-workspace-permissions-roles.012.png" />
+</div>
+<p>Similarly, once added, either permission can be removed.</p>
+<div class="imageborder">
+<img alt="Remove permissions." src="/tipimages2/6487_power-bi-workspace-permissions-roles.013.png" />
+</div>
+<p>If a user was not added to the workspace, then that user can be added manually
+via the Add User button.</p>
+<div class="imageborder">
+<img alt="Add User." src="/tipimages2/6487_power-bi-workspace-permissions-roles.014.png" />
+</div>
+<p>The username or email address can be filled using Intellisense and then selected.
+Although not blatantly clear, the two check boxes provide the user with the Reshare
+and Build permissions, respectively.</p>
+<div class="imageborder">
+<img alt="Add User Manually." src="/tipimages2/6487_power-bi-workspace-permissions-roles.015.png" />
+</div>
+<p>The user is added to the dataset permissions with Read access along with the
+selected Reshare or Build permissions. However, this user has not been granted permissions
+at the workspace level.</p>
+<div class="imageborder">
+<img alt="power bi" src="/tipimages2/6487_power-bi-workspace-permissions-roles.016.png" />
+</div>
+<p>In this tip, we covered the basics of workspace permissions including specifics
+of what each workspace permission grants at the role level. Additionally, we have
+dived into the process of setting the Reshare and Build permissions at the dataset
+level.</p>
+<h5>Next Steps</h5>
+<ul>
+<li>All
+<a href="/sql-server-tip-category/211/power-bi/" target="_blank">
+Power BI Tips</a></li>
+</ul>
+<br /><br />
+Last Updated: 2020-07-15
+<br /><br /><br />
+<div class="row">
+<div class="large-6 columns">
+<div align="center" class="hide-for-print"><a href="/download-scripts/" onclick="_gaq.push(['_trackEvent', 'Scripts', 'Click', 'BotTip']);" target="_blank"><img border="0" src="/images/Free-Download_20190509.png" alt="get scripts" width="300" height="150"></a></div>
+<br />
+</div>
+<div class="large-6 columns">
+<div align="center" class="hide-for-print"><a href="/sql-server-tip-category/211/power-bi/" onclick="_gaq.push(['_trackEvent', 'NextTip', 'Click', 'YellowArrow']);"><img border="0" src="/images/nav_nexttip_clickhere_rev1.png" alt="next tip button" width="300" height="150"></a></div>
+<br />
+</div>
+</div>
+<br /><br />
+<h5>About the author</h5>
+<div class="row">
+<div class="large-6 columns">
+<a href="/sqlserverauthor/81/scott-murray/"><img style="float: left; padding: 0px 3px 0px 0px;" alt="MSSQLTips author Scott Murray" height="90" src="/images/ScottMurray.jpg" width="60" /></a>
+Scott Murray has a passion for crafting BI Solutions with SharePoint, SSAS, OLAP and SSRS.
+<br /><br /><b><a href="/sqlserverauthor/81/scott-murray/">View all my tips</a></b>
+</div>
+<div class="large-6 columns">
+<b>Related Resources</b><br />
+<ul>
+<li><a href="/sql-server-developer-resources/">More Database Developer Tips...</a></li>
+</ul>
+</div>
+</div>
+<br /><br />
+<a name="comments"></a>
+<div class="row hide-for-small hide-for-print">
+<div class="large-12 columns">
+<a href="/contribute/">Become a paid author</a>
+</div>
+<hr />
+</div>
+<br /><br />
+</article>
+<div class="row">
+</div>
+<div class="hide-for-print hide-for-small">
+ <div class="row">
+<div class="large-3 medium-3 hide-for-print columns" align="center">
+
+<div id='div-gpt-ad-1481919244109-2' style='height:90px; width:170px;'>
+<script>
+		googletag.cmd.push(function() { googletag.display('div-gpt-ad-1481919244109-2'); });
+		</script>
+</div>
+</div>
+<div class="large-3 medium-3 hide-for-print columns" align="center">
+
+<div id='div-gpt-ad-1481919244109-3' style='height:90px; width:170px;'>
+<script>
+		googletag.cmd.push(function() { googletag.display('div-gpt-ad-1481919244109-3'); });
+		</script>
+</div>
+</div>
+</div>
+</div>
+<div class="hide-for-print">
+<hr>
+<h2>Comments For This Article</h2>
+<button class="button round" data-reveal-id="myModal" data-reveal-ajax="/zurb_comments.asp?id=1x6487">Add Comment</button>
+<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+</div>
+<style type="text/css">
+.ForumPostBodyArea
+{
+	width: 100%;
+	vertical-align: top;
+	overflow: auto;
+}
+</style>
+<br /><br /><br />
+</div>
+</div>
+<div class="large-3 hide-for-print columns">
+<br />
+<div align="center" class="hide-for-print"><a href="/download-scripts/" onclick="_gaq.push(['_trackEvent', 'Scripts', 'Click', 'Right']);" target="_blank"><img src="/images/download-index-scripts-1.png" alt="download"></a></div>
+<br /><br />
+
+<div align="center">
+<div id='div-gpt-ad-1388505177750-0' style='width:300px; height:600px; min-width: 300px; min-height: 600px;'>
+<script type='text/javascript'>
+	googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388505177750-0'); });
+	</script>
+</div>
+</div><br /><br /><br />
+<div style="padding:2px; background-color:#FFFFFF; ">
+<div style="width:100%; background-color:#B00000;">
+<h2 style="text-align:center; color:white;">Recommended Reading</h2>
+</div>
+<div style="line-height:120%;font-size:85%;padding-left:5px;">
+<a onclick="_gaq.push(['_trackEvent', 'Recommended', '6487', '4621']);" href="/sqlservertip/4621/using-power-bi-with-json-data-sources-and-files/">Using Power BI with JSON Data Sources and Files</a><br><br>
+</div>
+<div style="line-height:120%;font-size:85%;padding-left:5px;">
+<a onclick="_gaq.push(['_trackEvent', 'Recommended', '6487', '4841']);" href="/sqlservertip/4841/calculating-mtd-qtd-ytd-running-and-cumulative-total-in-power-bi/">Calculating MTD, QTD, YTD, Running and Cumulative Total in Power BI</a><br><br>
+</div>
+<div style="line-height:120%;font-size:85%;padding-left:5px;">
+<a onclick="_gaq.push(['_trackEvent', 'Recommended', '6487', '6265']);" href="/sqlservertip/6265/power-bi-conditional-formatting-for-matrix-and-table-visuals/">Power BI Conditional Formatting for Matrix and Table Visuals</a><br><br>
+</div>
+<div style="line-height:120%;font-size:85%;padding-left:5px;">
+<a onclick="_gaq.push(['_trackEvent', 'Recommended', '6487', '6318']);" href="/sqlservertip/6318/read-api-data-with-power-bi-using-power-query/">Read API Data with Power BI using Power Query</a><br><br>
+</div>
+<div style="line-height:120%;font-size:85%;padding-left:5px;">
+<a onclick="_gaq.push(['_trackEvent', 'Recommended', '6487', '6424']);" href="/sqlservertip/6424/calculate-percentage-growth-over-time-with-power-bi/">Calculate Percentage Growth Over Time with Power BI</a><br><br>
+</div>
+</div>
+<br><br><br><br>
+
+<div id="sticky" align="center">
+<div id='div-gpt-ad-1388505177750-2' style='width:300px; height:250px; min-width:300px; min-height:250px;'>
+<script type='text/javascript'>
+	googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388505177750-2'); });
+	</script>
+</div>
+</div><br /><br /><br />
+<div align="center">
+<div id='div-gpt-ad-1388505177750-1' style='width:300px; height:600px; min-width: 300px; min-height: 600px;'>
+<script type='text/javascript'>
+	googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388505177750-1'); });
+	</script>
+</div>
+</div> <br /><br /><br />
+<div align="center">
+<div id='div-gpt-ad-1388505177750-3' style='width:300px; height:250px; min-width:300px; min-height:250px;'>
+<script type='text/javascript'>
+	googletag.cmd.push(function() { googletag.display('div-gpt-ad-1388505177750-3'); });
+	</script>
+</div>
+</div> <br /><br /><br />
+<div id="sticky-anchor"></div>
+<div align="center">
+<script language="Javascript">
+	function ValidateEmail(inputText)
+	{
+	
+		if (document.optin.consent.checked == false) {
+		     alert("Please agree to terms by ticking check box.");
+		     return false;
+	            }	
+	   
+		var mailformat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if(inputText.value.match(mailformat))
+		{
+			document.optin.ea.focus();
+			return true;
+		}
+		else
+		{
+			alert("You have entered an invalid email address!");
+			document.optin.ea.focus();
+			return false;
+		}
+	}
+
+	</script>
+<div id="sticky2">
+<div id="search-div" style="height:300px; width:300px">
+<div id="signup-div">
+<div style="text-align: center;"><a href="/get-free-sql-server-tips/?ref=LeftGFSTSlant"><img alt="get free sql tips" border="0" src="/images/GetFreeSQLTips_black_box.png"></a></div>
+<form action="/get-free-sql-server-tips/" method="post" name="optin" onsubmit="return ValidateEmail(document.optin.ea)">
+<input name="URL" type="hidden" value="leftform" />
+<input name="ReferralURL" type="hidden" value="" />
+<div class="row">
+<div class="large-12 columns">
+<div class="row collapse">
+<div class="small-10 columns">
+<input size="25" type="text" onblur="if (this.value=='') this.value=this.defaultValue" onclick="if (this.defaultValue==this.value) this.value=''" value="enter business email" name="ea">
+</div>
+<div class="small-2 columns">
+<input type="submit" name="Button1" value="Join" />
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="large-12 columns">
+<div class="row collapse">
+<div class="small-1 columns">
+<input type="checkbox" name="consent" value="1">
+</div>
+<div class="small-11 columns">
+<a href="/privacy/" target="_blank"><img src="/images/mssqltips-agree-terms.png" alt="agree to terms"></a>
+</div>
+</div>
+</div>
+</div>
+<br /><br />
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="sticky-anchor-2"></div>
+<footer class="row hide-for-print">
+<hr />
+<ul class="small-block-grid-3 large-block-grid-6">
+<li>
+<h3><span style="color:#3B6D93">Follow</span></h3>
+<ul>
+<li><a href="/get-free-sql-server-tips/?ref=GetFooterMenu">Get Free SQL Tips</a></li>
+<li><a rel="noopener" href="https://twitter.com/mssqltips" target="_blank">Twitter</a></li>
+<li><a rel="noopener" href="https://www.linkedin.com/groups/2320891/" target="_blank">LinkedIn</a></li>
+<li><a rel="noopener" href="https://www.facebook.com/mssqltips/" target="_blank">Facebook</a></li>
+<li><a rel="noopener" href="https://www.pinterest.com/mssqltips/" target="_blank">Pinterest</a></li>
+<li><a rel="noopener" href="https://feeds.feedburner.com/MSSQLTips-LatestSqlServerTips" target="_blank">RSS</a></li>
+</ul>
+</li>
+<li>
+<h3><span style="color:#3B6D93">Learning</span></h3>
+<ul>
+<li><a href="/sql-server-dba-resources/">DBAs</a></li>
+<li><a href="/sql-server-developer-resources/">Developers</a></li>
+<li><a href="/sql-server-business-intelligence-resources/">BI Professionals</a></li>
+<li><a href="/sql-server-professional-development-resources/">Careers</a></li>
+</ul>
+</li>
+<li>
+<h3><span style="color:#3B6D93">Resources</span></h3>
+<ul>
+<li><a href="/sql-server-tutorials/">Tutorials</a></li>
+<li><a href="/sql-server-webcasts/">Webcasts</a></li>
+<li><a href="/sql-server-whitepapers/">Whitepapers</a></li>
+<li><a href="/sql-server-tools/">Tools</a></li>
+</ul>
+</li>
+<li>
+<h3><span style="color:#3B6D93">Search</span></h3>
+<ul>
+<li><a href="/sql-server-categories/">Tip Categories</a></li>
+<li><a href="/search-tip-id/">Search By TipID</a></li>
+<li><a href="/sql-server-mssqltips-authors/">Authors</a></li>
+</ul>
+</li>
+<li>
+<h3><span style="color:#3B6D93">Community</span></h3>
+<ul>
+<li><a href="/learn-more-about-mssqltips/">First Timer?</a></li>
+<li><a href="/mssqltips-community/1/">Pictures</a></li>
+<li><a href="/contribute/">Contribute</a></li>
+<li><a href="/sql-server-event-list/">Event Calendar</a></li>
+<li><a href="/sql-server-user-groups/">User Groups</a></li>
+<li><a href="/mssqltips-author-of-year/">Author of the Year</a></li>
+</ul>
+</li>
+<li>
+<h3><span style="color:#3B6D93">More Info</span></h3>
+<ul>
+<li><a href="/get-free-sql-server-tips/?ref=JoinFooterMenu">Join</a></li>
+<li><a href="/about/">About</a></li>
+<li><a href="/copyright/">Copyright</a></li>
+<li><a href="/privacy/">Privacy</a></li>
+<li><a href="/disclaimer/">Disclaimer</a></li>
+<li><a href="/feedback/">Feedback</a></li>
+<li><a href="/advertise/">Advertise</a></li>
+</ul>
+</li>
+</ul>
+<hr />
+<div class="row">
+<div class="large-12 columns text-center">
+<p>Copyright (c) 2006-2020 <a href="https://www.edgewoodsolutions.com">Edgewood Solutions, LLC</a> All rights reserved<br />
+<small>Some names and products listed are the registered trademarks of their respective owners.</small></p>
+</div>
+</div>
+</footer>
+
+<style type="text/css">
+#slideboxtop{
+    width:100%;
+    height:50px;
+    padding:0px;
+    background-color:#FFFFFF;      
+    border-bottom:1px solid #000000;
+    position:fixed;
+    top: -350px;
+	-moz-box-shadow:-2px 0px 5px #aaa;
+	-webkit-box-shadow:-2px 0px 5px #aaa;
+/* 	box-shadow:-2px 0px 5px #aaa;    */
+}
+</style>
+<div class="hide-for-small hide-for-medium hide-for-print">
+<div id="slideboxtop" style="z-index:1;">
+<div style="text-align:center">
+<div w3-include-html="/Site-Sponsorship/site-sponsorship.asp"></div>
+</div>
+</div>
+</div>
+<script src="/js/vendor/jquery.min.js"></script>
+<script src="/js/foundation/foundation.combined.js"></script>
+<script type="text/javascript">
+var articleLength = $("article").find("p").length;
+
+ 
+
+</script>
+<script>
+    $(document).foundation();
+</script>
+<script type="text/javascript" src="/css/prettify.combined.js"></script>
+<script type="text/javascript">
+$(function() {
+	$(window).scroll(function(){
+		if  ($(window).scrollTop() > 250)
+			$('#slideboxtop').animate({'top':'0px'});
+		else
+			$('#slideboxtop').stop(true).animate({'top':'-250px'});
+	});
+});
+</script>
+
+<style type="text/css">
+#sticky {
+    padding: 0ex;
+    background-color: #fff;
+}
+
+#sticky.stick {
+    margin-top: 60px !important;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+#sticky2.stick {
+    margin-top: 360px !important;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+#sticky-outline {
+    padding: 0ex;
+    width: 100%;
+    background-color: #fff;
+}
+
+#sticky-outline.stick {
+    margin-top: 45px !important;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.fullWidth {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+</style>
+<script type="text/javascript">
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+	
+    var div_top = $('#sticky-anchor').offset().top;
+	var div_bottom = $('#sticky-anchor-2').offset().top - 600;
+
+	var div_top2 = $('#sticky-anchor-outline').offset().top;
+	
+    var window_width = $(window).width();
+    var window_height = $(window).height();
+    
+	if (window_top > div_top && window_width > 1100 && window_height > 400 && window_top < div_bottom ) {
+        $('#sticky').addClass('stick');
+		$('#sticky2').addClass('stick');
+        $('#sticky-anchor').height($('#sticky').outerHeight());
+    } else {
+        $('#sticky').removeClass('stick');
+		$('#sticky2').removeClass('stick');
+        $('#sticky-anchor').height(0);
+    }
+	if (window_top > div_top2 ) {
+        $('#sticky-outline').addClass('stick');
+    } else {
+        $('#sticky-outline').removeClass('stick');
+    }	
+		
+}
+
+$(function() {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
+
+</script>
+<script>
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /*loop through a collection of all HTML elements:*/
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /*make an HTTP request using the attribute value as the file name:*/
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /*remove the attribute, and call this function once more:*/
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      }      
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /*exit the function:*/
+      return;
+    }
+  }
+};
+</script>
+<script>
+includeHTML();
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-910745-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

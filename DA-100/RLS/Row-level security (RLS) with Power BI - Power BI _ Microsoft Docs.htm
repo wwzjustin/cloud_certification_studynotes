@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="hasSidebar hasPageActions hasBreadcrumb conceptual has-default-focus theme-light" lang="en-us" dir="ltr" data-css-variable-support="true" data-authenticated="false" data-auth-status-determined="false" data-target="docs" x-ms-format-detection="none">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta property="og:title" content="Row-level security (RLS) with Power BI - Power BI" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.microsoft.com/en-us/power-bi/admin/service-admin-rls" />
+			<meta property="og:description" content="How to configure row-level security for imported datasets, and DirectQuery, within the Power BI service." />
+		<meta property="og:image" content="https://docs.microsoft.com/en-us/media/logos/logo-ms-social.png" />
+		<meta property="og:image:alt" content="Microsoft Logo" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@docsmsft" />
+
+
+	<meta name="author" content="paulinbar" />
+<meta name="breadcrumb_path" content="/power-bi/breadcrumb/toc.json" />
+<meta name="depot_name" content="MSDN.powerbi-docs" />
+<meta name="description" content="How to configure row-level security for imported datasets, and DirectQuery, within the Power BI service." />
+<meta name="document_id" content="d5505062-94f3-e15d-a52f-ce1ac7f8cb69" />
+<meta name="document_version_independent_id" content="34076b73-0ded-2111-ed44-2a31e07deb53" />
+<meta name="gitcommit" content="https://github.com/MicrosoftDocs/powerbi-docs-pr/blob/7cbdb398b5d154c918726daf0ed2bbae1b9e5316/powerbi-docs/admin/service-admin-rls.md" />
+<meta name="locale" content="en-us" />
+<meta name="LocalizationGroup" content="Administration" />
+<meta name="ms.author" content="painbar" />
+<meta name="ms.custom" content="seodec18" />
+<meta name="ms.date" content="09/17/2020" />
+<meta name="ms.reviewer" content="" />
+<meta name="ms.service" content="powerbi" />
+<meta name="ms.subservice" content="powerbi-admin" />
+<meta name="ms.topic" content="how-to" />
+<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/powerbi-docs-pr/blob/live/powerbi-docs/admin/service-admin-rls.md" />
+<meta name="search.app" content="Capaedac-PowerBI" />
+<meta name="search.appverid" content="met150" />
+<meta name="search.ms_docsetname" content="powerbi-docs" />
+<meta name="search.ms_product" content="MSDN" />
+<meta name="search.ms_sitename" content="Docs" />
+<meta name="site_name" content="Docs" />
+<meta name="uhfHeaderId" content="MSDocsHeader-MSPowerBI" />
+<meta name="updated_at" content="2020-11-30 11:31 PM" />
+<meta name="page_type" content="conceptual" />
+<meta name="toc_rel" content="toc.json" />
+<meta name="pdf_url_template" content="https://docs.microsoft.com/pdfstore/en-us/MSDN.powerbi-docs/{branchName}{pdfName}" />
+<meta name="word_count" content="1595" />
+
+
+	<meta name="scope" content="Power BI" />
+<link href="https://docs.microsoft.com/en-us/power-bi/admin/service-admin-rls" rel="canonical">
+	<title>Row-level security (RLS) with Power BI - Power BI | Microsoft Docs</title>
+
+		<link rel="stylesheet" href="/_themes/docs.theme/master/en-us/_themes/styles/b415dab4.site-ltr.css ">
+
+	<link rel="stylesheet" href="/_themes/docs.theme/master/en-us/_themes/styles/55917fe3.conceptual.css ">
+
+
+	<script id="msdocs-script">
+	var msDocs = {
+		data: {
+			timeOrigin: Date.now(),
+			contentLocale: 'en-us',
+			contentDir: 'ltr',
+			userLocale: 'en-us',
+			userDir: 'ltr',
+			pageTemplate: 'Conceptual',
+			brand: '',
+			context: {
+
+			},
+			hasBinaryRating: true,
+			hasGithubIssues: true,
+			showFeedbackReport: false,
+			enableTutorialFeedback: false,
+			feedbackSystem: 'GitHub',
+			feedbackGitHubRepo: 'MicrosoftDocs/powerbi-docs',
+			feedbackProductUrl: 'https://ideas.powerbi.com/forums/265200-power-bi',
+			contentGitUrl: 'https://github.com/MicrosoftDocs/powerbi-docs/blob/master/powerbi-docs/admin/service-admin-rls.md',
+			extendBreadcrumb: false,
+			isEditDisplayable: true,
+			hideViewSource: false,
+			hasPageActions: true,
+			hasBookmark: true,
+			hasShare: true,
+			hasRecommendations: false,
+			contributors: [
+						{ name: "paulinbar", url: "https://github.com/paulinbar" },
+						{ name: "kfollis", url: "https://github.com/kfollis" },
+						{ name: "Bouke", url: "https://github.com/Bouke" },
+						{ name: "v-hearya", url: "https://github.com/v-hearya" },
+						{ name: "peter-myers", url: "https://github.com/peter-myers" },
+						{ name: "v-kents", url: "https://github.com/v-kents" }
+],
+		},
+		functions:{}
+	};
+	</script>
+	<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+	<script src="https://az725175.vo.msecnd.net/scripts/jsll-4.js"></script>
+	<script nomodule src="/static/third-party/bluebird/3.5.0/bluebird.min.js" integrity="sha384-aD4BDeDGeLXLpPK4yKeqtZQa9dv4a/7mQ+4L5vwshIYH1Mc2BrXvHd32iHzYCQy5" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/fetch/3.0.0/fetch.umd.min.js" integrity="sha384-EQIXrC5K2+7X8nGgLkB995I0/6jfAvvyG1ieZ+WYGxgJHFMD/alsG9fSDWvzb5Y1" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/template/1.4.0/template.min.js" integrity="sha384-1zKzI6ldTVHMU7n0W2HpE/lhHI+UG4D9IIaxbj3kT2UhCWicdTuJkTtnKuu0CQzN" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/url/0.5.7/url.min.js" integrity="sha384-vn7xBMtpSTfzaTRWxj0kVq0UcsbBrTOgZ/M1ISHqe1V358elYva+lfiEC+T8jLPc" crossorigin="anonymous"></script>
+	<script src="/_themes/docs.theme/master/en-us/_themes/scripts/f0a172e9.index-polyfills.js"></script>
+		<script src="/_themes/docs.theme/master/en-us/_themes/scripts/c66344e6.index-docs.js"></script>
+</head>
+
+<body lang="en-us" dir="ltr">
+<div class="header-holder has-default-focus">
+	<a href="#main" class="skip-to-main-link has-outline-color-text visually-hidden-until-focused is-fixed has-inner-focus focus-visible has-top-zero has-left-zero has-right-zero has-padding-medium has-text-centered has-body-background-medium" tabindex="1">Skip to main content</a>
+	<div id="learn-together-banner-holder" class="has-default-focus has-overflow-hidden">
+	</div>
+	<div hidden id="cookie-consent-holder"></div>
+	<!-- liquid-tag banners global -->
+	<div id="headerAreaHolder" data-bi-name="header">
+<header role="banner" itemscope="itemscope" itemtype="http://schema.org/Organization">
+	<div class="nav-bar">
+		<div class="nav-bar-brand">
+			<a itemprop="url" href="https://www.microsoft.com" aria-label="Microsoft" class="nav-bar-button">
+				<div class="nav-bar-logo has-background-image theme-display is-light" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+				<div class="nav-bar-logo has-background-image theme-display is-dark is-high-contrast" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+			</a>
+		</div>
+	</div>
+	<div class="nav-bar has-border-top is-hidden-mobile"></div>
+</header>	</div>
+
+				<div class="content-header uhf-container has-padding has-default-focus has-border-bottom-none" data-bi-name="content-header">
+				<nav class="has-padding-none has-padding-left-medium-tablet has-padding-right-medium-tablet has-padding-left-none-uhf-tablet has-padding-left-none-uhf-tablet has-padding-none-desktop has-flex-grow" data-bi-name="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList" role="navigation" aria-label="Breadcrumb">
+					<ul id="page-breadcrumbs" class="breadcrumbs">
+					</ul>
+				</nav>
+			<div class="content-header-controls">
+				<button type="button" class="contents-button button" data-bi-name="contents-expand" aria-haspopup="true">
+					<span class="icon"><span class="docon docon-menu" aria-hidden="true"></span></span>
+					<span class="contents-expand-title">Contents</span>
+				</button>
+				<button type="button" class="ap-collapse-behavior ap-expanded button" data-bi-name="ap-collapse" aria-controls="action-panel">
+					<span class="icon"><span class="docon docon-exit-mode" aria-hidden="true"></span></span>
+					<span>Exit focus mode</span>
+				</button>
+			</div>
+			<div class="has-padding-none-tablet has-padding-medium is-size-small is-flex-touch has-flex-justify-content-space-between-touch has-flex-grow">
+				<ul class="is-hidden-mobile action-list has-flex-justify-content-start has-flex-justify-content-end-tablet is-flex is-flex-row has-flex-wrap has-flex-grow is-unstyled">
+					<li>
+						<button type="button" class="bookmark button is-text has-inner-focus is-small is-icon-only-touch" data-list-type="bookmarks" data-bi-name="bookmark" title="Bookmark this page">
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-single-bookmark"></span>
+							</span>
+							<span class="bookmark-status is-visually-hidden-touch is-hidden-portrait">Bookmark</span>
+						</button>
+					</li>
+						<li id="feedback-section-link">
+							<a href="#feedback" class="button is-text has-inner-focus is-small is-icon-only-touch" data-bi-name="comments" title="Send feedback about this page">
+								<span class="icon" aria-hidden="true">
+									<span class="docon docon-comment-lines"></span>
+								</span>
+								<span class="is-visually-hidden-touch is-hidden-portrait">Feedback</span>
+							</a>
+						</li>
+							<li id="contenteditbtn">
+								<a href="https://github.com/MicrosoftDocs/powerbi-docs/blob/master/powerbi-docs/admin/service-admin-rls.md" class="button is-text has-inner-focus is-icon-only-touch is-small" title="Edit This Document" data-bi-name="edit" data-original_content_git_url="https://github.com/MicrosoftDocs/powerbi-docs-pr/blob/live/powerbi-docs/admin/service-admin-rls.md" data-original_content_git_url_template="{repo}/blob/{branch}/powerbi-docs/admin/service-admin-rls.md" data-pr_repo="" data-pr_branch="">
+								<span class="icon" aria-hidden="true">
+									<span class="docon docon-edit-outline"></span>
+								</span>
+								<span class="is-visually-hidden-touch is-hidden-portrait">Edit</span>
+							</a>
+						</li>
+					<li>
+<div class="sharing dropdown has-caret">
+	<button class="dropdown-trigger button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small is-icon-only-touch" aria-controls="sharing-menu" aria-expanded="false" title="Share This Document" data-bi-name="share">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-sharing"></span>
+		</span>
+		<span class="is-visually-hidden-touch is-hidden-portrait">Share</span>
+	</button>
+	<div class="dropdown-menu has-padding-small" id="sharing-menu">
+		<ul data-bi-name="share-links">
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-twitter" data-bi-name="twitter">
+					<span class="icon">
+						<span class="docon docon-brand-twitter has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Twitter</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-linkedin" data-bi-name="linkedin">
+					<span class="icon">
+						<span class="docon docon-brand-linkedin has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>LinkedIn</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-facebook" data-bi-name="facebook">
+					<span class="icon">
+						<span class="docon docon-brand-facebook has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Facebook</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-email" data-bi-name="email">
+					<span class="icon">
+						<span class="docon docon-mail-message-fill has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Email</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>					</li>
+				</ul>
+				<button type="button" class="has-border contents-button button is-small is-text is-hidden-tablet has-inner-focus" aria-label="Contents" data-bi-name="contents-expand">
+					<span class="icon">
+						<span class="docon docon-editor-list-bullet" aria-hidden="true"></span>
+					</span>
+					<span class="contents-expand-title">Table of contents</span>
+				</button>
+				<div class="is-invisible"></div>
+				<div class="is-hidden-tablet level-item is-flexible level-right">
+					<button type="button" class="page-actions-button button is-small is-text is-hidden-tablet has-inner-focus has-border is-full-height  has-margin-left-small" aria-label="Page Actions" data-bi-name="pageactions">
+						<span class="icon">
+							<span class="docon docon-more-vertical" aria-hidden="true"></span>
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+
+	<div id="disclaimer-holder" class="has-overflow-hidden has-default-focus">
+		<!-- liquid-tag banners sectional -->
+	</div>
+	</div>
+
+	<div class="mainContainer  uhf-container has-top-padding  has-default-focus" data-bi-name="body">
+
+		<div class="columns has-large-gaps is-gapless-mobile ">
+
+			<div id="left-container" class="left-container is-hidden-mobile column is-one-third-tablet is-one-quarter-desktop">
+				<nav id="affixed-left-container" class="is-fixed is-flex is-flex-column" role="navigation" aria-label="Primary"></nav>
+			</div>
+
+			<section class="primary-holder column is-two-thirds-tablet is-three-quarters-desktop">
+				<div class="columns is-gapless-mobile has-large-gaps ">
+
+
+				<div id="main-column" class="column  is-full is-four-fifths-desktop ">
+
+					<main id="main" role="main" class="content " data-bi-name="content" lang="en-us" dir="ltr">
+
+
+
+						<h1 id="row-level-security-rls-with-power-bi">Row-level security (RLS) with Power BI</h1>
+
+						<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+							<li>
+								<time class="is-invisible" data-article-date aria-label="Article review date" datetime="2020-09-17T00:00:00.000Z" data-article-date-source="ms.date">09/17/2020</time>
+							</li>
+									<li class="readingTime">7 minutes to read</li>
+								<li class="contributors-holder">
+									<ul class="facepile has-margin-left-none is-small" data-bi-name="contributors">
+														<li class="facepile-item">
+															<a href="https://github.com/paulinbar" title="paulinbar" aria-label="paulinbarGithub profile" data-src="https://github.com/paulinbar.png?size=32" data-contributor-name="paulinbar" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/paulinbar.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-teal"aria-hidden="true">p</span>
+															</a>
+														</li>
+														<li class="facepile-item">
+															<a href="https://github.com/kfollis" title="kfollis" aria-label="kfollisGithub profile" data-src="https://github.com/kfollis.png?size=32" data-contributor-name="kfollis" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/kfollis.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-red"aria-hidden="true">k</span>
+															</a>
+														</li>
+														<li class="facepile-item">
+															<a href="https://github.com/Bouke" title="Bouke" aria-label="BoukeGithub profile" data-src="https://github.com/Bouke.png?size=32" data-contributor-name="Bouke" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/Bouke.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-blue"aria-hidden="true">B</span>
+															</a>
+														</li>
+														<li class="facepile-item">
+															<a href="https://github.com/v-hearya" title="v-hearya" aria-label="v-hearyaGithub profile" data-src="https://github.com/v-hearya.png?size=32" data-contributor-name="v-hearya" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/v-hearya.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-teal"aria-hidden="true">v</span>
+															</a>
+														</li>
+														<li class="facepile-item">
+															<a href="https://github.com/peter-myers" title="peter-myers" aria-label="peter-myersGithub profile" data-src="https://github.com/peter-myers.png?size=32" data-contributor-name="peter-myers" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/peter-myers.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-red"aria-hidden="true">p</span>
+															</a>
+														</li>
+											<li class="facepile-item">
+													<button aria-label="View all contributors" class="facepile-item-more" title="View all contributors">
+														<div class="facepile-item-coin" aria-hidden="true">
+															<span class="facepile-item-coin-text" aria-hidden="true">
+																+1
+															</span>
+														</div>
+													</button>
+											</li>
+									</ul>
+								</li>
+						</ul>
+
+						<nav id="center-doc-outline" class="doc-outline is-hidden-desktop" data-bi-name="intopic toc" role="navigation" aria-label="Article Outline">
+							<h3>In this article</h3>
+						</nav>
+
+						<!-- <content> -->
+							<p>Row-level security (RLS) with Power BI can be used to restrict data access for given users. Filters restrict data access at the row level, and you can define filters within roles. In the Power BI service, members of a workspace have access to datasets in the workspace. RLS doesn't restrict this data access.</p>
+<p>You can configure RLS for data models imported into Power BI with Power BI Desktop. You can also configure RLS on datasets that are using DirectQuery, such as SQL Server. For Analysis Services or Azure Analysis Services lives connections, you configure Row-level security in the model, not in Power BI Desktop. The security option will not show up for live connection datasets.</p>
+<h2 id="define-roles-and-rules-in-power-bi-desktop">Define roles and rules in Power BI Desktop</h2>
+<p>You can define roles and rules within Power BI Desktop. When you publish to Power BI, it also publishes the role definitions.</p>
+<p>To define security roles, follow these steps.</p>
+<ol>
+<li><p>Import data into your Power BI Desktop report, or configure a DirectQuery connection.</p>
+<div class="NOTE">
+<p>Note</p>
+<p>You can't define roles within Power BI Desktop for Analysis Services live connections. You need to do that within the Analysis Services model.</p>
+</div>
+</li>
+<li><p>From the <strong>Modeling</strong> tab, select <strong>Manage Roles</strong>.</p>
+<p><img src="../includes/media/rls-desktop-define-roles/powerbi-desktop-security.png" alt="Select Manage Roles" data-linktype="relative-path"/></p>
+</li>
+<li><p>From the <strong>Manage roles</strong> window, select <strong>Create</strong>.</p>
+<p><img src="../includes/media/rls-desktop-define-roles/powerbi-desktop-security-create-role.png" alt="Select Create" data-linktype="relative-path"/></p>
+</li>
+<li><p>Under <strong>Roles</strong>, provide a name for the role.</p>
+</li>
+<li><p>Under <strong>Tables</strong>, select the table to which you want to apply a DAX rule.</p>
+</li>
+<li><p>In the <strong>Table filter DAX expression</strong> box, enter the DAX expressions. This expression returns a value of true or false. For example: <code>[Entity ID] = “Value”</code>.</p>
+<p><img src="../includes/media/rls-desktop-define-roles/powerbi-desktop-security-create-rule.png" alt="Manage roles window" data-linktype="relative-path"/></p>
+<div class="NOTE">
+<p>Note</p>
+<p>You can use <em>username()</em> within this expression. Be aware that <em>username()</em> has the format of <em>DOMAIN\username</em> within Power BI Desktop. Within the Power BI service and Power BI Report Server, it's in the format of the user's User Principal Name (UPN). Alternatively, you can use <em>userprincipalname()</em>, which always returns the user in the format of their user principal name, <em>username@contoso.com</em>.</p>
+</div>
+</li>
+<li><p>After you've created the DAX expression, select the checkmark above the expression box to validate the expression.</p>
+<p><img src="../includes/media/rls-desktop-define-roles/powerbi-desktop-security-validate-dax.png" alt="Validate DAX expression" data-linktype="relative-path"/></p>
+<div class="NOTE">
+<p>Note</p>
+<p>In this expression box, you use commas to separate DAX function arguments even if you're using a locale that normally uses semicolon separators (e.g. French or German).</p>
+</div>
+</li>
+<li><p>Select <strong>Save</strong>.</p>
+</li>
+</ol>
+<p>You can't assign users to a role within Power BI Desktop. You assign them in the Power BI service. You can enable dynamic security within Power BI Desktop by making use of the <em>username()</em> or <em>userprincipalname()</em> DAX functions and having the proper relationships configured.</p>
+<p>By default, row-level security filtering uses single-directional filters, whether the relationships are set to single direction or bi-directional. You can manually enable bi-directional cross-filtering with row-level security by selecting the relationship and checking the <strong>Apply security filter in both directions</strong> checkbox. Select this option when you've also implemented dynamic row-level security at the server level, where row-level security is based on username or login ID.</p>
+<p>For more information, see <a href="../transform-model/desktop-bidirectional-filtering" data-linktype="relative-path">Bidirectional cross-filtering using DirectQuery in Power BI Desktop</a> and the <a href="https://download.microsoft.com/download/D/2/0/D20E1C5F-72EA-4505-9F26-FEF9550EFD44/Securing%20the%20Tabular%20BI%20Semantic%20Model.docx" data-linktype="external">Securing the Tabular BI Semantic Model</a> technical article.</p>
+<p><img src="media/service-admin-rls/rls-apply-security-filter.png" alt="Apply Security Filter" data-linktype="relative-path"/></p>
+<h2 id="validate-the-roles-within-power-bi-desktop">Validate the roles within Power BI Desktop</h2>
+<p>After you've created your roles, test the results of the roles within Power BI Desktop.</p>
+<ol>
+<li><p>From the <strong>Modeling</strong> tab, select <strong>View as Roles</strong>.</p>
+<p><img src="../includes/media/rls-desktop-view-as-roles/powerbi-desktop-rls-view-as-roles.png" alt="Select View as Roles" data-linktype="relative-path"/></p>
+<p>The <strong>View as roles</strong> window appears, where you see the roles you've created.</p>
+<p><img src="../includes/media/rls-desktop-view-as-roles/powerbi-desktop-rls-view-as-roles-dialog.png" alt="View as roles window" data-linktype="relative-path"/></p>
+</li>
+<li><p>Select a role you created, and then select <strong>OK</strong> to apply that role.</p>
+<p>The report renders the data relevant for that role.</p>
+</li>
+<li><p>You can also select <strong>Other user</strong> and supply a given user.</p>
+<p><img src="../includes/media/rls-desktop-view-as-roles/powerbi-desktop-rls-other-user.png" alt="Select Other user" data-linktype="relative-path"/></p>
+<p>It's best to supply the User Principal Name (UPN) as that's what the Power BI service and Power BI Report Server use.</p>
+<p>Within Power BI Desktop, <strong>Other user</strong> displays different results only if you're using dynamic security based on your DAX expressions.</p>
+</li>
+<li><p>Select <strong>OK</strong>.</p>
+<p>The report renders based on what that user can see.</p>
+</li>
+</ol>
+<h2 id="manage-security-on-your-model">Manage security on your model</h2>
+<p>To manage security on your data model, do the following steps:</p>
+<ol>
+<li><p>In the Power BI service, select the <strong>More options</strong> menu for a dataset. This menu appears when you hover on a dataset name, whether you select it from the navigation menu or the workspace page.</p>
+<p><img src="media/service-admin-rls/dataset-leftnav-more-options.png" alt="More options menu in workspace" data-linktype="relative-path"/></p>
+<p><img src="media/service-admin-rls/dataset-canvas-more-options.png" alt="More options menu in navigation menu" data-linktype="relative-path"/></p>
+</li>
+<li><p>Select <strong>Security</strong>.</p>
+<p><img src="media/service-admin-rls/dataset-more-options-menu.png" alt="Select security from more options menu" data-linktype="relative-path"/></p>
+</li>
+</ol>
+<p>Security will take you to the RLS page where you add members to a role you created in Power BI Desktop. Only the owners of the dataset will see Security. If the dataset is in a Group, only administrators of the group will see the security option.</p>
+<p>You can only create or modify roles within Power BI Desktop.</p>
+<h2 id="working-with-members">Working with members</h2>
+<h3 id="add-members">Add members</h3>
+<p>Add a member to the role by typing in the email address or name of the user or security group. You can't add Groups created in Power BI. You can add members <a href="../guidance/whitepaper-azure-b2b-power-bi#data-security-for-external-partners" data-linktype="relative-path">external to your organization</a>.</p>
+<p><img src="media/service-admin-rls/rls-add-member.png" alt="Add a member" data-linktype="relative-path"/></p>
+<p>You can also see how many members are part of the role by the number in parentheses next to the role name, or next to Members.</p>
+<p><img src="media/service-admin-rls/rls-member-count.png" alt="Members in role" data-linktype="relative-path"/></p>
+<h3 id="remove-members">Remove members</h3>
+<p>You can remove members by selecting the X next to their name.</p>
+<p><img src="media/service-admin-rls/rls-remove-member.png" alt="Remove member" data-linktype="relative-path"/></p>
+<h2 id="validating-the-role-within-the-power-bi-service">Validating the role within the Power BI service</h2>
+<p>You can validate that the role you defined is working correctly by testing the role.</p>
+<ol>
+<li>Select <strong>More options</strong> (...) next to the role.</li>
+<li>Select <strong>Test data as role</strong></li>
+</ol>
+<p><img src="media/service-admin-rls/rls-test-role.png" alt="Test as role" data-linktype="relative-path"/></p>
+<p>You'll see reports that are available for this role. Dashboards aren't shown in this view. In the page header, the role being applied is shown.</p>
+<p><img src="media/service-admin-rls/rls-test-role2.png" alt="Now viewing as " data-linktype="relative-path"/></p>
+<p>Test other roles, or a combination of roles, by selecting <strong>Now viewing as</strong>.</p>
+<p><img src="media/service-admin-rls/rls-test-role3.png" alt="Test other roles" data-linktype="relative-path"/></p>
+<p>You can choose to view data as a specific person or you can select a combination of available roles to validate they're working.</p>
+<p>To return to normal viewing, select <strong>Back to Row-Level Security</strong>.</p>
+<h2 id="using-the-username-or-userprincipalname-dax-function">Using the username() or userprincipalname() DAX function</h2>
+<p>You can take advantage of the DAX functions <em>username()</em> or <em>userprincipalname()</em> within your dataset. You can use them within expressions in Power BI Desktop. When you publish your model, it will be used within the Power BI service.</p>
+<p>Within Power BI Desktop, <em>username()</em> will return a user in the format of <em>DOMAIN\User</em> and <em>userprincipalname()</em> will return a user in the format of <em>user@contoso.com</em>.</p>
+<p>Within the Power BI service, <em>username()</em> and <em>userprincipalname()</em> will both return the user's User Principal Name (UPN). This looks similar to an email address.</p>
+<h2 id="using-rls-with-workspaces-in-power-bi">Using RLS with workspaces in Power BI</h2>
+<p>If you publish your Power BI Desktop report to a workspace in the Power BI service, the roles will be applied to read-only members. You'll need to indicate that members can only view Power BI content in the workspace settings.</p>
+<div class="WARNING">
+<p>Warning</p>
+<p>If you have configured the workspace so that members have edit permissions, the RLS roles won't be applied to them. Users can see all of the data.</p>
+</div>
+<p><img src="media/service-admin-rls/rls-group-settings.png" alt="Group settings" data-linktype="relative-path"/></p>
+<h2 id="limitations">Limitations</h2>
+<p>The current limitations for row-level security on cloud models are as follows:</p>
+<ul>
+<li><p>If you previously defined roles and rules in the Power BI service, you must re-create them in Power BI Desktop.</p>
+</li>
+<li><p>You can define RLS only on the datasets created with Power BI Desktop. If you want to enable RLS for datasets created with Excel, you must convert your files into Power BI Desktop (PBIX) files first. <a href="../connect-data/desktop-import-excel-workbooks" data-linktype="relative-path">Learn more</a>.</p>
+</li>
+<li><p>Only Import and DirectQuery connections are supported. Live connections to Analysis Services are handled in the on-premises model.</p>
+</li>
+</ul>
+<h2 id="known-issues">Known issues</h2>
+<p>There's a known issue where you'll get an error message if you try to publish a previously published report from Power BI Desktop. The scenario is as follows:</p>
+<ol>
+<li><p>Anna has a dataset that is published to the Power BI service and has configured RLS.</p>
+</li>
+<li><p>Anna updates the report in Power BI Desktop and republishes.</p>
+</li>
+<li><p>Anna receives an error.</p>
+</li>
+</ol>
+<p><strong>Workaround:</strong> Republish the Power BI Desktop file from the Power BI service until this issue is resolved. You can do that by selecting <strong>Get Data</strong> &gt; <strong>Files</strong>.</p>
+<h2 id="faq">FAQ</h2>
+<p><strong>Question:</strong> What if I had previously created roles and rules for a dataset in the Power BI service? Will they still work if I do nothing?<br/>
+<strong>Answer:</strong> No, visuals will not render properly. You will have to re-create the roles and rules within Power BI Desktop and then publish to the Power BI service.</p>
+<p><strong>Question:</strong> Can I create these roles for Analysis Services data sources?<br/>
+<strong>Answer:</strong> You can if you imported the data into Power BI Desktop. If you are using a live connection, you will not be able to configure RLS within the Power BI service. This is defined within the Analysis Services model on-premises.</p>
+<p><strong>Question:</strong> Can I use RLS to limit the columns or measures accessible by my users?<br/>
+<strong>Answer:</strong> No, if a user has access to a particular row of data, they can see all the columns of data for that row.</p>
+<p><strong>Question:</strong> Does RLS let me hide detailed data but give access to data summarized in visuals?<br/>
+<strong>Answer:</strong> No, you secure individual rows of data but users can always see either the details or the summarized data.</p>
+<p><strong>Question:</strong> My data source already has security roles defined (for example SQL Server roles or SAP BW roles). What is the relationship between these and RLS?<br/>
+<strong>Answer:</strong> The answer depends on whether you're importing data or using DirectQuery. If you're importing data into your Power BI dataset, the security roles in your data source aren't used. In this case, you should define RLS to enforce security rules for users who connect in Power BI. If you're using DirectQuery, the security roles in your data source are used. When a user opens a report Power BI sends a query to the underlying data source, which applies security rules to the data based on the user's credentials.</p>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="../create-reports/desktop-rls" data-linktype="relative-path">Restrict data access with row-level security (RLS) for Power BI Desktop</a></li>
+<li><a href="../guidance/rls-guidance" data-linktype="relative-path">Row-level security (RLS) guidance in Power BI Desktop</a></li>
+<li>Questions? <a href="https://community.powerbi.com/" data-linktype="external">Try asking the Power BI Community</a></li>
+<li>Suggestions? <a href="https://ideas.powerbi.com/" data-linktype="external">Contribute ideas to improve Power BI</a></li>
+</ul>
+
+						<!-- </content> -->
+
+						</main>
+
+						<!-- page rating section -->
+								<div class="is-hidden-desktop has-border-top has-margin-top-large has-padding-top-small">
+									
+									
+<div class="feedback-verbatim has-border-bottom has-padding-bottom-small has-margin-bottom-small" data-bi-name="rating">
+    <div class="binary-rating">
+        <div class="binary-rating-buttons">
+            <h3 class="has-text-weight-semibold has-margin-top-none has-margin-bottom-small">Is this page helpful?</h3>
+            <div>
+                <button class="thumb-rating like has-inner-focus has-padding-left-extra-small has-padding-right-extra-small" title="Yes" data-bi-name="rating-yes" aria-expanded="false" data-bi-sat="1" aria-controls="rating-container-mobile">
+                    <span aria-hidden="true" class="icon docon docon-like"></span>
+                    <span>Yes</span>
+                </button>
+                <button class="thumb-rating dislike has-inner-focus has-padding-none has-padding-right-extra-small" title="No" data-bi-name="rating-no" data-bi-sat="0" aria-expanded="false" aria-controls="rating-container-mobile">
+                    <span aria-hidden="true" class="icon docon docon-dislike"></span>
+                    <span>No</span>
+                </button>
+            </div>
+        </div>
+        <form class="feedback-verbatim-form is-hidden" id="rating-container-mobile">
+            <div class="verbatim-textarea box is-relative has-box-shadow-none has-border has-margin-top-small has-padding-extra-small is-size-extra-small">
+                <label for="rating-textarea-mobile" class="visually-hidden">Any additional feedback?</label>
+                <textarea id="rating-textarea-mobile" rows="4" maxlength="999" placeholder="Any additional feedback?" required class="textarea has-border-none has-box-shadow-none has-inner-focus"></textarea>
+            </div>
+            <div class="buttons is-right has-margin-top-medium has-margin-right-extra-small">
+                <button class="skip-rating button is-transparent has-text-primary is-small has-border-none" type="button">Skip</button>
+                <button class="submit-rating button is-primary is-small" data-bi-name="rating-verbatim" disabled type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="thankyou-rating is-hidden" tabindex="-1">
+        <p>Thank you.</p>
+    </div>
+</div>								</div>
+						<!-- end page rating section -->
+
+
+						<!-- recommendations section -->
+						<!-- end recommendations section -->
+
+						<!-- feedback section -->
+<section class="feedback-section is-relative" data-bi-name="feedback-section">
+
+    <h2 id="feedback" class="title is-3 has-margin-top-large">Feedback</h2>
+
+    <div class="alert choose-feedback-type">
+        <p aria-hidden="true" id="send-feedback-about">Submit and view feedback for</p>
+
+        <div class="choose-feedback-buttons has-margin-top-medium">
+                <a class="button feedback-type-product has-margin-bottom-small" aria-label="Send feedback about this product" href="https://ideas.powerbi.com/forums/265200-power-bi" data-bi-name="product-feedback">
+                    <span>This product</span>
+                    <span aria-hidden="true" class="icon docon docon-navigate-external is-size-h4 has-margin-left-none"></span>
+                </a>
+
+			<a class="button feedback-type-product has-margin-bottom-small github-link" aria-label="Send feedback about this page" data-bi-name="create-issue-on-github">
+				<span aria-hidden="true" class="docon docon-brand-github has-padding-right-extra-small"></span>
+				<span>This page</span>
+			</a>
+        </div>
+    </div>
+
+    <div class="action-container is-flex has-flex-justify-content-end has-margin-top-small has-margin-bottom-small">
+        <a class="view-on-github" data-bi-name="view-on-github" href="https://github.com/MicrosoftDocs/powerbi-docs/issues">
+            <span aria-hidden="true" class="docon docon-brand-github"></span>
+            <span>View all page feedback</span>
+            <span aria-hidden="true" class="icon docon docon-navigate-external is-size-h5"></span>
+        </a>
+    </div>
+</section>
+						<!-- end feedback section -->
+
+						<!-- feedback report section -->
+						<!-- end feedback report section -->
+
+						<div class="footerContainer is-visible-interactive has-default-focus ">
+
+
+
+	<footer id="footer-interactive" data-bi-name="footer" class="footer-layout">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+			<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="#" data-bi-name="select-locale"><span class="icon docon docon-world is-size-large has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text"></span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-transparent is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger"
+		aria-controls="theme-menu-interactive" aria-expanded="false" title="Theme" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Theme</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu-interactive" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="light">
+					<span class="theme-light has-margin-right-small">
+						<span
+							class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Light					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="dark">
+					<span class="theme-dark has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Dark					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="high-contrast">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+High contrast					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+    <ul class="links" data-bi-name="footerlinks">
+		<li class="manage-cookies-holder" hidden></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/previous-versions/" data-bi-name="archivelink">Previous Version Docs</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/teamblog" data-bi-name="bloglink">Blog</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/contribute" data-bi-name="contributorGuide">Contribute</a></li>
+				<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacy &amp; Cookies</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse">Terms of Use</a></li>
+				<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Site Feedback</a></li>
+			<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Trademarks</a></li>
+		<li>&copy; Microsoft 2020</li>
+    </ul>
+</footer>
+						</div>
+					</div>
+
+					<div class="is-size-small right-container column is-one-quarter is-one-fifth-desktop is-hidden-mobile is-hidden-tablet-only" data-bi-name="pageactions" role="complementary" aria-label="Page Actions">
+						<div id="affixed-right-container" class="doc-outline is-fixed is-vertically-scrollable">
+								
+								
+<div class="feedback-verbatim has-border-bottom has-padding-bottom-small has-margin-bottom-small" data-bi-name="rating">
+    <div class="binary-rating">
+        <div class="binary-rating-buttons">
+            <h3 class="has-text-weight-semibold has-margin-top-none has-margin-bottom-small">Is this page helpful?</h3>
+            <div>
+                <button class="thumb-rating like has-inner-focus has-padding-left-extra-small has-padding-right-extra-small" title="Yes" data-bi-name="rating-yes" aria-expanded="false" data-bi-sat="1" aria-controls="rating-container-desktop">
+                    <span aria-hidden="true" class="icon docon docon-like"></span>
+                    <span>Yes</span>
+                </button>
+                <button class="thumb-rating dislike has-inner-focus has-padding-none has-padding-right-extra-small" title="No" data-bi-name="rating-no" data-bi-sat="0" aria-expanded="false" aria-controls="rating-container-desktop">
+                    <span aria-hidden="true" class="icon docon docon-dislike"></span>
+                    <span>No</span>
+                </button>
+            </div>
+        </div>
+        <form class="feedback-verbatim-form is-hidden" id="rating-container-desktop">
+            <div class="verbatim-textarea box is-relative has-box-shadow-none has-border has-margin-top-small has-padding-extra-small is-size-extra-small">
+                <label for="rating-textarea-desktop" class="visually-hidden">Any additional feedback?</label>
+                <textarea id="rating-textarea-desktop" rows="4" maxlength="999" placeholder="Any additional feedback?" required class="textarea has-border-none has-box-shadow-none has-inner-focus"></textarea>
+            </div>
+            <div class="buttons is-right has-margin-top-medium has-margin-right-extra-small">
+                <button class="skip-rating button is-transparent has-text-primary is-small has-border-none" type="button">Skip</button>
+                <button class="submit-rating button is-primary is-small" data-bi-name="rating-verbatim" disabled type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="thankyou-rating is-hidden" tabindex="-1">
+        <p>Thank you.</p>
+    </div>
+</div>							<nav id="side-doc-outline" data-bi-name="intopic toc" role="navigation" aria-label="Article Outline">
+								<h3>In this article</h3>
+							</nav>
+						</div>
+					</div>
+
+					<!--end of div.columns -->
+				</div>
+
+			<!--end of .primary-holder -->
+			</section>
+
+			<aside id="interactive-container" class="interactive-container is-visible-interactive column has-body-background-dark ">
+			</aside>
+		</div>
+
+		<!--end of .mainContainer -->
+	</div>
+
+	<div id="openFeedbackContainer" class="openfeedback-container"></div>
+
+	<div class="footerContainer has-default-focus is-hidden-interactive ">
+
+
+
+	<footer id="footer" data-bi-name="footer" class="footer-layout uhf-container has-padding" role="contentinfo">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+			<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="#" data-bi-name="select-locale"><span class="icon docon docon-world is-size-large has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text"></span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-transparent is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger"
+		aria-controls="theme-menu" aria-expanded="false" title="Theme" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Theme</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="light">
+					<span class="theme-light has-margin-right-small">
+						<span
+							class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Light					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="dark">
+					<span class="theme-dark has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Dark					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="high-contrast">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+High contrast					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+    <ul class="links" data-bi-name="footerlinks">
+		<li class="manage-cookies-holder" hidden></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/previous-versions/" data-bi-name="archivelink">Previous Version Docs</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/teamblog" data-bi-name="bloglink">Blog</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/contribute" data-bi-name="contributorGuide">Contribute</a></li>
+				<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacy &amp; Cookies</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse">Terms of Use</a></li>
+				<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Site Feedback</a></li>
+			<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Trademarks</a></li>
+		<li>&copy; Microsoft 2020</li>
+    </ul>
+</footer>
+	</div>
+
+	<div id="action-panel" role="region" aria-label="Action Panel" class="action-panel has-default-focus" tabindex="-1"></div>
+</body>
+</html>

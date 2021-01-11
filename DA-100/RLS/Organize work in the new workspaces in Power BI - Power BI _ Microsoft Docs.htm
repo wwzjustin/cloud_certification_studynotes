@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="hasSidebar hasPageActions hasBreadcrumb conceptual has-default-focus theme-light" lang="en-us" dir="ltr" data-css-variable-support="true" data-authenticated="false" data-auth-status-determined="false" data-target="docs" x-ms-format-detection="none">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta property="og:title" content="Organize work in the new workspaces in Power BI - Power BI" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.microsoft.com/en-us/power-bi/collaborate-share/service-new-workspaces" />
+			<meta property="og:description" content="Learn about the new workspaces, which are collections of dashboards and reports built to deliver key metrics for your organization." />
+		<meta property="og:image" content="https://docs.microsoft.com/en-us/media/logos/logo-ms-social.png" />
+		<meta property="og:image:alt" content="Microsoft Logo" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@docsmsft" />
+
+
+	<meta name="author" content="maggiesMSFT" />
+<meta name="breadcrumb_path" content="/power-bi/breadcrumb/toc.json" />
+<meta name="depot_name" content="MSDN.powerbi-docs" />
+<meta name="description" content="Learn about the new workspaces, which are collections of dashboards and reports built to deliver key metrics for your organization." />
+<meta name="document_id" content="220c2a2b-9a3e-3bdf-5fcd-ac2fc85542b4" />
+<meta name="document_version_independent_id" content="024b0981-3008-08cd-8d2d-4dc6d87fe3fd" />
+<meta name="gitcommit" content="https://github.com/MicrosoftDocs/powerbi-docs-pr/blob/f5160f6440d536d5321999229e0e1606d35be5f5/powerbi-docs/collaborate-share/service-new-workspaces.md" />
+<meta name="locale" content="en-us" />
+<meta name="LocalizationGroup" content="Share your work" />
+<meta name="ms.author" content="maggies" />
+<meta name="ms.custom" content="contperf-fy20q4" />
+<meta name="ms.date" content="10/21/2020" />
+<meta name="ms.reviewer" content="lukaszp" />
+<meta name="ms.service" content="powerbi" />
+<meta name="ms.subservice" content="pbi-collaborate-share" />
+<meta name="ms.topic" content="conceptual" />
+<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/powerbi-docs-pr/blob/live/powerbi-docs/collaborate-share/service-new-workspaces.md" />
+<meta name="search.app" content="Capaedac-PowerBI" />
+<meta name="search.appverid" content="met150" />
+<meta name="search.ms_docsetname" content="powerbi-docs" />
+<meta name="search.ms_product" content="MSDN" />
+<meta name="search.ms_sitename" content="Docs" />
+<meta name="site_name" content="Docs" />
+<meta name="uhfHeaderId" content="MSDocsHeader-MSPowerBI" />
+<meta name="updated_at" content="2020-12-16 11:29 PM" />
+<meta name="page_type" content="conceptual" />
+<meta name="toc_rel" content="toc.json" />
+<meta name="pdf_url_template" content="https://docs.microsoft.com/pdfstore/en-us/MSDN.powerbi-docs/{branchName}{pdfName}" />
+<meta name="word_count" content="1931" />
+
+
+	<meta name="scope" content="Power BI" />
+<link href="https://docs.microsoft.com/en-us/power-bi/collaborate-share/service-new-workspaces" rel="canonical">
+	<title>Organize work in the new workspaces in Power BI - Power BI | Microsoft Docs</title>
+
+		<link rel="stylesheet" href="/_themes/docs.theme/master/en-us/_themes/styles/b415dab4.site-ltr.css ">
+
+	<link rel="stylesheet" href="/_themes/docs.theme/master/en-us/_themes/styles/55917fe3.conceptual.css ">
+
+
+	<script id="msdocs-script">
+	var msDocs = {
+		data: {
+			timeOrigin: Date.now(),
+			contentLocale: 'en-us',
+			contentDir: 'ltr',
+			userLocale: 'en-us',
+			userDir: 'ltr',
+			pageTemplate: 'Conceptual',
+			brand: '',
+			context: {
+
+			},
+			hasBinaryRating: true,
+			hasGithubIssues: true,
+			showFeedbackReport: false,
+			enableTutorialFeedback: false,
+			feedbackSystem: 'GitHub',
+			feedbackGitHubRepo: 'MicrosoftDocs/powerbi-docs',
+			feedbackProductUrl: 'https://ideas.powerbi.com/forums/265200-power-bi',
+			contentGitUrl: 'https://github.com/MicrosoftDocs/powerbi-docs/blob/master/powerbi-docs/collaborate-share/service-new-workspaces.md',
+			extendBreadcrumb: false,
+			isEditDisplayable: true,
+			hideViewSource: false,
+			hasPageActions: true,
+			hasBookmark: true,
+			hasShare: true,
+			hasRecommendations: false,
+			contributors: [
+						{ name: "maggiesMSFT", url: "https://github.com/maggiesMSFT" },
+						{ name: "DennisLee-DennisLee", url: "https://github.com/DennisLee-DennisLee" },
+						{ name: "v-kents", url: "https://github.com/v-kents" }
+],
+		},
+		functions:{}
+	};
+	</script>
+	<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+	<script src="https://az725175.vo.msecnd.net/scripts/jsll-4.js"></script>
+	<script nomodule src="/static/third-party/bluebird/3.5.0/bluebird.min.js" integrity="sha384-aD4BDeDGeLXLpPK4yKeqtZQa9dv4a/7mQ+4L5vwshIYH1Mc2BrXvHd32iHzYCQy5" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/fetch/3.0.0/fetch.umd.min.js" integrity="sha384-EQIXrC5K2+7X8nGgLkB995I0/6jfAvvyG1ieZ+WYGxgJHFMD/alsG9fSDWvzb5Y1" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/template/1.4.0/template.min.js" integrity="sha384-1zKzI6ldTVHMU7n0W2HpE/lhHI+UG4D9IIaxbj3kT2UhCWicdTuJkTtnKuu0CQzN" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/url/0.5.7/url.min.js" integrity="sha384-vn7xBMtpSTfzaTRWxj0kVq0UcsbBrTOgZ/M1ISHqe1V358elYva+lfiEC+T8jLPc" crossorigin="anonymous"></script>
+	<script src="/_themes/docs.theme/master/en-us/_themes/scripts/f0a172e9.index-polyfills.js"></script>
+		<script src="/_themes/docs.theme/master/en-us/_themes/scripts/c66344e6.index-docs.js"></script>
+</head>
+
+<body lang="en-us" dir="ltr">
+<div class="header-holder has-default-focus">
+	<a href="#main" class="skip-to-main-link has-outline-color-text visually-hidden-until-focused is-fixed has-inner-focus focus-visible has-top-zero has-left-zero has-right-zero has-padding-medium has-text-centered has-body-background-medium" tabindex="1">Skip to main content</a>
+	<div id="learn-together-banner-holder" class="has-default-focus has-overflow-hidden">
+	</div>
+	<div hidden id="cookie-consent-holder"></div>
+	<!-- liquid-tag banners global -->
+	<div id="headerAreaHolder" data-bi-name="header">
+<header role="banner" itemscope="itemscope" itemtype="http://schema.org/Organization">
+	<div class="nav-bar">
+		<div class="nav-bar-brand">
+			<a itemprop="url" href="https://www.microsoft.com" aria-label="Microsoft" class="nav-bar-button">
+				<div class="nav-bar-logo has-background-image theme-display is-light" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+				<div class="nav-bar-logo has-background-image theme-display is-dark is-high-contrast" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+			</a>
+		</div>
+	</div>
+	<div class="nav-bar has-border-top is-hidden-mobile"></div>
+</header>	</div>
+
+				<div class="content-header uhf-container has-padding has-default-focus has-border-bottom-none" data-bi-name="content-header">
+				<nav class="has-padding-none has-padding-left-medium-tablet has-padding-right-medium-tablet has-padding-left-none-uhf-tablet has-padding-left-none-uhf-tablet has-padding-none-desktop has-flex-grow" data-bi-name="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList" role="navigation" aria-label="Breadcrumb">
+					<ul id="page-breadcrumbs" class="breadcrumbs">
+					</ul>
+				</nav>
+			<div class="content-header-controls">
+				<button type="button" class="contents-button button" data-bi-name="contents-expand" aria-haspopup="true">
+					<span class="icon"><span class="docon docon-menu" aria-hidden="true"></span></span>
+					<span class="contents-expand-title">Contents</span>
+				</button>
+				<button type="button" class="ap-collapse-behavior ap-expanded button" data-bi-name="ap-collapse" aria-controls="action-panel">
+					<span class="icon"><span class="docon docon-exit-mode" aria-hidden="true"></span></span>
+					<span>Exit focus mode</span>
+				</button>
+			</div>
+			<div class="has-padding-none-tablet has-padding-medium is-size-small is-flex-touch has-flex-justify-content-space-between-touch has-flex-grow">
+				<ul class="is-hidden-mobile action-list has-flex-justify-content-start has-flex-justify-content-end-tablet is-flex is-flex-row has-flex-wrap has-flex-grow is-unstyled">
+					<li>
+						<button type="button" class="bookmark button is-text has-inner-focus is-small is-icon-only-touch" data-list-type="bookmarks" data-bi-name="bookmark" title="Bookmark this page">
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-single-bookmark"></span>
+							</span>
+							<span class="bookmark-status is-visually-hidden-touch is-hidden-portrait">Bookmark</span>
+						</button>
+					</li>
+						<li id="feedback-section-link">
+							<a href="#feedback" class="button is-text has-inner-focus is-small is-icon-only-touch" data-bi-name="comments" title="Send feedback about this page">
+								<span class="icon" aria-hidden="true">
+									<span class="docon docon-comment-lines"></span>
+								</span>
+								<span class="is-visually-hidden-touch is-hidden-portrait">Feedback</span>
+							</a>
+						</li>
+							<li id="contenteditbtn">
+								<a href="https://github.com/MicrosoftDocs/powerbi-docs/blob/master/powerbi-docs/collaborate-share/service-new-workspaces.md" class="button is-text has-inner-focus is-icon-only-touch is-small" title="Edit This Document" data-bi-name="edit" data-original_content_git_url="https://github.com/MicrosoftDocs/powerbi-docs-pr/blob/live/powerbi-docs/collaborate-share/service-new-workspaces.md" data-original_content_git_url_template="{repo}/blob/{branch}/powerbi-docs/collaborate-share/service-new-workspaces.md" data-pr_repo="" data-pr_branch="">
+								<span class="icon" aria-hidden="true">
+									<span class="docon docon-edit-outline"></span>
+								</span>
+								<span class="is-visually-hidden-touch is-hidden-portrait">Edit</span>
+							</a>
+						</li>
+					<li>
+<div class="sharing dropdown has-caret">
+	<button class="dropdown-trigger button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small is-icon-only-touch" aria-controls="sharing-menu" aria-expanded="false" title="Share This Document" data-bi-name="share">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-sharing"></span>
+		</span>
+		<span class="is-visually-hidden-touch is-hidden-portrait">Share</span>
+	</button>
+	<div class="dropdown-menu has-padding-small" id="sharing-menu">
+		<ul data-bi-name="share-links">
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-twitter" data-bi-name="twitter">
+					<span class="icon">
+						<span class="docon docon-brand-twitter has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Twitter</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-linkedin" data-bi-name="linkedin">
+					<span class="icon">
+						<span class="docon docon-brand-linkedin has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>LinkedIn</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-facebook" data-bi-name="facebook">
+					<span class="icon">
+						<span class="docon docon-brand-facebook has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Facebook</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-email" data-bi-name="email">
+					<span class="icon">
+						<span class="docon docon-mail-message-fill has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Email</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>					</li>
+				</ul>
+				<button type="button" class="has-border contents-button button is-small is-text is-hidden-tablet has-inner-focus" aria-label="Contents" data-bi-name="contents-expand">
+					<span class="icon">
+						<span class="docon docon-editor-list-bullet" aria-hidden="true"></span>
+					</span>
+					<span class="contents-expand-title">Table of contents</span>
+				</button>
+				<div class="is-invisible"></div>
+				<div class="is-hidden-tablet level-item is-flexible level-right">
+					<button type="button" class="page-actions-button button is-small is-text is-hidden-tablet has-inner-focus has-border is-full-height  has-margin-left-small" aria-label="Page Actions" data-bi-name="pageactions">
+						<span class="icon">
+							<span class="docon docon-more-vertical" aria-hidden="true"></span>
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+
+	<div id="disclaimer-holder" class="has-overflow-hidden has-default-focus">
+		<!-- liquid-tag banners sectional -->
+	</div>
+	</div>
+
+	<div class="mainContainer  uhf-container has-top-padding  has-default-focus" data-bi-name="body">
+
+		<div class="columns has-large-gaps is-gapless-mobile ">
+
+			<div id="left-container" class="left-container is-hidden-mobile column is-one-third-tablet is-one-quarter-desktop">
+				<nav id="affixed-left-container" class="is-fixed is-flex is-flex-column" role="navigation" aria-label="Primary"></nav>
+			</div>
+
+			<section class="primary-holder column is-two-thirds-tablet is-three-quarters-desktop">
+				<div class="columns is-gapless-mobile has-large-gaps ">
+
+
+				<div id="main-column" class="column  is-full is-four-fifths-desktop ">
+
+					<main id="main" role="main" class="content " data-bi-name="content" lang="en-us" dir="ltr">
+
+
+
+						<h1 id="organize-work-in-the-new-workspaces-in-power-bi">Organize work in the new workspaces in Power BI</h1>
+
+						<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+							<li>
+								<time class="is-invisible" data-article-date aria-label="Article review date" datetime="2020-10-21T00:00:00.000Z" data-article-date-source="ms.date">10/21/2020</time>
+							</li>
+									<li class="readingTime">9 minutes to read</li>
+								<li class="contributors-holder">
+									<ul class="facepile has-margin-left-none is-small" data-bi-name="contributors">
+														<li class="facepile-item">
+															<a href="https://github.com/maggiesMSFT" title="maggiesMSFT" aria-label="maggiesMSFTGithub profile" data-src="https://github.com/maggiesMSFT.png?size=32" data-contributor-name="maggiesMSFT" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/maggiesMSFT.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-teal"aria-hidden="true">m</span>
+															</a>
+														</li>
+														<li class="facepile-item">
+															<a href="https://github.com/DennisLee-DennisLee" title="DennisLee-DennisLee" aria-label="DennisLee-DennisLeeGithub profile" data-src="https://github.com/DennisLee-DennisLee.png?size=32" data-contributor-name="DennisLee-DennisLee" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/DennisLee-DennisLee.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-red"aria-hidden="true">D</span>
+															</a>
+														</li>
+														<li class="facepile-item">
+															<a href="https://github.com/v-kents" title="v-kents" aria-label="v-kentsGithub profile" data-src="https://github.com/v-kents.png?size=32" data-contributor-name="v-kents" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/v-kents.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-blue"aria-hidden="true">v</span>
+															</a>
+														</li>
+									</ul>
+								</li>
+						</ul>
+
+						<nav id="center-doc-outline" class="doc-outline is-hidden-desktop" data-bi-name="intopic toc" role="navigation" aria-label="Article Outline">
+							<h3>In this article</h3>
+						</nav>
+
+						<!-- <content> -->
+							<p><em>Workspaces</em> are places to collaborate with colleagues to create collections of dashboards, reports, datasets, and paginated reports. The new workspace experience helps you better manage access to content. This article describes the new workspaces, and how they differ from the classic workspaces.  As with classic workspaces, you still use them to create and distribute apps.</p>
+<p>Ready to create a new workspace? Read <a href="service-create-the-new-workspaces" data-linktype="relative-path">Create a new workspace experience</a>.</p>
+<p><span class="mx-imgBorder">
+<img src="media/service-new-workspaces/power-bi-workspace-opportunity.png" alt="Power BI new workspace experience" data-linktype="relative-path">
+</span>
+</p>
+<p>New, upgraded workspaces can coexist side by side with existing classic workspaces. The new workspace experience is the default workspace type. You can still create and use <a href="service-create-workspaces" data-linktype="relative-path">classic workspaces</a> based on Microsoft 365 groups, if you need to. Ready to migrate your classic workspace? See <a href="service-upgrade-workspaces" data-linktype="relative-path">Upgrade classic workspaces to the new workspaces in Power BI</a> for details.</p>
+<h2 id="new-and-classic-workspace-differences">New and classic workspace differences</h2>
+<p>With the new workspaces, we've redesigned some features. Here are the main differences.</p>
+<ul>
+<li><strong>Creating the new workspaces doesn't create Microsoft 365 groups</strong> like classic workspaces do. All the new workspace administration is in Power BI, not in Office 365. You can still manage user access to content through Microsoft 365 groups, if you want. You just add a Microsoft 365 group in the workspace access list.</li>
+<li><strong>Use more granular workspace roles</strong> for more flexible permissions management in the new workspaces.  In classic workspaces, you can add only individuals to the members and admin lists.</li>
+<li><strong>Assign user groups to workspace roles</strong>: In the new workspaces, you can add multiple Active Directory security groups, distribution lists, or Microsoft 365 groups to these roles, for easier user management.</li>
+<li><strong>Contact list</strong>: In the new workspaces, you can specify who receives notification about workspace activity.</li>
+<li><strong>Create template apps</strong>: You can only create <em>template apps</em> in the new workspaces. Template apps are apps that you can distribute to customers outside of your organization. Those customers can then connect to their own data with your template app. Read more about <a href="../connect-data/service-template-apps-overview" data-linktype="relative-path">template apps</a>.</li>
+<li><strong>Share datasets</strong>: To share a dataset outside a specific workspace, you need to save the report that contains the dataset to one of the new workspaces. You can't share datasets from classic workspaces. Read more about <a href="../connect-data/service-datasets-across-workspaces" data-linktype="relative-path">shared datasets</a>.</li>
+<li><strong>Organizational content packs</strong>: You create and consume organizational content packs in classic workspaces. You can't create or consume them in the new workspaces. Apps and template apps replace organizational content packs in the new workspaces.</li>
+</ul>
+<p>This article explains these features in more detail.</p>
+<div class="NOTE">
+<p>Note</p>
+<p>Power BI continues to list all Microsoft 365 groups that you're a member of. This avoids changing existing workflows.</p>
+</div>
+<h3 id="features-that-work-differently">Features that work differently</h3>
+<p>In the new workspaces, some features work differently. These differences are intentional, based on feedback we've received from customers. They enable a more flexible approach to collaboration in workspaces.</p>
+<ul>
+<li><strong>Licensing enforcement</strong>: Publishing reports to a new workspace experience enforces existing licensing rules. Users collaborating in new workspaces or sharing content to others in the Power BI service need a Power BI Pro license. Users without a Pro license see the error &quot;Only users with Power BI Pro licenses can publish to this workspace.&quot;</li>
+<li><strong>'Members can reshare' setting</strong>: The Contributor role in the new workspaces replaces the 'Members can reshare' setting in the classic workspaces.</li>
+<li><strong>Read-only workspaces</strong>: The Viewer role in the new workspaces replaces granting users read-only access to a classic workspace. The Viewer role allows similar read-only access to the content in the new workspaces.</li>
+<li><strong>Users without a Pro license</strong> can access a new workspace if the workspace is in a Power BI Premium capacity, but only if they have the Viewer role.</li>
+<li><strong>Allow users to export data</strong>: Even users with the Viewer role in the new workspace can export data if they have Build permission on the datasets in that workspace. Read more about <a href="../connect-data/service-datasets-build-permissions" data-linktype="relative-path">Build permission for datasets</a>.</li>
+<li>No <strong>Leave workspace</strong> button in the new workspaces.</li>
+</ul>
+<h3 id="workspace-contact-list">Workspace contact list</h3>
+<p>The new <strong>Contact list</strong> feature allows you to specify which users receive notification about issues occurring in the new workspaces. By default, any user or group specified as a workspace admin in the new workspace is notified. You can add to that list. Users or groups in the contact list are also listed in the user interface (UI) of the new workspaces, so workspace end-users know whom to contact.</p>
+<p>Read about <a href="service-create-the-new-workspaces#create-a-contact-list" data-linktype="relative-path">how to create the workspace contact list</a>.</p>
+<h3 id="workspace-onedrive">Workspace OneDrive</h3>
+<p>As we've stated, Power BI doesn't create a Microsoft 365 group behind the scenes when you create one of the new workspaces. Still, you might find it useful to have a OneDrive associated with the new workspace. With the Workspace OneDrive feature in the new workspaces, you can configure a Microsoft 365 group whose SharePoint Document Library file storage is available to workspace users. You create the group outside of Power BI.</p>
+<p>Power BI doesn't synchronize between Microsoft 365 group membership and permissions for users or groups with access to the new workspace. You can synchronize them: Manage workspace access through the same Microsoft 365 group whose file storage you configure in this setting.</p>
+<p>Read about <a href="service-create-the-new-workspaces#set-a-workspace-onedrive" data-linktype="relative-path">how to set the workspace OneDrive</a>.</p>
+<h2 id="roles-in-the-new-workspaces">Roles in the new workspaces</h2>
+<p>Roles let you manage who can do what in the new workspaces, so teams can collaborate. New workspaces allow you to assign roles to individuals, and to user groups: security groups, Microsoft 365 groups, and distribution lists.</p>
+<p>To grant access to a new workspace, assign those user groups or individuals to one of the workspace roles: Admin, Member, Contributor, or Viewer. Everyone in a user group gets the role you've assigned. If someone is in several user groups, they get the highest level of permission provided by the roles they're assigned. If you nest user groups, all the contained users have permission. All of these capabilities, except viewing and interacting, require a Power BI Pro license. Read more about <a href="#licenses" data-linktype="self-bookmark">licensing</a> in this article.</p>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Admin</th>
+<th>Member</th>
+<th>Contributor</th>
+<th>Viewer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Update and delete the workspace.</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Add/remove people, including other admins.</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Allow Contributors to update the app for the workspace</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Add members or others with lower permissions.</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Publish, unpublish, and change permissions for an app</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Update an app.</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td>If allowed <sup>1</sup></td>
+<td></td>
+</tr>
+<tr>
+<td>Share an item or share an app.<sup>2</sup></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Allow others to reshare items.<sup>2</sup></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feature apps on colleagues' Home</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Feature dashboards and reports on colleagues' Home</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+</tr>
+<tr>
+<td>Create, edit, and delete content in the workspace.</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+</tr>
+<tr>
+<td>Publish reports to the workspace, delete content.</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+</tr>
+<tr>
+<td>Create a report in another workspace based on a dataset in this workspace.<sup>2</sup></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+</tr>
+<tr>
+<td>Copy a report.<sup>3</sup></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+</tr>
+<tr>
+<td>Manage dataset permissions.<sup>3</sup></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+</tr>
+<tr>
+<td>Schedule data refreshes via the on-premises gateway.<sup>4</sup></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+</tr>
+<tr>
+<td>Modify gateway connection settings.<sup>4</sup></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td></td>
+</tr>
+<tr>
+<td>View and interact with an item.<sup>5</sup></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+</tr>
+<tr>
+<td>Read data stored in workspace dataflows</td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+<td><img src="../includes/media/power-bi-workspace-roles-table/green-checkmark.png" alt="Yes checkmark" data-linktype="relative-path"/></td>
+</tr>
+</tbody>
+</table>
+<p><sup>1</sup> Contributors can <a href="service-create-the-new-workspaces#allow-contributors-to-update-the-app" data-linktype="relative-path">update the app associated with the workspace</a>, if the workspace Admin delegates this permission to them. However, they can't publish a new app or change who has permission to it.</p>
+<p><sup>2</sup> Contributors and Viewers can also share items in a workspace if they have Reshare permissions.</p>
+<p><sup>3</sup> To copy a report, and to create a report in another workspace based on a dataset in this workspace, you need <a href="../connect-data/service-datasets-build-permissions" data-linktype="relative-path">Build permission for the dataset</a>. For datasets in this workspace, the people with Admin, Member, and Contributor roles automatically have Build permission through their workspace role.</p>
+<p><sup>4</sup> Keep in mind that you also need permissions on the gateway. Those permissions are managed elsewhere, independent of workspace roles and permissions. See <a href="/en-us/data-integration/gateway/service-gateway-manage" data-linktype="absolute-path">Manage an on-premises gateway</a> for details.</p>
+<p><sup>5</sup> Even if you don't have a Power BI Pro license, you can view and interact with items in the Power BI service if the items are in a workspace in a Premium capacity.</p>
+<div class="NOTE">
+<p>Note</p>
+<ul>
+<li>You can assign users to roles, either alone or in a group, even if they can't use the role. In other words, you can assign users who don't have Power BI Pro licenses to a role that requires a license. See <a href="#licenses" data-linktype="self-bookmark">Licenses</a> in this article for details.</li>
+<li>To enforce <a href="../admin/service-admin-rls" data-linktype="relative-path">row-level security (RLS)</a> for users browsing content in a workspace, use the Viewer role. You can also enforce RLS without giving access to the new workspace. <a href="service-create-distribute-apps" data-linktype="relative-path">Publish an app</a> and distribute it to those users, or use <a href="service-share-dashboards" data-linktype="relative-path">sharing to distribute content</a> to them.</li>
+</ul>
+</div>
+<h2 id="licensing-and-administering">Licensing and administering</h2>
+<h3 id="licenses">Licenses</h3>
+<p>If one of the new workspaces is in a shared capacity, everyone you add to it needs a Power BI Pro license. These users can all collaborate on the dashboards and reports in the new workspace. If you want to distribute content to others inside your organization, either assign Power BI Pro licenses to those users or place the workspace in a Power BI Premium capacity.</p>
+<p>When the new workspace is in a Power BI Premium capacity, users with the Viewer role can access the workspace even if they don't have a Power BI Pro license. However, if you assign these users a higher role like Admin, Member, or Contributor, they're prompted to start a Pro trial when they try to access the workspace. If you want users without Pro licenses to use the Viewer role, make sure they don't also have other workspace roles, either as individuals or as part of a user group.</p>
+<p>Publishing reports to the new workspace experience has stricter enforcement of existing licensing rules. If you try to publish from Power BI Desktop or other client tools without a Pro license, you see the error, &quot;Only users with Power BI Pro licenses can publish to this workspace.&quot;</p>
+<div class="NOTE">
+<p>Note</p>
+<p>Power BI US Government isn't available as a Free license. For licensing details, see <a href="../admin/service-govus-overview" data-linktype="relative-path">Power BI for US government customers</a>.</p>
+</div>
+<h3 id="guest-users">Guest users</h3>
+<p>By default, <a href="../admin/service-admin-azure-ad-b2b" data-linktype="relative-path">Azure AD B2B Guest users</a> can't access workspaces. Power BI admins can <a href="../admin/service-admin-azure-ad-b2b#guest-users-who-can-edit-and-manage-content" data-linktype="relative-path">allow external guest users to edit and manage content in the organization</a>. Enabled Guest users can access workspaces to which they have permission.</p>
+<h3 id="administering-new-workspace-experience-workspaces">Administering new workspace experience workspaces</h3>
+<p>Administration for new workspace experience workspaces is in the Power BI admin portal. Power BI admins decide who in an organization can create workspaces and distribute apps. Read about <a href="../admin/service-admin-portal#create-the-new-workspaces" data-linktype="relative-path">managing users' ability to create workspaces</a> in the &quot;Admin portal&quot; article.</p>
+<p>Admins can also see the state of all the workspaces in their organization. They can manage, recover, and even delete workspaces. Read about <a href="../admin/service-admin-portal#workspaces" data-linktype="relative-path">managing the workspaces themselves</a> in the &quot;Admin portal&quot; article.</p>
+<h3 id="auditing">Auditing</h3>
+<p>Power BI audits the following activities for new workspace experience workspaces.</p>
+<table>
+<thead>
+<tr>
+<th>Friendly name</th>
+<th>Operation name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Created Power BI folder</td>
+<td>CreateFolder</td>
+</tr>
+<tr>
+<td>Deleted Power BI folder</td>
+<td>DeleteFolder</td>
+</tr>
+<tr>
+<td>Updated Power BI folder</td>
+<td>UpdateFolder</td>
+</tr>
+<tr>
+<td>Updated Power BI folder access</td>
+<td>UpdateFolderAccess</td>
+</tr>
+</tbody>
+</table>
+<p>Read more about <a href="../admin/service-admin-auditing" data-linktype="relative-path">Power BI auditing</a>.</p>
+<h2 id="limitations-and-considerations">Limitations and considerations</h2>
+<p>Limitations to be aware of:</p>
+<ul>
+<li>Workspaces can contain a maximum of 1,000 datasets, or 1,000 reports per dataset.</li>
+<li>A person with a Power BI Pro license can be a member of a maximum 1,000 workspaces.</li>
+<li>Power BI publisher for Excel isn't supported.</li>
+</ul>
+<h2 id="frequently-asked-questions">Frequently asked questions</h2>
+<p><strong>Are links to existing content affected by the new workspace experience?</strong></p>
+<p>No. Links to existing items in classic workspaces aren't affected by the new workspace experience. The general availability (GA) of the new workspace experience changes the default workspace you create, but doesn't change existing workspaces.</p>
+<p><strong>Are existing workspaces upgraded to the new workspace experience with GA?</strong></p>
+<p>No. The new workspace experience GA only changes the default workspace type to the new workspace experience. Existing classic workspaces that are based on Microsoft 365 groups remain unchanged.</p>
+<p><strong>Are workspaces still automatically created for Microsoft 365 groups?</strong></p>
+<p>Yes. Since we support both types of workspaces side by side, we continue to list all Microsoft 365 groups you have access to in the workspaces list.</p>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="service-create-the-new-workspaces" data-linktype="relative-path">Create the new workspaces in Power BI</a></li>
+<li><a href="service-create-workspaces" data-linktype="relative-path">Create the classic workspaces</a></li>
+<li><a href="service-create-distribute-apps" data-linktype="relative-path">Install and use apps in Power BI</a></li>
+<li>Questions? <a href="https://community.powerbi.com/" data-linktype="external">Try asking the Power BI Community</a></li>
+</ul>
+
+						<!-- </content> -->
+
+						</main>
+
+						<!-- page rating section -->
+								<div class="is-hidden-desktop has-border-top has-margin-top-large has-padding-top-small">
+									
+									
+<div class="feedback-verbatim has-border-bottom has-padding-bottom-small has-margin-bottom-small" data-bi-name="rating">
+    <div class="binary-rating">
+        <div class="binary-rating-buttons">
+            <h3 class="has-text-weight-semibold has-margin-top-none has-margin-bottom-small">Is this page helpful?</h3>
+            <div>
+                <button class="thumb-rating like has-inner-focus has-padding-left-extra-small has-padding-right-extra-small" title="Yes" data-bi-name="rating-yes" aria-expanded="false" data-bi-sat="1" aria-controls="rating-container-mobile">
+                    <span aria-hidden="true" class="icon docon docon-like"></span>
+                    <span>Yes</span>
+                </button>
+                <button class="thumb-rating dislike has-inner-focus has-padding-none has-padding-right-extra-small" title="No" data-bi-name="rating-no" data-bi-sat="0" aria-expanded="false" aria-controls="rating-container-mobile">
+                    <span aria-hidden="true" class="icon docon docon-dislike"></span>
+                    <span>No</span>
+                </button>
+            </div>
+        </div>
+        <form class="feedback-verbatim-form is-hidden" id="rating-container-mobile">
+            <div class="verbatim-textarea box is-relative has-box-shadow-none has-border has-margin-top-small has-padding-extra-small is-size-extra-small">
+                <label for="rating-textarea-mobile" class="visually-hidden">Any additional feedback?</label>
+                <textarea id="rating-textarea-mobile" rows="4" maxlength="999" placeholder="Any additional feedback?" required class="textarea has-border-none has-box-shadow-none has-inner-focus"></textarea>
+            </div>
+            <div class="buttons is-right has-margin-top-medium has-margin-right-extra-small">
+                <button class="skip-rating button is-transparent has-text-primary is-small has-border-none" type="button">Skip</button>
+                <button class="submit-rating button is-primary is-small" data-bi-name="rating-verbatim" disabled type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="thankyou-rating is-hidden" tabindex="-1">
+        <p>Thank you.</p>
+    </div>
+</div>								</div>
+						<!-- end page rating section -->
+
+
+						<!-- recommendations section -->
+						<!-- end recommendations section -->
+
+						<!-- feedback section -->
+<section class="feedback-section is-relative" data-bi-name="feedback-section">
+
+    <h2 id="feedback" class="title is-3 has-margin-top-large">Feedback</h2>
+
+    <div class="alert choose-feedback-type">
+        <p aria-hidden="true" id="send-feedback-about">Submit and view feedback for</p>
+
+        <div class="choose-feedback-buttons has-margin-top-medium">
+                <a class="button feedback-type-product has-margin-bottom-small" aria-label="Send feedback about this product" href="https://ideas.powerbi.com/forums/265200-power-bi" data-bi-name="product-feedback">
+                    <span>This product</span>
+                    <span aria-hidden="true" class="icon docon docon-navigate-external is-size-h4 has-margin-left-none"></span>
+                </a>
+
+			<a class="button feedback-type-product has-margin-bottom-small github-link" aria-label="Send feedback about this page" data-bi-name="create-issue-on-github">
+				<span aria-hidden="true" class="docon docon-brand-github has-padding-right-extra-small"></span>
+				<span>This page</span>
+			</a>
+        </div>
+    </div>
+
+    <div class="action-container is-flex has-flex-justify-content-end has-margin-top-small has-margin-bottom-small">
+        <a class="view-on-github" data-bi-name="view-on-github" href="https://github.com/MicrosoftDocs/powerbi-docs/issues">
+            <span aria-hidden="true" class="docon docon-brand-github"></span>
+            <span>View all page feedback</span>
+            <span aria-hidden="true" class="icon docon docon-navigate-external is-size-h5"></span>
+        </a>
+    </div>
+</section>
+						<!-- end feedback section -->
+
+						<!-- feedback report section -->
+						<!-- end feedback report section -->
+
+						<div class="footerContainer is-visible-interactive has-default-focus ">
+
+
+
+	<footer id="footer-interactive" data-bi-name="footer" class="footer-layout">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+			<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="#" data-bi-name="select-locale"><span class="icon docon docon-world is-size-large has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text"></span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-transparent is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger"
+		aria-controls="theme-menu-interactive" aria-expanded="false" title="Theme" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Theme</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu-interactive" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="light">
+					<span class="theme-light has-margin-right-small">
+						<span
+							class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Light					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="dark">
+					<span class="theme-dark has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Dark					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="high-contrast">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+High contrast					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+    <ul class="links" data-bi-name="footerlinks">
+		<li class="manage-cookies-holder" hidden></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/previous-versions/" data-bi-name="archivelink">Previous Version Docs</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/teamblog" data-bi-name="bloglink">Blog</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/contribute" data-bi-name="contributorGuide">Contribute</a></li>
+				<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacy &amp; Cookies</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse">Terms of Use</a></li>
+				<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Site Feedback</a></li>
+			<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Trademarks</a></li>
+		<li>&copy; Microsoft 2020</li>
+    </ul>
+</footer>
+						</div>
+					</div>
+
+					<div class="is-size-small right-container column is-one-quarter is-one-fifth-desktop is-hidden-mobile is-hidden-tablet-only" data-bi-name="pageactions" role="complementary" aria-label="Page Actions">
+						<div id="affixed-right-container" class="doc-outline is-fixed is-vertically-scrollable">
+								
+								
+<div class="feedback-verbatim has-border-bottom has-padding-bottom-small has-margin-bottom-small" data-bi-name="rating">
+    <div class="binary-rating">
+        <div class="binary-rating-buttons">
+            <h3 class="has-text-weight-semibold has-margin-top-none has-margin-bottom-small">Is this page helpful?</h3>
+            <div>
+                <button class="thumb-rating like has-inner-focus has-padding-left-extra-small has-padding-right-extra-small" title="Yes" data-bi-name="rating-yes" aria-expanded="false" data-bi-sat="1" aria-controls="rating-container-desktop">
+                    <span aria-hidden="true" class="icon docon docon-like"></span>
+                    <span>Yes</span>
+                </button>
+                <button class="thumb-rating dislike has-inner-focus has-padding-none has-padding-right-extra-small" title="No" data-bi-name="rating-no" data-bi-sat="0" aria-expanded="false" aria-controls="rating-container-desktop">
+                    <span aria-hidden="true" class="icon docon docon-dislike"></span>
+                    <span>No</span>
+                </button>
+            </div>
+        </div>
+        <form class="feedback-verbatim-form is-hidden" id="rating-container-desktop">
+            <div class="verbatim-textarea box is-relative has-box-shadow-none has-border has-margin-top-small has-padding-extra-small is-size-extra-small">
+                <label for="rating-textarea-desktop" class="visually-hidden">Any additional feedback?</label>
+                <textarea id="rating-textarea-desktop" rows="4" maxlength="999" placeholder="Any additional feedback?" required class="textarea has-border-none has-box-shadow-none has-inner-focus"></textarea>
+            </div>
+            <div class="buttons is-right has-margin-top-medium has-margin-right-extra-small">
+                <button class="skip-rating button is-transparent has-text-primary is-small has-border-none" type="button">Skip</button>
+                <button class="submit-rating button is-primary is-small" data-bi-name="rating-verbatim" disabled type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="thankyou-rating is-hidden" tabindex="-1">
+        <p>Thank you.</p>
+    </div>
+</div>							<nav id="side-doc-outline" data-bi-name="intopic toc" role="navigation" aria-label="Article Outline">
+								<h3>In this article</h3>
+							</nav>
+						</div>
+					</div>
+
+					<!--end of div.columns -->
+				</div>
+
+			<!--end of .primary-holder -->
+			</section>
+
+			<aside id="interactive-container" class="interactive-container is-visible-interactive column has-body-background-dark ">
+			</aside>
+		</div>
+
+		<!--end of .mainContainer -->
+	</div>
+
+	<div id="openFeedbackContainer" class="openfeedback-container"></div>
+
+	<div class="footerContainer has-default-focus is-hidden-interactive ">
+
+
+
+	<footer id="footer" data-bi-name="footer" class="footer-layout uhf-container has-padding" role="contentinfo">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+			<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="#" data-bi-name="select-locale"><span class="icon docon docon-world is-size-large has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text"></span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-transparent is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger"
+		aria-controls="theme-menu" aria-expanded="false" title="Theme" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Theme</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="light">
+					<span class="theme-light has-margin-right-small">
+						<span
+							class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Light					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="dark">
+					<span class="theme-dark has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Dark					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="high-contrast">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+High contrast					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+    <ul class="links" data-bi-name="footerlinks">
+		<li class="manage-cookies-holder" hidden></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/previous-versions/" data-bi-name="archivelink">Previous Version Docs</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/teamblog" data-bi-name="bloglink">Blog</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/contribute" data-bi-name="contributorGuide">Contribute</a></li>
+				<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacy &amp; Cookies</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse">Terms of Use</a></li>
+				<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Site Feedback</a></li>
+			<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Trademarks</a></li>
+		<li>&copy; Microsoft 2020</li>
+    </ul>
+</footer>
+	</div>
+
+	<div id="action-panel" role="region" aria-label="Action Panel" class="action-panel has-default-focus" tabindex="-1"></div>
+</body>
+</html>

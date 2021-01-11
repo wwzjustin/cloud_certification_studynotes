@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	
+	
+	<!-- This site is optimized with the Yoast SEO plugin v15.5 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>Dynamic Row Level Security is easy with Active Directory Security Groups - Reporting/Analytics Made easy with FourMoo and Power BI</title>
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+	<link rel="canonical" href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Dynamic Row Level Security is easy with Active Directory Security Groups - Reporting/Analytics Made easy with FourMoo and Power BI" />
+	<meta property="og:description" content="I am really excited to show you in this blog post how to use Active Directory (AD) Security groups to make Dynamic Row Level Security (DRLS) easy and simple. In the past when using DRLS there had to be a list maintained of all the..." />
+	<meta property="og:url" content="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/" />
+	<meta property="og:site_name" content="Reporting/Analytics Made easy with FourMoo and Power BI" />
+	<meta property="article:publisher" content="https://www.facebook.com/FourMooo/" />
+	<meta property="article:published_time" content="2018-02-20T07:05:27+00:00" />
+	<meta property="article:modified_time" content="2018-02-19T22:17:36+00:00" />
+	<meta property="og:image" content="https://www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL1.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:creator" content="@gilbertque" />
+	<meta name="twitter:site" content="@gilbertque" />
+	<meta name="twitter:label1" content="Written by">
+	<meta name="twitter:data1" content="Gilbert Quevauvilliers">
+	<meta name="twitter:label2" content="Est. reading time">
+	<meta name="twitter:data2" content="8 minutes">
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.fourmoo.com/#organization","name":"FOurMoo","url":"https://www.fourmoo.com/","sameAs":["https://www.facebook.com/FourMooo/","https://www.linkedin.com/in/fourmoo/","https://twitter.com/gilbertque"],"logo":{"@type":"ImageObject","@id":"https://www.fourmoo.com/#logo","inLanguage":"en-US","url":"https://i2.wp.com/www.fourmoo.com/wp-content/uploads/2019/01/Fourmoo-TM-250px.jpg?fit=1446%2C250&ssl=1","width":1446,"height":250,"caption":"FOurMoo"},"image":{"@id":"https://www.fourmoo.com/#logo"}},{"@type":"WebSite","@id":"https://www.fourmoo.com/#website","url":"https://www.fourmoo.com/","name":"FourMoo - Power BI Business Analytics Solutions","description":"Reporting/Analytics Made easy with FourMoo and Power BI","publisher":{"@id":"https://www.fourmoo.com/#organization"},"potentialAction":[{"@type":"SearchAction","target":"https://www.fourmoo.com/?s={search_term_string}","query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"ImageObject","@id":"https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#primaryimage","inLanguage":"en-US","url":"https://i1.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL1.png?fit=429%2C161&ssl=1","width":429,"height":161},{"@type":"WebPage","@id":"https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#webpage","url":"https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/","name":"Dynamic Row Level Security is easy with Active Directory Security Groups - Reporting/Analytics Made easy with FourMoo and Power BI","isPartOf":{"@id":"https://www.fourmoo.com/#website"},"primaryImageOfPage":{"@id":"https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#primaryimage"},"datePublished":"2018-02-20T07:05:27+00:00","dateModified":"2018-02-19T22:17:36+00:00","inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/"]}]},{"@type":"Article","@id":"https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#article","isPartOf":{"@id":"https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#webpage"},"author":{"@id":"https://www.fourmoo.com/#/schema/person/8ffb79325334f0b8a406be295fb663ed"},"headline":"Dynamic Row Level Security is easy with Active Directory Security Groups","datePublished":"2018-02-20T07:05:27+00:00","dateModified":"2018-02-19T22:17:36+00:00","mainEntityOfPage":{"@id":"https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#webpage"},"commentCount":14,"publisher":{"@id":"https://www.fourmoo.com/#organization"},"image":{"@id":"https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#primaryimage"},"keywords":"AD Security Groups,Dynamic Row Level Security,Power BI,Row Level Security","articleSection":"Power BI","inLanguage":"en-US","potentialAction":[{"@type":"CommentAction","name":"Comment","target":["https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#respond"]}]},{"@type":"Person","@id":"https://www.fourmoo.com/#/schema/person/8ffb79325334f0b8a406be295fb663ed","name":"Gilbert Quevauvilliers","image":{"@type":"ImageObject","@id":"https://www.fourmoo.com/#personlogo","inLanguage":"en-US","url":"https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=96&d=mm&r=g","caption":"Gilbert Quevauvilliers"}}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//www.google.com' />
+<link rel='dns-prefetch' href='//secure.gravatar.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='dns-prefetch' href='//v0.wordpress.com' />
+<link rel='dns-prefetch' href='//i0.wp.com' />
+<link rel='dns-prefetch' href='//i1.wp.com' />
+<link rel='dns-prefetch' href='//i2.wp.com' />
+<link rel="alternate" type="application/rss+xml" title="Reporting/Analytics Made easy with FourMoo and Power BI &raquo; Feed" href="https://www.fourmoo.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Reporting/Analytics Made easy with FourMoo and Power BI &raquo; Comments Feed" href="https://www.fourmoo.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Reporting/Analytics Made easy with FourMoo and Power BI &raquo; Dynamic Row Level Security is easy with Active Directory Security Groups Comments Feed" href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/feed/" />
+<!-- This site uses the Google Analytics by ExactMetrics plugin v6.4.0 - Using Analytics tracking - https://www.exactmetrics.com/ -->
+<script type="text/javascript" data-cfasync="false">
+    (window.gaDevIds=window.gaDevIds||[]).push("dNDMyYj");
+	var em_version         = '6.4.0';
+	var em_track_user      = true;
+	var em_no_track_reason = '';
+	
+	var disableStr = 'ga-disable-UA-61225151-2';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+
+	if ( 'undefined' === typeof gaOptout ) {
+		function gaOptout() {
+			__gaTrackerOptout();
+		}
+	}
+	
+	if ( em_track_user ) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+window.ga = __gaTracker;		__gaTracker('create', 'UA-61225151-2', 'auto');
+		__gaTracker('set', 'forceSSL', true);
+		__gaTracker('send','pageview');
+		__gaTracker( function() { window.ga = __gaTracker; } );
+	} else {
+		console.log( "" );
+		(function() {
+			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+			var noopfn = function() {
+				return null;
+			};
+			var noopnullfn = function() {
+				return null;
+			};
+			var Tracker = function() {
+				return null;
+			};
+			var p = Tracker.prototype;
+			p.get = noopfn;
+			p.set = noopfn;
+			p.send = noopfn;
+			var __gaTracker = function() {
+				var len = arguments.length;
+				if ( len === 0 ) {
+					return;
+				}
+				var f = arguments[len-1];
+				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
+					console.log( 'Not running function __gaTracker(' + arguments[0] + " ....) because you are not being tracked. " + em_no_track_reason );
+					return;
+				}
+				try {
+					f.hitCallback();
+				} catch (ex) {
+
+				}
+			};
+			__gaTracker.create = function() {
+				return new Tracker();
+			};
+			__gaTracker.getByName = noopnullfn;
+			__gaTracker.getAll = function() {
+				return [];
+			};
+			__gaTracker.remove = noopfn;
+			window['__gaTracker'] = __gaTracker;
+			window.ga = __gaTracker;		})();
+		}
+</script>
+<!-- / Google Analytics by ExactMetrics -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.fourmoo.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.5.3"}};
+			!function(e,a,t){var r,n,o,i,p=a.createElement("canvas"),s=p.getContext&&p.getContext("2d");function c(e,t){var a=String.fromCharCode;s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,e),0,0);var r=p.toDataURL();return s.clearRect(0,0,p.width,p.height),s.fillText(a.apply(this,t),0,0),r===p.toDataURL()}function l(e){if(!s||!s.fillText)return!1;switch(s.textBaseline="top",s.font="600 32px Arial",e){case"flag":return!c([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])&&(!c([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!c([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]));case"emoji":return!c([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}function d(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(i=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},o=0;o<i.length;o++)t.supports[i[o]]=l(i[o]),t.supports.everything=t.supports.everything&&t.supports[i[o]],"flag"!==i[o]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[i[o]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(r=t.source||{}).concatemoji?d(r.concatemoji):r.wpemoji&&r.twemoji&&(d(r.twemoji),d(r.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://www.fourmoo.com/wp-includes/css/dist/block-library/style.min.css?ver=5.5.3' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='contact-form-7-css'  href='https://www.fourmoo.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='rs-plugin-settings-css'  href='https://www.fourmoo.com/wp-content/plugins/revslider/public/assets/css/settings.css?ver=5.4.8' type='text/css' media='all' />
+<style id='rs-plugin-settings-inline-css' type='text/css'>
+#rs-demo-id {}
+</style>
+<link rel='stylesheet' id='exactmetrics-popular-posts-style-css'  href='https://www.fourmoo.com/wp-content/plugins/google-analytics-dashboard-for-wp/assets/css/frontend.min.css?ver=6.4.0' type='text/css' media='all' />
+<link rel='stylesheet' id='fw-ext-builder-frontend-grid-css'  href='https://www.fourmoo.com/wp-content/plugins/unyson/framework/extensions/builder/static/css/frontend-grid.css?ver=1.2.11' type='text/css' media='all' />
+<link rel='stylesheet' id='fw-ext-forms-default-styles-css'  href='https://www.fourmoo.com/wp-content/plugins/unyson/framework/extensions/forms/static/css/frontend.css?ver=2.7.24' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-css'  href='https://www.fourmoo.com/wp-content/plugins/unyson/framework/static/libs/font-awesome/css/font-awesome.min.css?ver=2.7.24' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap-css'  href='https://www.fourmoo.com/wp-content/themes/jevelin/css/plugins/bootstrap.min.css?ver=3.3.4' type='text/css' media='all' />
+<link rel='stylesheet' id='jevelin-plugins-css'  href='https://www.fourmoo.com/wp-content/themes/jevelin/css/plugins.css?ver=5.5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jevelin-shortcodes-css'  href='https://www.fourmoo.com/wp-content/themes/jevelin/css/shortcodes.css?ver=5.5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jevelin-styles-css'  href='https://www.fourmoo.com/wp-content/themes/jevelin/style.css?ver=5.5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jevelin-responsive-css'  href='https://www.fourmoo.com/wp-content/themes/jevelin/css/responsive.css?ver=5.5.3' type='text/css' media='all' />
+<style id='jevelin-responsive-inline-css' type='text/css'>
+.cf7-required:after,.woocommerce ul.products li.product a h3:hover,.woocommerce ul.products li.product ins,.post-title h2:hover,.sh-team:hover .sh-team-role,.sh-team-style4 .sh-team-role,.sh-team-style4 .sh-team-icon:hover i,.sh-header-search-submit,.woocommerce .woocommerce-tabs li.active a,.woocommerce .required,.sh-recent-products .woocommerce .star-rating span::before,.woocommerce .woocomerce-styling .star-rating span::before,.woocommerce div.product p.price,.woocomerce-styling li.product .amount,.post-format-icon,.sh-accent-color,.sh-blog-tag-item:hover h6,ul.page-numbers a:hover,.sh-portfolio-single-info-item i,.sh-filter-item.active,.sh-filter-item:hover,.sh-nav .sh-nav-cart li.menu-item-cart .mini_cart_item .amount,.sh-pricing-button-style3,#sidebar a:not(.sh-social-widgets-item):hover,.logged-in-as a:hover,.woocommerce table.shop_table.cart a:hover,.wrap-forms sup:before,.sh-comment-date a:hover,.reply a.comment-edit-link,.comment-respond #cancel-comment-reply-link,.sh-portfolio-title:hover,.sh-portfolio-single-related-mini h5:hover,.sh-header-top-10 .header-contacts-details-large-icon i,.sh-unyson-frontend-test.active {color: #f29e9f!important;}.woocommerce p.stars.selected a:not(.active),.woocommerce p.stars.selected a.active,.sh-dropcaps-full-square,.sh-dropcaps-full-square-border,.masonry2 .post-content-container a.post-meta-comments:hover {background-color: #f29e9f;}.contact-form input[type="submit"],.sh-back-to-top:hover,.sh-dropcaps-full-square-tale,.sh-404-button,.woocommerce .wc-forward,.woocommerce .checkout-button,.woocommerce div.product form.cart button,.woocommerce .button:not(.add_to_cart_button),.sh-blog-tag-item,.sh-comments .submit,.sh-sidebar-search-active .search-field,.sh-nav .sh-nav-cart .buttons a.checkout,ul.page-numbers .current,ul.page-numbers .current:hover,.post-background,.post-item .post-category .post-category-list,.cart-icon span,.comment-input-required,.widget_tag_cloud a:hover,.widget_product_tag_cloud a:hover,.woocommerce #respond input#submit,.sh-portfolio-overlay1-bar,.sh-pricing-button-style4,.sh-pricing-button-style11,.sh-revslider-button2,.sh-portfolio-default2 .sh-portfolio-title,.sh-recent-posts-widgets-count,.sh-filter-item.active:after,.blog-style-largedate .post-comments,.sh-video-player-style1 .sh-video-player-image-play,.sh-video-player-style2 .sh-video-player-image-play:hover,.sh-video-player-style2 .sh-video-player-image-play:focus,.woocommerce .woocommerce-tabs li a:after,.sh-image-gallery .slick-dots li.slick-active button,.sh-recent-posts-carousel .slick-dots li.slick-active button,.sh-recent-products-carousel .slick-dots li.slick-active button,.sh-settings-container-bar .sh-progress-status-value,.post-password-form input[type="submit"],.wpcf7-form .wpcf7-submit,.sh-portfolio-filter-style3 .sh-filter-item.active .sh-filter-item-content,.sh-portfolio-filter-style4 .sh-filter-item:hover .sh-filter-item-content,.sh-woocommerce-categories-count,.sh-woocommerce-products-style2 .woocommerce ul.products li.product .add_to_cart_button:hover,.woocomerce-styling.sh-woocommerce-products-style2 ul.products li.product .add_to_cart_button:hover,.sh-icon-group-style2 .sh-icon-group-item:hover,.sh-text-background {background-color: #f29e9f!important;}.sh-cf7-style4 form input:not(.wpcf7-submit):focus {border-bottom-color: #f29e9f;}::selection {background-color: #f29e9f!important;color: #fff;}::-moz-selection {background-color: #f29e9f!important;color: #fff;}.woocommerce .woocommerce-tabs li.active a,/*.sh-header-8 .sh-nav > .current-menu-item a*/ {border-bottom-color: #f29e9f!important;}#header-quote,.sh-dropcaps-full-square-tale:after,.sh-blog-tag-item:after,.widget_tag_cloud a:hover:after,.widget_product_tag_cloud a:hover:after {border-left-color: #f29e9f!important;}.cart-icon .cart-icon-triangle-color {border-right-color: #f29e9f!important;}.sh-back-to-top:hover,.widget_price_filter .ui-slider .ui-slider-handle,.sh-sidebar-search-active .search-field:hover,.sh-sidebar-search-active .search-field:focus,.sh-cf7-style2 form p input:not(.wpcf7-submit):focus,.sh-cf7-style2 form p textarea:focus {border-color: #f29e9f!important;}.post-item .post-category .arrow-right {border-left-color: #f29e9f;}.woocommerce .wc-forward:hover,.woocommerce .button:not(.add_to_cart_button):hover,.woocommerce .checkout-button:hover,.woocommerce #respond input#submit:hover,.contact-form input[type="submit"]:hover,.wpcf7-form .wpcf7-submit:hover,.sh-video-player-image-play:hover,.sh-404-button:hover,.post-password-form input[type="submit"],.sh-pricing-button-style11:hover,.sh-revslider-button2.spacing-animation:not(.inverted):hover {background-color: #f29e9f!important;}.sh-cf7 form .wpcf7-submit {background-size: 200% auto;background-image: linear-gradient(to right, #f29e9f , #f29e9f, #f29e9f);}.sh-mini-overlay-container,.sh-portfolio-overlay-info-box,.sh-portfolio-overlay-bottom .sh-portfolio-icon,.sh-portfolio-overlay-bottom .sh-portfolio-text,.sh-portfolio-overlay2-bar,.sh-portfolio-overlay2-data,.sh-portfolio-overlay3-data {background-color: rgba(242,158,159,0.75)!important;}.widget_price_filter .ui-slider .ui-slider-range {background-color: rgba(242,158,159,0.5)!important;}.sh-team-social-overlay2 .sh-team-image:hover .sh-team-overlay2,.sh-overlay-style1,.sh-portfolio-overlay4 {background-color: rgba(242,158,159,0.8)!important;}.sh-header .sh-nav > .current_page_item > a,.sh-header .sh-nav > .current-menu-ancestor > a,.sh-header-left-side .sh-nav > .current_page_item > a {color: #f29e9f!important;}.sh-popover-mini:not(.sh-popover-mini-dark) {background-color: #f29e9f;}.sh-popover-mini:not(.sh-popover-mini-dark):before {border-color: transparent transparent #f29e9f #f29e9f!important;}.sh-footer .sh-footer-widgets a:hover,.sh-footer .sh-footer-widgets li a:hover,.sh-footer .sh-footer-widgets h6:hover {color: #47c9e5;}
+</style>
+<link rel='stylesheet' id='jevelin-ie-css'  href='https://www.fourmoo.com/wp-content/themes/jevelin/css/ie.css?ver=5.5.3' type='text/css' media='all' />
+<link rel='stylesheet' id='jevelin-theme-settings-css'  href='https://www.fourmoo.com/wp-content/uploads/jevelin-dynamic-styles.css?ver=689820417' type='text/css' media='all' />
+<link rel='stylesheet' id='jevelin-fonts-css'  href='https://fonts.googleapis.com/css?family=Raleway:200,300,regular,600,700,300italic,italic,600italic,700italic,&#038;subset=latin' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighterjs-css'  href='https://www.fourmoo.com/wp-content/plugins/enlighter/cache/enlighterjs.min.css?ver=J5dEcRtDI98rbkS' type='text/css' media='all' />
+<link rel='stylesheet' id='wpgdprc.css-css'  href='https://www.fourmoo.com/wp-content/plugins/wp-gdpr-compliance/assets/css/front.min.css?ver=1592279504' type='text/css' media='all' />
+<style id='wpgdprc.css-inline-css' type='text/css'>
+
+            div.wpgdprc .wpgdprc-switch .wpgdprc-switch-inner:before { content: 'Yes'; }
+            div.wpgdprc .wpgdprc-switch .wpgdprc-switch-inner:after { content: 'No'; }
+        
+</style>
+<link rel='stylesheet' id='social-logos-css'  href='https://www.fourmoo.com/wp-content/plugins/jetpack/_inc/social-logos/social-logos.min.css?ver=9.2.1' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://www.fourmoo.com/wp-content/plugins/jetpack/css/jetpack.css?ver=9.2.1' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.fourmoo.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp' id='jquery-core-js'></script>
+<script type='text/javascript' id='jetpack_related-posts-js-extra'>
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/jetpack/_inc/build/related-posts/related-posts.min.js?ver=20191011' id='jetpack_related-posts-js'></script>
+<script type='text/javascript' id='exactmetrics-frontend-script-js-extra'>
+/* <![CDATA[ */
+var exactmetrics_frontend = {"js_events_tracking":"true","download_extensions":"zip,mp3,mpeg,pdf,docx,pptx,xlsx,rar","inbound_paths":"[{\"path\":\"\\\/go\\\/\",\"label\":\"affiliate\"},{\"path\":\"\\\/recommend\\\/\",\"label\":\"affiliate\"}]","home_url":"https:\/\/www.fourmoo.com","hash_tracking":"false"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/google-analytics-dashboard-for-wp/assets/js/frontend.min.js?ver=6.4.0' id='exactmetrics-frontend-script-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js?ver=5.4.8' id='tp-tools-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js?ver=5.4.8' id='revmin-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/themes/jevelin/js/plugins.js?ver=5.5.3' id='jevelin-plugins-js'></script>
+<script type='text/javascript' id='jevelin-scripts-js-extra'>
+/* <![CDATA[ */
+var jevelin_loadmore_posts = {"ajax_url":"https:\/\/www.fourmoo.com\/wp-admin\/admin-ajax.php"};
+var jevelin = {"page_loader":"0","notice":"","header_animation_dropdown_delay":"1000","header_animation_dropdown":"easeOutQuint","header_animation_dropdown_speed":"300","lightbox_opacity":"0.88","lightbox_transition":"elastic","page_numbers_prev":"Previous","page_numbers_next":"Next","rtl_support":"","footer_parallax":"","one_pager":"1","wc_lightbox":"jevelin","quantity_button":"on"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/themes/jevelin/js/scripts.js?ver=5.5.3' id='jevelin-scripts-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/wp-gdpr-compliance/assets/vendor/micromodal/micromodal.min.js?ver=1592279504' id='wpgdprc.micromodal.js-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/wp-gdpr-compliance/assets/vendor/postscribe/postscribe.min.js?ver=1592279504' id='wpgdprc.postscribe.js-js'></script>
+<link rel="https://api.w.org/" href="https://www.fourmoo.com/wp-json/" /><link rel="alternate" type="application/json" href="https://www.fourmoo.com/wp-json/wp/v2/posts/4899" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.fourmoo.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.fourmoo.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.5.3" />
+<link rel='shortlink' href='https://wp.me/p8RaGw-1h1' />
+<link rel="alternate" type="application/json+oembed" href="https://www.fourmoo.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.fourmoo.com%2F2018%2F02%2F20%2Fdynamic-row-level-security-is-easy-with-active-directory-security-groups%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.fourmoo.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.fourmoo.com%2F2018%2F02%2F20%2Fdynamic-row-level-security-is-easy-with-active-directory-security-groups%2F&#038;format=xml" />
+<meta name="generator" content="Powered by Slider Revolution 5.4.8 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+<link rel="icon" href="https://i0.wp.com/www.fourmoo.com/wp-content/uploads/2018/04/cropped-Hires-fourmoo-3.jpg?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i0.wp.com/www.fourmoo.com/wp-content/uploads/2018/04/cropped-Hires-fourmoo-3.jpg?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://i0.wp.com/www.fourmoo.com/wp-content/uploads/2018/04/cropped-Hires-fourmoo-3.jpg?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i0.wp.com/www.fourmoo.com/wp-content/uploads/2018/04/cropped-Hires-fourmoo-3.jpg?fit=270%2C270&#038;ssl=1" />
+<script type="text/javascript">function setREVStartSize(e){									
+						try{ e.c=jQuery(e.c);var i=jQuery(window).width(),t=9999,r=0,n=0,l=0,f=0,s=0,h=0;
+							if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)}),t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),"fullscreen"==e.sliderLayout){var u=(e.c.width(),jQuery(window).height());if(void 0!=e.fullScreenOffsetContainer){var c=e.fullScreenOffsetContainer.split(",");if (c) jQuery.each(c,function(e,i){u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u}),e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0))}f=u}else void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})					
+						}catch(d){console.log("Failure at Presize of Slider:"+d)}						
+					};</script>
+	<script type="text/javascript">
+			    	</script>
+</head>
+<body class="post-template-default single single-post postid-4899 single-format-standard custom-background fpt-template-jevelin singular sh-body-header-sticky">
+
+
+<div  id="header-search" class="sh-header-search">
+	<div class="sh-table-full">
+		<div class="sh-table-cell">
+
+			<div class="line-test">
+				<div class="container">
+
+					<form method="get" class="sh-header-search-form" action="https://www.fourmoo.com/">
+						<input type="search" class="sh-header-search-input" placeholder="Search Here.." value="" name="s" required />
+						<button type="submit" class="sh-header-search-submit">
+							<i class="icon-magnifier"></i>
+						</button>
+						<div class="sh-header-search-close close-header-search">
+							<i class="ti-close"></i>
+						</div>
+
+											</form>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+	
+	<div id="page-container" class="">
+		
+
+									
+					<header class="primary-mobile">
+						
+<div id="header-mobile" class="sh-header-mobile">
+	<div class="sh-header-mobile-navigation">
+		
+
+		<div class="container">
+			<div class="sh-table">
+				<div class="sh-table-cell sh-group">
+
+										            <div class="header-logo sh-group-equal">
+                <a href="https://www.fourmoo.com/" class="header-logo-container sh-table-small">
+                    
+                        <div class="sh-table-cell">
+                            <img class="sh-standard-logo" src="//www.fourmoo.com/wp-content/uploads/2019/01/Fourmoo-TM-250px.jpg" alt="Reporting/Analytics Made easy with FourMoo and Power BI" />
+                            <img class="sh-sticky-logo" src="//www.fourmoo.com/wp-content/uploads/2019/01/Fourmoo-TM-250px.jpg" alt="Reporting/Analytics Made easy with FourMoo and Power BI" />
+                            <img class="sh-light-logo" src="//www.fourmoo.com/wp-content/uploads/2019/01/Fourmoo-TM-250px.jpg" alt="Reporting/Analytics Made easy with FourMoo and Power BI" />
+                        </div>
+
+                                    </a>
+            </div>
+
+    
+				</div>
+				<div class="sh-table-cell">
+
+										<nav id="header-navigation-mobile" class="header-standard-position">
+						<div class="sh-nav-container">
+							<ul class="sh-nav">
+
+															    
+        <li class="menu-item sh-nav-dropdown">
+            <a>
+                <div class="sh-table-full">
+                    <div class="sh-table-cell">
+                        <span class="c-hamburger c-hamburger--htx">
+                            <span>Toggle menu</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </li>
+							</ul>
+						</div>
+					</nav>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<nav class="sh-header-mobile-dropdown">
+		<div class="container sh-nav-container">
+			<ul class="sh-nav-mobile"></ul>
+		</div>
+
+		<div class="container sh-nav-container">
+							<div class="header-mobile-search">
+					<form role="search" method="get" class="header-mobile-form" action="https://www.fourmoo.com/">
+						<input class="header-mobile-form-input" type="text" placeholder="Search here.." value="" name="s" required />
+						<button type="submit" class="header-mobile-form-submit">
+							<i class="icon-magnifier"></i>
+						</button>
+					</form>
+				</div>
+					</div>
+
+			</nav>
+</div>
+					</header>
+					<header class="primary-desktop">
+						
+<div class="sh-header-top sh-header-top-4">
+	<div class="container">
+
+				            <div class="header-logo sh-group-equal">
+                <a href="https://www.fourmoo.com/" class="header-logo-container sh-table-small">
+                    
+                        <div class="sh-table-cell">
+                            <img class="sh-standard-logo" src="//www.fourmoo.com/wp-content/uploads/2019/01/Fourmoo-TM-250px.jpg" alt="Reporting/Analytics Made easy with FourMoo and Power BI" />
+                            <img class="sh-sticky-logo" src="//www.fourmoo.com/wp-content/uploads/2019/01/Fourmoo-TM-250px.jpg" alt="Reporting/Analytics Made easy with FourMoo and Power BI" />
+                            <img class="sh-light-logo" src="//www.fourmoo.com/wp-content/uploads/2019/01/Fourmoo-TM-250px.jpg" alt="Reporting/Analytics Made easy with FourMoo and Power BI" />
+                        </div>
+
+                                    </a>
+            </div>
+
+    
+	</div>
+</div>
+
+<div class="sh-header-height">
+	<div class="sh-header sh-header-4 sh-sticky-header">
+		<div class="container">
+
+						<nav id="header-navigation" class="header-standard-position">
+									<div class="sh-nav-container"><ul id="menu-my-menu" class="sh-nav"><li id="menu-item-6303" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-6303"><a href="https://www.fourmoo.com/" >Home</a></li>
+<li id="menu-item-6039" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent menu-item-6039"><a href="https://www.fourmoo.com/blog/" >Blog</a></li>
+<li id="menu-item-6040" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6040"><a href="https://www.fourmoo.com/infographics/" >InfoGraphics</a>
+<ul class="sub-menu">
+	<li id="menu-item-6046" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6046"><a href="https://www.fourmoo.com/infographics/power-bi-overview-infographic/" >Power BI – Overview Infographic</a></li>
+	<li id="menu-item-6047" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6047"><a href="https://www.fourmoo.com/infographics/power-bi-embedded/" >Power BI – Embedded</a></li>
+	<li id="menu-item-6048" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6048"><a href="https://www.fourmoo.com/infographics/power-bi-free-vs-pro/" >Power BI – Free vs Pro Infographic</a></li>
+	<li id="menu-item-6049" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6049"><a href="https://www.fourmoo.com/infographics/power-bi-premium/" >Power BI – Premium</a></li>
+	<li id="menu-item-6050" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6050"><a href="https://www.fourmoo.com/infographics/power-bi-gateway-infographic/" >Power BI – Gateway Infographic</a></li>
+</ul>
+</li>
+<li id="menu-item-6051" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6051"><a href="https://www.fourmoo.com/contact/" >Contact</a>
+<ul class="sub-menu">
+	<li id="menu-item-6106" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6106"><a href="https://www.fourmoo.com/contact/contact-us/" >Contact Us</a></li>
+	<li id="menu-item-6052" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6052"><a href="https://www.fourmoo.com/contact/about/" >About</a></li>
+	<li id="menu-item-6053" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6053"><a href="https://www.fourmoo.com/contact/about-us/" >About the name FourMoo</a></li>
+	<li id="menu-item-6054" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6054"><a href="https://www.fourmoo.com/contact/why-use-fourmoo/" >Why use FourMoo ?</a></li>
+	<li id="menu-item-6055" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6055"><a href="https://www.fourmoo.com/contact/privacy-cookies/" >Privacy &#038; Cookies</a></li>
+</ul>
+</li>
+<li id="menu-item-6056" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6056"><a href="https://www.fourmoo.com/power-bi-reports-showcase/" >Showcase</a>
+<ul class="sub-menu">
+	<li id="menu-item-6057" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6057"><a href="https://www.fourmoo.com/power-bi-reports-showcase/power-bi-support-issues/" >Power BI Support Issues</a></li>
+	<li id="menu-item-6058" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6058"><a href="https://www.fourmoo.com/power-bi-reports-showcase/unicode-characters/" >Unicode Characters</a></li>
+	<li id="menu-item-6059" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6059"><a href="https://www.fourmoo.com/power-bi-reports-showcase/custom-data-connectors-with-strava-data/" >Custom Data Connectors with Strava data</a></li>
+	<li id="menu-item-6060" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6060"><a href="https://www.fourmoo.com/power-bi-reports-showcase/what-if-analysis-queensland-crime/" >What-If Analysis – Queensland Crime</a></li>
+	<li id="menu-item-6061" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6061"><a href="https://www.fourmoo.com/power-bi-reports-showcase/bookmarks/" >Bookmarks</a></li>
+	<li id="menu-item-6062" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6062"><a href="https://www.fourmoo.com/power-bi-reports-showcase/change-tables/" >Change Tables</a></li>
+	<li id="menu-item-6063" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6063"><a href="https://www.fourmoo.com/power-bi-reports-showcase/financial-report/" >Financial Report</a></li>
+</ul>
+</li>
+
+            <li class="menu-item sh-nav-search sh-nav-special">
+                <a href="#"><i class="icon icon-magnifier"></i></a>
+            </li></ul></div>							</nav>
+
+		</div>
+		
+<div  id="header-search" class="sh-header-search">
+	<div class="sh-table-full">
+		<div class="sh-table-cell">
+
+			<div class="line-test">
+				<div class="container">
+
+					<form method="get" class="sh-header-search-form" action="https://www.fourmoo.com/">
+						<input type="search" class="sh-header-search-input" placeholder="Search Here.." value="" name="s" required />
+						<button type="submit" class="sh-header-search-submit">
+							<i class="icon-magnifier"></i>
+						</button>
+						<div class="sh-header-search-close close-header-search">
+							<i class="ti-close"></i>
+						</div>
+
+											</form>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+	</div>
+</div>
+					</header>
+
+							
+			
+	
+		
+		
+			<div class="sh-titlebar">
+				<div class="container">
+					<div class="sh-table sh-titlebar-height-small">
+						<div class="titlebar-title sh-table-cell">
+
+							<h2>
+								Blog Post							</h2>
+
+						</div>
+						<div class="title-level sh-table-cell">
+
+							<div id="breadcrumbs" class="breadcrumb-trail breadcrumbs"><span class="item-home"><a class="bread-link bread-home" href="https://www.fourmoo.com/" title="Home">Home</a></span><span class="separator"> &gt; </span><span class="item-cat"><a href="https://www.fourmoo.com/category/power-bi/">Power BI</a></span><span class="separator"> &gt; </span><span class="item-current item-4899"><span class="bread-current bread-4899" title="Dynamic Row Level Security is easy with Active Directory Security Groups">Dynamic Row Level Security is easy with Active Directory Security Groups</span></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+					
+
+		
+
+        
+
+			<div id="wrapper">
+				
+
+				<div class="content-container sh-page-layout-default">
+									<div class="container entry-content">
+				
+
+				
+
+<div id="content" class="">
+	<div class="blog-single blog-style-large">
+		
+	<article id="post-4899" class="post-item post-item-single post-4899 post type-post status-publish format-standard hentry category-power-bi tag-ad-security-groups tag-dynamic-row-level-security tag-power-bi tag-row-level-security">
+		<div class="post-container">
+			
+			
+			<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/" class="post-title">
+									<h1>Dynamic Row Level Security is easy with Active Directory Security Groups</h1>
+							</a>
+
+			<div class="post-meta-data sh-columns">
+				<div class="post-meta post-meta-one">
+					
+        <span class="post-meta-author">
+            by            <a href="https://www.fourmoo.com/author/gilbertque/" class="bypostauthor">
+                Gilbert Quevauvilliers            </a>
+        </span>
+
+                    <a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/" class="post-meta-date sh-default-color">February 20, 2018</a>
+        
+    				</div>
+				<div class="post-meta post-meta-two">
+					
+        <div class="sh-columns post-meta-comments">
+            <span class="post-meta-categories">
+                <i class="icon-tag"></i>
+                <a href="https://www.fourmoo.com/category/power-bi/">Power BI</a>            </span>
+
+                            <a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comments" class="post-meta-comments">
+                    <i class="icon-speech"></i>
+                    14                </a>
+                    </div>
+
+    				</div>
+			</div>
+
+			<div class="post-content">
+				<p>I am really excited to show you in this blog post how to use <strong>Active Directory (AD) Security groups</strong> to make <strong>Dynamic Row Level Security (DRLS) easy and simple.<br />
+</strong></p>
+<p>In the past when using DRLS there had to be a list <strong>maintained of all the users</strong>, along with what Row Level Security they required. As can be seen with the image below, in which this is the <strong>first 6 lines of a possible 200</strong>.</p>
+<p><img src="https://i1.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL1.png?ssl=1" alt="" data-recalc-dims="1" /></p>
+<p>This was an <strong>administrative </strong><strong>nightmare</strong>.</p>
+<p>Now using <strong>AD Security Groups</strong>, you <strong>no longer</strong> need to <strong>maintain a long list of users</strong>.</p>
+<p>All that you will need to do is to put in the AD Security group with the required permissions and Power BI will do the REST! This means a <strong>small</strong> and <strong>simple </strong><strong>security </strong><strong>file</strong> with the <strong>permissions</strong> and <strong>AD Security group</strong>.</p>
+<p>The users who require access will have to go <strong>through</strong> the <strong>formal </strong><strong>channels</strong> with <strong>regards</strong> to being <strong>added</strong> to <strong>AD Security Groups</strong>. This has the<strong> following awesome advantages.</strong></p>
+<ul>
+<li>The report developer will only have to implement DRLS Once.</li>
+<li>Users who require access will have to possibly log a call or chat to the IT Department to be added into the required AD Security Group.</li>
+<li>One or possibly multiple users will be responsible for the Security File. Which can possibly be located a SharePoint List, SharePoint Online Document Library, One Drive file etc.</li>
+<li><strong>Administration</strong> of <strong>whom</strong> is in the <strong>AD Security Group</strong> is <strong>looked</strong> after by the <strong>IT Department</strong>. If <strong>people </strong><strong>move</strong> roles, <strong>leave</strong> or <strong>need </strong><strong>changes</strong> this could possibly be <strong>done</strong> as <strong>part of an IT process</strong>.</li>
+<li>Very often there is <strong>already AD Security Groups</strong> in place for different departments. Which means that there is already existing AD Security Groups that can be leveraged.</li>
+</ul>
+<p><strong>How awesome is that?<br />
+</strong></p>
+<p>I personally think it is pretty awesome, clean and simple, where everyone within an organization is responsible for their area where they work!</p>
+<p>I am not going to go into the details of how DRLS works, there are a whole host of blog posts explaining this. The two that I have used in the past are from <a href="http://radacad.com/dynamic-row-level-security-with-power-bi-made-simple">Radacad.com</a> and <a href="https://www.kasperonbi.com/power-bi-desktop-dynamic-security-cheat-sheet/">Kasper on BI</a> which go into great details and have working copies.</p>
+<p>Ok, that is enough waffling, let me show you how I do it.</p>
+<p><strong>NOTE</strong>: This blog post is quite long, but it is well worth the read. I go into a fair bit of detail to explain how it all pieces together with a lot of images.</p>
+<h2>Example</h2>
+<p>As always it is easiest to follow with an Example.</p>
+<p>I have got a <strong>Security File,</strong> which has all the attributes as to which <strong>Country</strong> the <strong>AD Security Groups belong to</strong>.</p>
+<p>Below is a bit more detail on the <strong>Security File</strong> and <strong>AD Security Group</strong>.</p>
+<ul>
+<li>
+<div>I have got a <strong>Security File</strong> table which has got the following attributes shown below.</div>
+<ul>
+<li><img src="https://i2.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL2.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+<li>As you can see above it has got a <strong>Country </strong><strong>column</strong>, and an <strong>AD Group Column</strong></li>
+<li>From the above <strong>users</strong> who <strong>are in</strong> the <strong>SYD Office AD Security Group</strong> will only <strong>see </strong><strong>data</strong> from <strong>Australia</strong></li>
+<li>And the above <strong>users</strong> who <strong>are in</strong> the <strong>USA Office AD Security Group</strong> will only <strong>see </strong><strong>data</strong> from <strong>United States</strong></li>
+</ul>
+</li>
+<li>Next, I created 2 AD Security Groups in Office 365</li>
+<li>
+<div><img src="https://i0.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL3.png?ssl=1" alt="" data-recalc-dims="1" /></div>
+<ul>
+<li>
+<div>In the groups above, I added the required users.</div>
+<ul>
+<li>In my working example I have a user which will be <strong>called</strong> &#8220;<strong>Pro</strong>&#8220;</li>
+</ul>
+</li>
+<li><strong>NOTE</strong>: In a typical organization, there will already be AD Security groups with users added.</li>
+</ul>
+</li>
+</ul>
+<h2>Connecting to Active Directory</h2>
+<p>In the steps below, I am going to give an <strong>overview</strong> of how to <strong>connect</strong> to <strong>Active Directory</strong>. As well as the final table which will have the <strong>Users &amp; Groups</strong> to which they belong to, along with the all<strong>-important User Principal Name</strong>.</p>
+<ul>
+<li>
+<div>I first created a Parameter called Domain Name</div>
+<ul>
+<li><img src="https://i2.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL4.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+</ul>
+</li>
+<li>
+<div>I went to Get Data and then selected Active Directory</div>
+<ul>
+<li><img src="https://i2.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL5.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+</ul>
+</li>
+<li>
+<div>I then put in my Active Directory by selecting the Parameter</div>
+<ul>
+<li><img src="https://i1.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL6.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+</ul>
+</li>
+<li>
+<div>This is where it can get a bit tricky navigating AD, so what I did was to find the Users details and kept the following details shown below in my Users table.</div>
+<ul>
+<li><img src="https://i0.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL7.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+<li>The reason for the Users table is to get the User Principal Name which is required for Office 365</li>
+</ul>
+</li>
+<li>
+<div>Next, I had to get the Group details, which once again was a bit tricky navigating AD, and once again this was the output I needed into my table.</div>
+<ul>
+<li><img src="https://i1.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL8.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+<li>As I saw above, it is a pity that the Group AD Container does not have the User Principal Name</li>
+</ul>
+</li>
+<li>
+<div>I then merged the two tables above, to get the Output I needed, which is shown below. And this includes the User Principal Name</div>
+<ul>
+<li>
+<div>I did it by selecting the following:</div>
+<ul>
+<li><img src="https://i2.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL9.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+</ul>
+</li>
+<li>And this was the desired output</li>
+<li><img src="https://i1.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL10.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+</ul>
+</li>
+</ul>
+<h2>Using the Query Editor to automate the bursting of User Principal Names</h2>
+<p>This is where the <strong>true power</strong> and <strong>awesomeness</strong> of the <strong>Query Editor is at its best</strong>. In the steps below, I am going to show how by <strong>using</strong> the <strong>Query Editor I can burst all the data to get all the User Principal Names</strong></p>
+<ul>
+<li>I go to my Security File Table.</li>
+<li>
+<div>Next, I click on Merge Queries and selected the following as shown below.</div>
+<ul>
+<li><img src="https://i1.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL11.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+</ul>
+</li>
+<li>
+<div>This then resulted in the following table</div>
+<ul>
+<li><img src="https://i2.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL12.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+<li>As you can see above it is showing that it is a table. But it still <strong>only </strong><strong>currently 2 rows</strong>.</li>
+</ul>
+</li>
+<li>
+<div>I <strong>clicked</strong> on the <strong>Expand </strong><strong>Button</strong> and selected the <strong>User Principal Name</strong>.</div>
+<ul>
+<li><strong>NOTE</strong>: I also made sure that the <strong>Use original column name as prefix</strong> did not have a tick.</li>
+<li><img src="https://i1.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL13.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+<li>Once again this is because all that I <strong>require</strong> for the <strong>DRLS</strong> is the <strong>User Principal</strong> Name</li>
+</ul>
+</li>
+<li>
+<div>And the result was now the <strong>Query </strong><strong>Editor </strong><strong>bursting</strong> all the rows for me</div>
+<ul>
+<li><img src="https://i0.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL14.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+<li>As you can see above <strong>I now have 6 rows.</strong></li>
+<li><strong>NOTE</strong>: If you had a lot of groups with a lot of countries it would burst this all for you.</li>
+<li>HOW <span style="text-decoration: underline;"><strong>AWESOME</strong></span> is that?</li>
+<li>No need to remember users, and who is coming and who is going.</li>
+</ul>
+</li>
+<li>The final step is to load this into the data model by <strong>clicking Close and Apply</strong>.</li>
+</ul>
+<h2>Creating the Relationships between the tables.</h2>
+<p>Next, I show how to create or ensure that the required relationships are in place for DRLS to work.</p>
+<ul>
+<li>This is what my relationships looked like after the data had loaded.</li>
+<li><img src="https://i1.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL15.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+<li>
+<div>There was one <strong>key relationship missing</strong> which is from the <strong>Security File table</strong> to the <strong>Country Table</strong>.</div>
+<ul>
+<li><strong>NOTE</strong>: This is the <strong>relationship</strong> that <strong>enables</strong> the <strong>DRLS to work</strong>.</li>
+</ul>
+</li>
+<li>
+<div>I created it as shown below.</div>
+<ul>
+<li><img src="https://i2.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL16.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+<li>The key thing to take a note of here, is that the <strong>Cross filter direction</strong> is set to <strong>Both</strong></li>
+<li>And that I have <strong>enabled</strong> the <strong>Apply security filter in both directions</strong> is <strong>enabled</strong>.</li>
+<li>This ensures that when the DRLS is in place it will work as expected.</li>
+</ul>
+</li>
+</ul>
+<h2>Configuration of the DRLS Role</h2>
+<p>The next few steps are fairly simple. In this next step I am going to configure one role that will be used for all users.</p>
+<ul>
+<li>
+<div>I am now back in Power BI Desktop, and I <strong>click</strong> on the <strong>Modelling</strong><br />
+<strong>Tab</strong>, and then <strong>click</strong> on <strong>Manage Roles</strong></div>
+<ul>
+<li><img src="https://i0.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL17.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+</ul>
+</li>
+<li>
+<div>I then find the AD User Details table and put in the following DAX Syntax</div>
+<ul>
+<li>
+<pre class="EnlighterJSRAW" data-enlighter-language="null">'AD User Details'[User Principal Name] = UserprincipalName()</pre>
+</li>
+</ul>
+</li>
+<li>And then I <strong>click </strong><strong>Save</strong>.</li>
+<li>That is all that is needed for the DRLS for all your users.</li>
+<li>Once again, so <strong>simple yet so powerful</strong>. I personally <strong>LOVE IT!</strong></li>
+<li>I then <strong>clicked </strong><strong>Save</strong> and <strong>uploaded</strong> the <strong>PBIX</strong> file to the <strong>Power BI Service</strong>.</li>
+</ul>
+<h2>Configuration of the Security for DRLS in the Power BI Service</h2>
+<p>The next step is where I then needed to <strong>configure</strong> the <strong>security</strong> for <strong>DRLS</strong> in <strong>the Power BI Service</strong>.</p>
+<p>The reason for this, is so that the Power BI Service can correctly assign the correct security when a user logs in.</p>
+<ul>
+<li>
+<div>I logged into the Power BI Service, and went to the <strong>App Workspace</strong> where I had <strong>uploaded the PBIX file</strong>.</div>
+<ul>
+<li><strong>NOTE</strong>: It is always <strong>suggested</strong> to use <strong>App Workspaces</strong> to <strong>ensure</strong> that the <strong>organization</strong><br />
+<strong>owns </strong><strong>the </strong><strong>data</strong> and files and not an individual user.</li>
+</ul>
+</li>
+<li>
+<div>I then went to Datasets, and clicked on the breadcrumb (or 3 dots …) and selected Security</div>
+<ul>
+<li><img src="https://i2.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL18.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+</ul>
+</li>
+<li>
+<div>I was then presented with the following screen as shown below.</div>
+<ul>
+<li><img src="https://i2.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL19.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+</ul>
+</li>
+<li>
+<div>Now once again, making my life very simple all that I needed to do, was to add in the same groups from my Security file. (Syd Office &amp; USA Office)</div>
+<ul>
+<li><img src="https://i0.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL20.png?ssl=1" alt="" data-recalc-dims="1" /></li>
+<li>I then clicked Add</li>
+</ul>
+</li>
+<li>And then Save.</li>
+<li>I know that this has been a rather long blog post, for something that is inherently so simple. But I felt like it needed all the steps so that someone could easily follow it.</li>
+<li>Now when a <strong>specific user logs in</strong> they will <strong>only see their view of the data</strong>.</li>
+<li>The data should <strong>ideally</strong> be <strong>shared</strong> via an <strong>App</strong> from the App Workspace.</li>
+</ul>
+<h2>DRLS in Action</h2>
+<p>As you can see below, when the user <strong>Pro </strong><strong>logs</strong> in, <strong>based</strong> on the <strong>DRLS </strong><strong>above</strong>, they should only <strong>see data from USA</strong>, and that is what is shown below.</p>
+<p><img src="https://i1.wp.com/www.fourmoo.com/wp-content/uploads/2018/02/021918_2200_DynamicRowL21.png?ssl=1" alt="" data-recalc-dims="1" /></p>
+<h2>Conclusion</h2>
+<p>As I have demonstrated, it is a <strong>lot easier and simple to leverage AD Security Groups and Power BI Query Editor</strong> to do all the <strong>heavy lifting for DRLS</strong>.</p>
+<p>As well as this <strong>allows</strong> the <strong>Security File and AD Security Groups</strong> to be <strong>managed</strong><br />
+<strong>outside</strong> of <strong>Power BI</strong> and the data modelling experience.</p>
+<p>Here is the link to the file <a href="https://1drv.ms/u/s!Apxn-69XhcAmiIw7TC3wlFgzXfVOgw">AD Steps &#8211; DRLS.pbix</a>, in which you will still need to plug in your data, but it does have the required Active Directory Steps in place.</p>
+<p>And as always if there are any questions or comments please leave them in the section below.</p>
+<h2>Appendix: Adding in the AD User Details</h2>
+<p>Due to the way Active Directory Works, and having sensitive data, if you want to do this after download the file above, please replace the following M syntax in your file for the table called <strong>AD User Details</strong></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null">let
+ Source = ActiveDirectory.Domains(#"Domain Name"),
+ my.domain.com = Source{[Domain=#"Domain Name"]}[#"Object Categories"],
+ user1 = my.domain.com{[Category="user"]}[Objects],
+ #"Removed Other Columns" = Table.Buffer(Table.SelectColumns(user1,{"displayName", "user"})),
+ #"Expanded user" = Table.ExpandRecordColumn(#"Removed Other Columns", "user", {"userPrincipalName"}, {"user.userPrincipalName"}),
+ #"Filtered Rows" = Table.SelectRows(#"Expanded user", each not Text.Contains([displayName], "@")),
+ #"Duplicated Column" = Table.DuplicateColumn(#"Filtered Rows", "displayName", "displayName - Copy"),
+ #"Split Column by Position" = Table.SplitColumn(#"Duplicated Column","displayName - Copy",Splitter.SplitTextByPositions({0, 1}, false),{"displayName - Copy.1", "displayName - Copy.2"}),
+ #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Position",{{"displayName - Copy.1", type text}, {"displayName - Copy.2", type text}}),
+ #"Uppercased Text" = Table.TransformColumns(#"Changed Type",{{"displayName - Copy.1", Text.Upper}}),
+ #"Split Column by Delimiter" = Table.SplitColumn(#"Uppercased Text","displayName - Copy.2",Splitter.SplitTextByEachDelimiter({" "}, QuoteStyle.Csv, true),{"displayName - Copy.2.1", "displayName - Copy.2.2"}),
+ #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"displayName - Copy.2.1", type text}, {"displayName - Copy.2.2", type text}}),
+ #"Split Column by Position1" = Table.SplitColumn(#"Changed Type1","displayName - Copy.2.2",Splitter.SplitTextByPositions({0, 1}, false),{"displayName - Copy.2.2.1", "displayName - Copy.2.2.2"}),
+ #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Position1",{{"displayName - Copy.2.2.1", type text}, {"displayName - Copy.2.2.2", type text}}),
+ #"Uppercased Text1" = Table.TransformColumns(#"Changed Type2",{{"displayName - Copy.2.2.1", Text.Upper}}),
+ #"Removed Columns" = Table.RemoveColumns(#"Uppercased Text1",{"displayName - Copy.2.1", "displayName - Copy.2.2.2"}),
+ #"Replaced Value" = Table.ReplaceValue(#"Removed Columns",null,"U",Replacer.ReplaceValue,{"displayName - Copy.1"}),
+ #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,"U",Replacer.ReplaceValue,{"displayName - Copy.2.2.1"}),
+ #"Renamed Columns" = Table.RenameColumns(#"Replaced Value1",{{"displayName - Copy.1", "First Name Letter"}, {"displayName - Copy.2.2.1", "Surname Letter"}, {"user.userPrincipalName", "User Principal name"}, {"displayName", "Display Name"}})
+in
+ #"Renamed Columns"</pre>
+<p>&nbsp;</p>
+<h2>Appendix: Adding in the AD User &amp; Groups</h2>
+<p>Due to the way Active Directory Works, and having sensitive data, if you want to do this after download the file above, please replace the following M syntax in your file for the table called <strong>AD User &amp; Groups<br />
+</strong></p>
+<pre class="EnlighterJSRAW" data-enlighter-language="null">let
+ Source = ActiveDirectory.Domains(#"Domain Name"),
+ my.domain.com = Source{[Domain=#"Domain Name"]}[#"Object Categories"],
+ person1 = my.domain.com{[Category="person"]}[Objects],
+ #"Expanded top1" = Table.ExpandRecordColumn(person1, "top", {"memberOf"}, {"top.memberOf"}),
+ #"Expanded top.memberOf2" = Table.ExpandListColumn(#"Expanded top1", "top.memberOf"),
+ #"Expanded top.memberOf3" = Table.ExpandRecordColumn(#"Expanded top.memberOf2", "top.memberOf", {"displayName", "name"}, {"top.memberOf.displayName", "top.memberOf.name"}),
+ #"Filtered Rows" = Table.SelectRows(#"Expanded top.memberOf3", each ([displayName] &lt;&gt; null)),
+ #"Removed Columns" = Table.RemoveColumns(#"Filtered Rows",{"person", "distinguishedName"}),
+ #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"displayName", "Display Name"}, {"top.memberOf.displayName", "Group Email Address"}, {"top.memberOf.name", "Group Name"}}),
+ #"Merged Queries" = Table.NestedJoin(#"Renamed Columns",{"Display Name"},#"AD - User Details",{"Display Name"},"NewColumn",JoinKind.LeftOuter),
+ #"Expanded NewColumn" = Table.ExpandTableColumn(#"Merged Queries", "NewColumn", {"User Principal name", "First Name Letter", "Surname Letter"}, {"User Principal name", "First Name Letter", "Surname Letter"})
+in
+ #"Expanded NewColumn"
+#"Expanded NewColumn"</pre>
+<p>&nbsp;</p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow noopener noreferrer" data-shared="sharing-twitter-4899" class="share-twitter sd-button share-icon no-text" href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/?share=twitter" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow noopener noreferrer" data-shared="sharing-facebook-4899" class="share-facebook sd-button share-icon no-text" href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/?share=facebook" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow noopener noreferrer" data-shared="sharing-linkedin-4899" class="share-linkedin sd-button share-icon no-text" href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/?share=linkedin" target="_blank" title="Click to share on LinkedIn"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-jetpack-whatsapp"><a rel="nofollow noopener noreferrer" data-shared="" class="share-jetpack-whatsapp sd-button share-icon no-text" href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/?share=jetpack-whatsapp" target="_blank" title="Click to share on WhatsApp"><span></span><span class="sharing-screen-reader-text">Click to share on WhatsApp (Opens in new window)</span></a></li><li class="share-skype"><a rel="nofollow noopener noreferrer" data-shared="sharing-skype-4899" class="share-skype sd-button share-icon no-text" href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/?share=skype" target="_blank" title="Click to share on Skype"><span></span><span class="sharing-screen-reader-text">Click to share on Skype (Opens in new window)</span></a></li><li class="share-email"><a rel="nofollow noopener noreferrer" data-shared="" class="share-email sd-button share-icon no-text" href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/?share=email" target="_blank" title="Click to email this to a friend"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div>
+<div id='jp-relatedposts' class='jp-relatedposts' >
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+</div>			</div>
+
+		</div>
+	</article>
+
+
+
+										<div class="sh-clear"></div>
+
+
+										<div class="sh-page-links"></div>
+
+																<div class="sh-blog-tags">
+							<h5>Tags In</h5>
+							<div class="sh-blog-tags-list">
+																	<a href="https://www.fourmoo.com/tag/ad-security-groups/" class="sh-blog-tag-item">
+										AD Security Groups									</a>
+																	<a href="https://www.fourmoo.com/tag/dynamic-row-level-security/" class="sh-blog-tag-item">
+										Dynamic Row Level Security									</a>
+																	<a href="https://www.fourmoo.com/tag/power-bi/" class="sh-blog-tag-item">
+										Power BI									</a>
+																	<a href="https://www.fourmoo.com/tag/row-level-security/" class="sh-blog-tag-item">
+										Row Level Security									</a>
+															</div>
+						</div>
+					
+
+					<div class="sh-blog-single-meta row">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+
+																						<div class="sh-blog-social">
+									
+            <div class="sh-social-share">
+                <div class="sh-social-share-button sh-noselect">
+                    <i class="icon-share"></i>
+                    <span>Share</span>
+                </div>
+                <div class="sh-social-share-networks"></div>
+            </div>								</div>
+							
+						</div>
+						<div class="col-md-6 col-sm-6">
+
+														<div class="sh-page-switcher"><a class="sh-page-switcher-button" href="https://www.fourmoo.com/2018/02/08/bi-roundup-power-bi-february-update-data-world-connector/"><i class="ti-arrow-left"></i></a><span class="sh-page-switcher-content"><strong>264</strong> / 438</span><a class="sh-page-switcher-button" href="https://www.fourmoo.com/2018/02/28/how-to-paste-a-screenshot-image-into-the-power-bi-community-forum/"><i class="ti-arrow-right"></i></a></div>
+						</div>
+					</div>
+
+
+										
+
+																<div class="sh-related-posts">
+							<div class="sh-related-posts-title">
+								<h3>Related Posts</h3>
+							</div>
+							<div class="blog-list blog-style-largeimage">
+								
+									<article id="post-2106" class="post-item post-2106 post type-post status-publish format-standard hentry category-bi-nsight category-power-bi category-sharepoint-2016 tag-excel-2016 tag-mobile-app">
+										<div class="post-container">
+											
+											
+												<div class="post-meta-thumb">
+																										
+        <div class="sh-overlay-style1">
+            <div class="sh-table-full">
+                                    <a href="https://www.fourmoo.com/2016/03/17/bi-nsight-data-insights-summit-watch-online-for-free-power-bi-service-update-mobile-app-update-clickdimensions-content-pack-excel-2016-power-pivot-update-sharep/" class="sh-overlay-item sh-table-cell">
+                        <div class="sh-overlay-item-container">
+                            <i class="icon-link"></i>
+                        </div>
+                    </a>
+                
+                                    <a href="https://www.fourmoo.com/2016/03/17/bi-nsight-data-insights-summit-watch-online-for-free-power-bi-service-update-mobile-app-update-clickdimensions-content-pack-excel-2016-power-pivot-update-sharep/" class="sh-overlay-item sh-table-cell" data-rel="lightcase">
+                        <div class="sh-overlay-item-container">
+                            <i class="icon-magnifier-add"></i>
+                        </div>
+                    </a>
+                            </div>
+        </div>
+
+    												</div>
+												<a href="https://www.fourmoo.com/2016/03/17/bi-nsight-data-insights-summit-watch-online-for-free-power-bi-service-update-mobile-app-update-clickdimensions-content-pack-excel-2016-power-pivot-update-sharep/" class="post-title">
+													<h2>BI-NSIGHT – Data Insights Summit (Watch online for Free) &#8211; Power BI (Service Update, Mobile App Update, ClickDimensions Content Pack) – Excel 2016 (Power Pivot Update) – SharePoint 2016 (RTM Released)</h2>
+												</a>
+
+											
+											<div class="post-meta post-meta-two">
+												
+        <div class="sh-columns post-meta-comments">
+            <span class="post-meta-categories">
+                <i class="icon-tag"></i>
+                <a href="https://www.fourmoo.com/category/bi-nsight/">BI-NSIGHT</a>, <a href="https://www.fourmoo.com/category/power-bi/">Power BI</a>, <a href="https://www.fourmoo.com/category/sharepoint-2016/">SharePoint 2016</a>            </span>
+
+                            <a href="https://www.fourmoo.com/2016/03/17/bi-nsight-data-insights-summit-watch-online-for-free-power-bi-service-update-mobile-app-update-clickdimensions-content-pack-excel-2016-power-pivot-update-sharep/#comments" class="post-meta-comments">
+                    <i class="icon-speech"></i>
+                    0                </a>
+                    </div>
+
+    											</div>
+
+										</div>
+									</article>
+
+
+									
+									<article id="post-1531" class="post-item post-1531 post type-post status-publish format-standard hentry category-dax category-power-bi category-power-query-power-bi tag-power-query">
+										<div class="post-container">
+											
+											
+												<div class="post-meta-thumb">
+																										
+        <div class="sh-overlay-style1">
+            <div class="sh-table-full">
+                                    <a href="https://www.fourmoo.com/2015/04/22/microsoft-power-bi-designer-now-supports-dax-calculated-measures/" class="sh-overlay-item sh-table-cell">
+                        <div class="sh-overlay-item-container">
+                            <i class="icon-link"></i>
+                        </div>
+                    </a>
+                
+                                    <a href="https://www.fourmoo.com/2015/04/22/microsoft-power-bi-designer-now-supports-dax-calculated-measures/" class="sh-overlay-item sh-table-cell" data-rel="lightcase">
+                        <div class="sh-overlay-item-container">
+                            <i class="icon-magnifier-add"></i>
+                        </div>
+                    </a>
+                            </div>
+        </div>
+
+    												</div>
+												<a href="https://www.fourmoo.com/2015/04/22/microsoft-power-bi-designer-now-supports-dax-calculated-measures/" class="post-title">
+													<h2>Microsoft Power BI Designer Now supports DAX Calculated Measures</h2>
+												</a>
+
+											
+											<div class="post-meta post-meta-two">
+												
+        <div class="sh-columns post-meta-comments">
+            <span class="post-meta-categories">
+                <i class="icon-tag"></i>
+                <a href="https://www.fourmoo.com/category/dax/">DAX</a>, <a href="https://www.fourmoo.com/category/power-bi/">Power BI</a>, <a href="https://www.fourmoo.com/category/power-query-power-bi/">Power Query</a>            </span>
+
+                            <a href="https://www.fourmoo.com/2015/04/22/microsoft-power-bi-designer-now-supports-dax-calculated-measures/#comments" class="post-meta-comments">
+                    <i class="icon-speech"></i>
+                    0                </a>
+                    </div>
+
+    											</div>
+
+										</div>
+									</article>
+
+
+									
+									<article id="post-5829" class="post-item post-5829 post type-post status-publish format-standard hentry category-power-bi category-power-bi-roundup tag-power-bi tag-power-bi-desktop tag-power-bi-roundup">
+										<div class="post-container">
+											
+											
+												<div class="post-meta-thumb">
+																										
+        <div class="sh-overlay-style1">
+            <div class="sh-table-full">
+                                    <a href="https://www.fourmoo.com/2018/11/15/power-bi-roundup-nov-2018-desktop-release-ai-capabilities-for-power-bi/" class="sh-overlay-item sh-table-cell">
+                        <div class="sh-overlay-item-container">
+                            <i class="icon-link"></i>
+                        </div>
+                    </a>
+                
+                                    <a href="https://www.fourmoo.com/2018/11/15/power-bi-roundup-nov-2018-desktop-release-ai-capabilities-for-power-bi/" class="sh-overlay-item sh-table-cell" data-rel="lightcase">
+                        <div class="sh-overlay-item-container">
+                            <i class="icon-magnifier-add"></i>
+                        </div>
+                    </a>
+                            </div>
+        </div>
+
+    												</div>
+												<a href="https://www.fourmoo.com/2018/11/15/power-bi-roundup-nov-2018-desktop-release-ai-capabilities-for-power-bi/" class="post-title">
+													<h2>Power BI RoundUp – (Nov 2018 Desktop release – AI Capabilities for Power BI)</h2>
+												</a>
+
+											
+											<div class="post-meta post-meta-two">
+												
+        <div class="sh-columns post-meta-comments">
+            <span class="post-meta-categories">
+                <i class="icon-tag"></i>
+                <a href="https://www.fourmoo.com/category/power-bi/">Power BI</a>, <a href="https://www.fourmoo.com/category/power-bi-roundup/">Power BI RoundUp</a>            </span>
+
+                            <a href="https://www.fourmoo.com/2018/11/15/power-bi-roundup-nov-2018-desktop-release-ai-capabilities-for-power-bi/#comments" class="post-meta-comments">
+                    <i class="icon-speech"></i>
+                    3                </a>
+                    </div>
+
+    											</div>
+
+										</div>
+									</article>
+
+
+																</div>
+						</div>
+					
+
+
+
+
+
+
+
+				
+<div class="sh-comments">
+			<h2 class="sh-comments-title">
+			14 Comments		</h2>
+
+		<ol class="sh-comment-list">
+							<li class="pingback even thread-even depth-1 parent" id="comment-6216">
+
+				<div id="div-comment-6216" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author"><a href='https://workingondata.wordpress.com/2018/02/23/data-news-2018-08/' rel='external nofollow ugc' class='url'>Data News &#8211; 2018 / 08 | workingondata</a></span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-6216">
+								February 25, 2018 at 2:40 am							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>[&#8230;] Power BI &#8211; Dynamic Row Level Security is easy with Active Directory Security Groups &#8211; https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security&#8230; [&#8230;]</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-6216' data-commentid="6216" data-postid="4899" data-belowelement="div-comment-6216" data-respondelement="respond" data-replyto="Reply to Data News &#8211; 2018 / 08 | workingondata" aria-label='Reply to Data News &#8211; 2018 / 08 | workingondata'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			<ol class="children">
+				<li class="comment odd alt depth-2 parent" id="comment-109542">
+
+				<div id="div-comment-109542" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/6e739a03f43edc7272a42a07e39fb004?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6e739a03f43edc7272a42a07e39fb004?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Gallagher2556</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-109542">
+								June 30, 2020 at 5:45 pm							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>How would you create Hierarchy from this?</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-109542' data-commentid="109542" data-postid="4899" data-belowelement="div-comment-109542" data-respondelement="respond" data-replyto="Reply to Gallagher2556" aria-label='Reply to Gallagher2556'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			<ol class="children">
+				<li class="comment byuser comment-author-gilbertque bypostauthor even depth-3 parent" id="comment-109580">
+
+				<div id="div-comment-109580" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Gilbert Quevauvilliers</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-109580">
+								July 1, 2020 at 6:54 am							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Why would you need the hierarchy?</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-109580' data-commentid="109580" data-postid="4899" data-belowelement="div-comment-109580" data-respondelement="respond" data-replyto="Reply to Gilbert Quevauvilliers" aria-label='Reply to Gilbert Quevauvilliers'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			<ol class="children">
+				<li class="comment odd alt depth-4" id="comment-110507">
+
+				<div id="div-comment-110507" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/6e739a03f43edc7272a42a07e39fb004?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6e739a03f43edc7272a42a07e39fb004?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Gallagher2556</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-110507">
+								July 17, 2020 at 12:09 am							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>So, if I run an organization that has groups for Managers, Regular Employees, CEO,etc. and the company has branches in various states then we would have Managers and Employees in different states. And, if the CEO wants to look at the report with the option to select a manager and view it, I would need to create hierarchy for that.</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-110507' data-commentid="110507" data-postid="4899" data-belowelement="div-comment-110507" data-respondelement="respond" data-replyto="Reply to Gallagher2556" aria-label='Reply to Gallagher2556'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+				<li class="comment even thread-odd thread-alt depth-1" id="comment-14686">
+
+				<div id="div-comment-14686" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/6a5ac692ba7873d9506e31578e3b84e6?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6a5ac692ba7873d9506e31578e3b84e6?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Vishal</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-14686">
+								July 11, 2018 at 9:18 pm							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi,</p>
+<p>Do we still need to provide the table with user and groups.</p>
+<p>Because we dont want to maintain any user level information.</p>
+<p>Can we dynamically provide access only on the basis of groups.</p>
+<p>(SSAS Tabular or Power BI)</p>
+<p>Thanks.</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-14686' data-commentid="14686" data-postid="4899" data-belowelement="div-comment-14686" data-respondelement="respond" data-replyto="Reply to Vishal" aria-label='Reply to Vishal'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			</li><!-- #comment-## -->
+				<li class="comment odd alt thread-even depth-1 parent" id="comment-74172">
+
+				<div id="div-comment-74172" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/8dd92d86dded0b117888b219a6a054e4?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/8dd92d86dded0b117888b219a6a054e4?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Michal</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-74172">
+								August 29, 2019 at 2:06 am							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi!</p>
+<p>Nice explained 🙂</p>
+<p>I&#8217;ve a question&#8230;what happens if the new user will be created (for example a new joiner) and added to the group? Do we need to refresh the data? So the active directory is updated (I heard you cannot set auto refresh in power bi app for active directory) any suggestions how to manage that?</p>
+<p>Cheers!<br />
+Michal</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-74172' data-commentid="74172" data-postid="4899" data-belowelement="div-comment-74172" data-respondelement="respond" data-replyto="Reply to Michal" aria-label='Reply to Michal'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			<ol class="children">
+				<li class="comment byuser comment-author-gilbertque bypostauthor even depth-2" id="comment-75100">
+
+				<div id="div-comment-75100" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Gilbert Quevauvilliers</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-75100">
+								September 4, 2019 at 8:31 am							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi there</p>
+<p>Thanks for the kind words!</p>
+<p>The AD Connector is now supported by the On-Premise Data Gateway.<br />
+It can be another data source that can be refreshed, so when the new joiner is added to the group on the next refresh they will be added to the group.</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-75100' data-commentid="75100" data-postid="4899" data-belowelement="div-comment-75100" data-respondelement="respond" data-replyto="Reply to Gilbert Quevauvilliers" aria-label='Reply to Gilbert Quevauvilliers'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+				<li class="comment odd alt thread-odd thread-alt depth-1 parent" id="comment-93920">
+
+				<div id="div-comment-93920" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/c77de0332b5d7784677554993b4e7179?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/c77de0332b5d7784677554993b4e7179?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Sebastian Pedrero</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-93920">
+								December 28, 2019 at 6:58 am							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi!,<br />
+Is there a way to create groups similar to what you propose in your article, but that the filter be access to specific pages of a report?</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-93920' data-commentid="93920" data-postid="4899" data-belowelement="div-comment-93920" data-respondelement="respond" data-replyto="Reply to Sebastian Pedrero" aria-label='Reply to Sebastian Pedrero'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			<ol class="children">
+				<li class="comment byuser comment-author-gilbertque bypostauthor even depth-2 parent" id="comment-94121">
+
+				<div id="div-comment-94121" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Gilbert Quevauvilliers</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-94121">
+								December 30, 2019 at 9:14 am							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi there</p>
+<p>Currently there is nothing in the Power BI product which will allow you to filter specific pages in a report.</p>
+<p>What could be done is a DAX measure where if the user does not have access it could show them that they do not have access to that particular page?</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-94121' data-commentid="94121" data-postid="4899" data-belowelement="div-comment-94121" data-respondelement="respond" data-replyto="Reply to Gilbert Quevauvilliers" aria-label='Reply to Gilbert Quevauvilliers'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			<ol class="children">
+				<li class="comment odd alt depth-3" id="comment-94163">
+
+				<div id="div-comment-94163" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/c77de0332b5d7784677554993b4e7179?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/c77de0332b5d7784677554993b4e7179?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Sebastian Pedrero</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-94163">
+								December 30, 2019 at 10:03 pm							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi Gilbert,<br />
+Could you give me some lights of the DAX measures?<br />
+Thank you very much for your answer</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-94163' data-commentid="94163" data-postid="4899" data-belowelement="div-comment-94163" data-respondelement="respond" data-replyto="Reply to Sebastian Pedrero" aria-label='Reply to Sebastian Pedrero'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+				<li class="comment even thread-even depth-1 parent" id="comment-109950">
+
+				<div id="div-comment-109950" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/f50b830eb933e29a8f3b327d03954555?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/f50b830eb933e29a8f3b327d03954555?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Rohan Chhabra</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-109950">
+								July 7, 2020 at 4:30 am							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi Gilbert,</p>
+<p>Thanks for the article. Do we even need the group email id in the whole process, because I see that you are bringing it to the table but excluding it from the final table (AD security details). Also, on the service after publishing, what is it that you enter in the dialog box while assigning the roles to AD (SYD office and USA Office). Is it the group name itself or the group email id.</p>
+<p>Please let me know as I am stuck at this point where I followed all the steps but am still not able to see the groups in the service</p>
+<p>Thanks in advance</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-109950' data-commentid="109950" data-postid="4899" data-belowelement="div-comment-109950" data-respondelement="respond" data-replyto="Reply to Rohan Chhabra" aria-label='Reply to Rohan Chhabra'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			<ol class="children">
+				<li class="comment byuser comment-author-gilbertque bypostauthor odd alt depth-2" id="comment-110130">
+
+				<div id="div-comment-110130" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Gilbert Quevauvilliers</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-110130">
+								July 10, 2020 at 10:55 am							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi there</p>
+<p>You do need the Email ID within the dataset because that is where it needs to know which user to find in the table based on the logged in user using the UserPrincipalName()</p>
+<p>To see the Group in the Service, it needs to be an Active Directory Security Group</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-110130' data-commentid="110130" data-postid="4899" data-belowelement="div-comment-110130" data-respondelement="respond" data-replyto="Reply to Gilbert Quevauvilliers" aria-label='Reply to Gilbert Quevauvilliers'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+				<li class="comment even thread-odd thread-alt depth-1 parent" id="comment-115245">
+
+				<div id="div-comment-115245" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/bb59ee913ef1a5723a34d73dd335bf64?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/bb59ee913ef1a5723a34d73dd335bf64?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author"><a href='http://www.accessanalytic.com.au' rel='external nofollow ugc' class='url'>Jeff Robson</a></span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-115245">
+								October 30, 2020 at 1:38 pm							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi Gilbert<br />
+Thanks for this. I&#8217;m just wondering how the DRLS security is working in your example when the User Principal Name field in your &#8216;AD User Details&#8217; table contains the same value on every row. I would have thought this field would have need to each person&#8217;s e-mail address for your DAX DRLS filter to work?<br />
+&#8216;AD User Details'[User Principal Name] = UserprincipalName()<br />
+If all the user principal names in the table are &#8220;@fourmoo.com&#8221;, a user logging in with &#8220;pro@fourmoo.com&#8221; shouldn&#8217;t generate any matches should they?<br />
+Thanks<br />
+Jeff</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-115245' data-commentid="115245" data-postid="4899" data-belowelement="div-comment-115245" data-respondelement="respond" data-replyto="Reply to Jeff Robson" aria-label='Reply to Jeff Robson'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			<ol class="children">
+				<li class="comment byuser comment-author-gilbertque bypostauthor odd alt depth-2" id="comment-115246">
+
+				<div id="div-comment-115246" class="comment-body">
+					<div class="comment-column-left">
+						<div class="comment-thumb"><img alt='' src='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=54&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/6f8bbe45231a14ee18714976d22635db?s=108&#038;d=mm&#038;r=g 2x' class='avatar avatar-54 photo' height='54' width='54' loading='lazy'/></div>
+					</div>
+					<div class="comment-column-right">
+
+						<span class="sh-comment-author">Gilbert Quevauvilliers</span>						
+						<span class="sh-comment-date">
+							<a href="https://www.fourmoo.com/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#comment-115246">
+								October 30, 2020 at 2:00 pm							</a>
+						</span>
+
+						<div class="sh-comment-content">
+							<p>Hi Jeff, thanks for the comment.</p>
+<p>With regards to your question if I understand it, there should be a single user per row in the &#8216;AD User Details&#8221; table. Each row would have their unique email address.</p>
+<p>If a user logs in and does not have a row in the &#8216;AD User Details&#8217; table they will not be able to view any data because no rows match in the table.</p>
+<p>Does this make sense?<br />
+If not please let me know.</p>
+						</div>
+
+						<div class="reply">
+															<i class="icon-pencil sh-reply-link"></i>
+								<span class="sh-reply-link-button sh-default-color">
+									<a rel='nofollow' class='comment-reply-link' href='#comment-115246' data-commentid="115246" data-postid="4899" data-belowelement="div-comment-115246" data-respondelement="respond" data-replyto="Reply to Gilbert Quevauvilliers" aria-label='Reply to Gilbert Quevauvilliers'>Reply</a>								</span>
+							
+							<span class="sh-reply-edit">
+															</span>
+						</div>
+
+					</div>
+				</div>
+
+			</li><!-- #comment-## -->
+</ol><!-- .children -->
+</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+
+		
+	
+	
+
+	<div class="sh-comment-form">
+			<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/#respond" style="display:none;">Cancel reply</a></small></h3><form action="https://www.fourmoo.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><label>Message  <i class="icon-check sh-accent-color"></i></label>
+			<p class="comment-form-comment">
+				<textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" required></textarea>
+			</p><label>Name <i class="icon-check sh-accent-color"></i> </label>
+				<p class="comment-form-author">
+					<input id="author" name="author" type="text" value="" required  />
+				</p>
+<label>Email <i class="icon-check sh-accent-color"></i> </label>
+				<p class="comment-form-email">
+					<input id="email" name="email" type="text" value="" required />
+				</p>
+<label>Website  </label>
+				<p class="comment-form-url">
+					<input id="url" name="url" type="text" value=""  />
+				</p>
+<p class="comment-subscription-form"><input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox; -webkit-appearance: checkbox;" /> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p><div class="sh-comments-required-notice">Required fields are marked <i class="icon-check sh-accent-color"></i></div><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Send a comment" /> <input type='hidden' name='comment_post_ID' value='4899' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</a><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="e267ff3e6e" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="135"/></p></form>	</div><!-- #respond -->
+	<p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener">Learn how your comment data is processed</a>.</p>	</div>
+</div>
+
+		</div>
+	</div>
+	
+
+			</div>
+		</div>
+
+					
+				<footer class="sh-footer">
+											<div class="sh-copyrights">
+		<div class="container container-padding">
+			
+				<div class="sh-copyrights-style1">
+					<div class="sh-table-full">
+												<div class="sh-table-cell">
+							
+<div class="sh-copyrights-text">
+	<span class="developer-copyrights  sh-hidden">
+		WordPress Theme built by <a href="https://shufflehound.com" target="blank"><strong>Shufflehound</strong>.</a>
+	</span>
+	<span>Copyright @FourMoo 2019 | ABN 80 382 360 382</span>
+</div>						</div>
+					</div>
+				</div>
+									<div class="sh-copyrights-style1" style="float: right;">
+						<div class="sh-table-cell">
+							<div class="sh-copyrights-social">
+								<a href="https://twitter.com/gilbertque"  target = "_blank"  class="social-media-twitter">
+                <i class="icon-social-twitter"></i>
+            </a><a href="https://www.linkedin.com/in/fourmoo/"  target = "_blank"  class="social-media-linkedin">
+                <i class="icon-social-linkedin"></i>
+            </a>							</div>
+						</div>
+					</div>
+				
+			
+		</div>
+	</div>
+				</footer>
+
+						</div>
+
+
+	
+	
+		<div class="sh-back-to-top sh-back-to-top2 filled">
+			<i class="icon-control-start"></i>
+		</div>
+
+	</div>
+
+<div class="wpgdprc wpgdprc-consent-bar" style="display: none;background: #f29e9f;"><div class="wpgdprc-consent-bar__container"><div class="wpgdprc-consent-bar__content" style="color: #ffffff;"><div class="wpgdprc-consent-bar__column"><div class="wpgdprc-consent-bar__notice"><p>This site uses functional cookies and external scripts to improve your experience.</p>
+</div></div><div class="wpgdprc-consent-bar__column"><a class="wpgdprc-consent-bar__settings" href="javascript:void(0);" data-micromodal-trigger="wpgdprc-consent-modal" aria-expanded="false" aria-haspopup="true">More information</a></div><div class="wpgdprc-consent-bar__column"><button class="wpgdprc-button wpgdprc-consent-bar__button" style="background: #ffffff;border-color: #ffffff;color: #f29e9f;">Accept</button></div></div></div></div>	<div style="display:none">
+	<div class="grofile-hash-map-6e739a03f43edc7272a42a07e39fb004">
+	</div>
+	<div class="grofile-hash-map-6f8bbe45231a14ee18714976d22635db">
+	</div>
+	<div class="grofile-hash-map-6a5ac692ba7873d9506e31578e3b84e6">
+	</div>
+	<div class="grofile-hash-map-8dd92d86dded0b117888b219a6a054e4">
+	</div>
+	<div class="grofile-hash-map-c77de0332b5d7784677554993b4e7179">
+	</div>
+	<div class="grofile-hash-map-f50b830eb933e29a8f3b327d03954555">
+	</div>
+	<div class="grofile-hash-map-bb59ee913ef1a5723a34d73dd335bf64">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/www.fourmoo.com\/2018\/02\/20\/dynamic-row-level-security-is-easy-with-active-directory-security-groups\/":4899};
+	</script>
+					<div id="sharing_email" style="display: none;">
+		<form action="/2018/02/20/dynamic-row-level-security-is-easy-with-active-directory-security-groups/" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input type="email" name="target_email" id="target_email" value="" />
+
+			
+				<label for="source_name">Your Name</label>
+				<input type="text" name="source_name" id="source_name" value="" />
+
+				<label for="source_email">Your Email Address</label>
+				<input type="email" name="source_email" id="source_email" value="" />
+
+						<input type="text" id="jetpack-source_f_name" name="source_f_name" class="input" value="" size="25" autocomplete="off" title="This field is for validation and should not be changed" />
+			
+			<img style="float: right; display: none" class="loading" src="https://www.fourmoo.com/wp-content/plugins/jetpack/modules/sharedaddy/images/loading.gif" alt="loading" width="16" height="16" />
+			<input type="submit" value="Send Email" class="sharing_send" />
+			<a rel="nofollow" href="#cancel" class="sharing_cancel" role="button">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20191001' id='jetpack-photon-js'></script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/www.fourmoo.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.3.2' id='contact-form-7-js'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?render=6Lcs8YAUAAAAAHc3wQDjwcTz0SmfYkSBuYsSzWAu&#038;ver=3.0' id='google-recaptcha-js'></script>
+<script type='text/javascript' id='wpcf7-recaptcha-js-extra'>
+/* <![CDATA[ */
+var wpcf7_recaptcha = {"sitekey":"6Lcs8YAUAAAAAHc3wQDjwcTz0SmfYkSBuYsSzWAu","actions":{"homepage":"homepage","contactform":"contactform"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/contact-form-7/modules/recaptcha/script.js?ver=5.3.2' id='wpcf7-recaptcha-js'></script>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=202052' id='grofiles-cards-js'></script>
+<script type='text/javascript' id='wpgroho-js-extra'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/jetpack/modules/wpgroho.js?ver=9.2.1' id='wpgroho-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-includes/js/jquery/ui/effect.min.js?ver=1.11.4' id='jquery-effects-core-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/themes/jevelin/js/plugins/bootstrap.min.js?ver=3.3.4' id='bootstrap-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/enlighter/cache/enlighterjs.min.js?ver=J5dEcRtDI98rbkS' id='enlighterjs-js'></script>
+<script type='text/javascript' id='enlighterjs-js-after'>
+!function(e,n){if("undefined"!=typeof EnlighterJS){var o={"selectors":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"options":{"indent":4,"ampersandCleanup":true,"linehover":true,"rawcodeDbclick":false,"textOverflow":"break","linenumbers":true,"theme":"enlighter","language":"enlighter","retainCssClasses":false,"collapse":false,"toolbarOuter":"","toolbarTop":"{BTN_RAW}{BTN_COPY}{BTN_WINDOW}{BTN_WEBSITE}","toolbarBottom":""}};(e.EnlighterJSINIT=function(){EnlighterJS.init(o.selectors.block,o.selectors.inline,o.options)})()}else{(n&&(n.error||n.log)||function(){})("Error: EnlighterJS resources not loaded yet!")}}(window,console);
+</script>
+<script type='text/javascript' id='wpgdprc.js-js-extra'>
+/* <![CDATA[ */
+var wpgdprcData = {"ajaxURL":"https:\/\/www.fourmoo.com\/wp-admin\/admin-ajax.php","ajaxSecurity":"6e580f9efd","isMultisite":"","path":"\/","blogId":"","consentVersion":"5","consents":[{"id":"1","required":true,"placement":"footer","content":"<script type=\"text\/javascript\"><\/script>"}]};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/wp-gdpr-compliance/assets/js/front.min.js?ver=1592279504' id='wpgdprc.js-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-includes/js/wp-embed.min.js?ver=5.5.3' id='wp-embed-js'></script>
+<script async="async" type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/akismet/_inc/form.js?ver=4.1.7' id='akismet-form-js'></script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-includes/js/comment-reply.min.js?ver=5.5.3' id='comment-reply-js'></script>
+<script type='text/javascript' id='sharing-js-js-extra'>
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1","is_stats_active":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.fourmoo.com/wp-content/plugins/jetpack/_inc/build/sharedaddy/sharing.min.js?ver=9.2.1' id='sharing-js-js'></script>
+<script type='text/javascript' id='sharing-js-js-after'>
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-linkedin', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-skype', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomskype', 'menubar=1,resizable=1,width=305,height=665' );
+				return false;
+			});
+</script>
+	<script type="text/javascript"> jQuery(document).ready(function ($) { "use strict"; });</script>
+<script type='text/javascript' src='https://stats.wp.com/e-202052.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:9.2.1',blog:'130883148',post:'4899',tz:'10',srv:'www.fourmoo.com'} ]);
+	_stq.push([ 'clickTrackerInit', '130883148', '4899' ]);
+</script>
+<div class="wpgdprc wpgdprc-consent-modal" id="wpgdprc-consent-modal" aria-hidden="true"><div class="wpgdprc-consent-modal__overlay" tabindex="-1" data-micromodal-close><div class="wpgdprc-consent-modal__container" role="dialog" aria-modal="true"><nav class="wpgdprc-consent-modal__navigation"><a class="wpgdprc-button wpgdprc-button--active" href="javascript:void(0);" data-target="description">Privacy Settings</a><a class="wpgdprc-button" href="javascript:void(0);" data-target="1">Consent for all content on Website</a></nav><div class="wpgdprc-consent-modal__information"><div class="wpgdprc-consent-modal__description" data-target="description"><p class="wpgdprc-consent-modal__title">Privacy Settings</p><p>This site uses functional cookies and external scripts to improve your experience. Which cookies and scripts are used and how they impact your visit is specified on the left. You may change your settings at any time. Your choices will not impact your visit.</p>
+<p>You can refer to the Privacy and Cookie Policy here: <a href="https://www.fourmoo.com/contact/">FourMoo Contact Form</a></p>
+<p><strong>NOTE:</strong> These settings will only apply to the browser and device you are currently using.</p>
+</div><div class="wpgdprc-consent-modal__description" style="display: none;" data-target="1"><p class="wpgdprc-consent-modal__title">Consent for all content on Website</p><p>Consent for all content</p>
+</div><footer class="wpgdprc-consent-modal__footer"><a class="wpgdprc-button wpgdprc-button--secondary" href="javascript:void(0);" style="background: #ffffff;border-color: #ffffff;color: #f29e9f;">Accept</a></footer></div><button class="wpgdprc-consent-modal__close" aria-label="Close modal" data-micromodal-close>&#x2715;</button></div></div></div>
+</body>
+</html>
